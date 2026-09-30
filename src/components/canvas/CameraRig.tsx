@@ -43,18 +43,17 @@ export function CameraRig({ scrollProgress, heroProgress = 0 }: CameraRigProps) 
         );
         targetLookAt.set(
           0,
-          THREE.MathUtils.lerp(3.5, 1.2, smoothT),
+          THREE.MathUtils.lerp(3.5, 0.70, smoothT),
           THREE.MathUtils.lerp(0, 9.2, smoothT)
         );
       } else if (heroProgress < 0.72) {
-        // Centerpiece focus: Generous breathing room, text remains completely readable
-        const t = (heroProgress - 0.45) / 0.27;
+        // Centerpiece focus: Perfectly centered on both horizontal and vertical axes
         targetPos.set(
-          Math.sin(t * Math.PI) * 0.6,
+          0,
           4.4 + Math.sin(state.clock.elapsedTime * 1.0) * 0.08,
           19.2
         );
-        targetLookAt.set(0, 1.2, 9.2);
+        targetLookAt.set(0, 0.70, 9.2);
       } else {
         // Descent towards lodge hearth as mountains close
         const t = (heroProgress - 0.72) / 0.28;
