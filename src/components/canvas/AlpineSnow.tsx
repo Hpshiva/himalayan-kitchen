@@ -253,7 +253,7 @@ export function AlpineSnow({
   const emberRef = useRef<THREE.Points>(null);
 
   const particleCount = 1400; // Background soft blizzard flurries
-  const crystalCount = 160;   // Prominent 6-sided dendritic snowflake crystals
+  const crystalCount = 260;   // Dainty 6-sided dendritic snowflake crystals
   const emberCount = 350;
   const isLight = theme === 'light';
 
@@ -285,20 +285,20 @@ export function AlpineSnow({
     return [pos, vel, sca];
   }, [particleCount]);
 
-  // 2. High-Definition 6-Sided Dendritic Snowflake Crystals (Tumbling in foreground & midground)
+  // 2. High-Definition 6-Sided Dendritic Snowflake Crystals (Small, dainty, and graceful)
   const crystalData = useMemo(() => {
     const data = [];
     for (let i = 0; i < crystalCount; i++) {
       data.push({
-        x: (Math.random() - 0.5) * 55,
+        x: (Math.random() - 0.5) * 60,
         y: Math.random() * 42 - 6,
-        z: Math.random() * 36 + 6, // Strategically in camera frustum (Z=6 to Z=42)
-        baseScale: Math.random() * 1.15 + 0.95, // Clearly visible crystalline size (0.95 to 2.1 units!)
-        vy: -0.016 - Math.random() * 0.024,
+        z: Math.random() * 38 + 5, // Strategically in camera frustum (Z=5 to Z=43)
+        baseScale: Math.random() * 0.35 + 0.35, // Delicately sized (0.35 to 0.70 units)
+        vy: -0.015 - Math.random() * 0.022,
         vx: (Math.random() - 0.5) * 0.012,
         vz: (Math.random() - 0.5) * 0.01,
         rotZ: Math.random() * Math.PI * 2,
-        rotZSpeed: (Math.random() - 0.5) * 0.016, // In-plane crystal spin
+        rotZSpeed: (Math.random() - 0.5) * 0.018, // In-plane crystal spin
         rotXSpeed: (Math.random() - 0.5) * 0.012,
         rotYSpeed: (Math.random() - 0.5) * 0.014,
         swayPhase: Math.random() * Math.PI * 2,
