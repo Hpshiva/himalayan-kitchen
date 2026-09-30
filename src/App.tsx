@@ -15,7 +15,6 @@ import { Footer } from './components/ui/Footer';
 import { ContactPage } from './components/pages/ContactPage';
 import { DishModal } from './components/ui/DishModal';
 import { ReservationModal } from './components/ui/ReservationModal';
-import { AltitudeScrollRail } from './components/ui/AltitudeScrollRail';
 import { soundEngine } from './utils/audio';
 import type { Dish } from './types';
 export default function App() {
@@ -197,16 +196,6 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
       />
-
-      {/* 01.5 — BESPOKE ALTITUDE SCROLL RAIL NAVIGATOR (Luxury Vertical Scroll Design) */}
-      {activePage === 'home' && (
-        <AltitudeScrollRail
-          scrollProgress={scrollProgress}
-          currentChapter={currentChapter}
-          theme={theme}
-          onNavigate={scrollToSection}
-        />
-      )}
 
       {/* Main View Router */}
       {activePage === 'home' ? (
