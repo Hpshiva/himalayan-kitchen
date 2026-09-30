@@ -219,7 +219,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-24 sm:top-28 bottom-14 sm:bottom-16 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute top-24 sm:top-28 bottom-24 sm:bottom-28 md:bottom-32 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
@@ -397,7 +397,7 @@ export function HeroSection({
         {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-24 sm:top-28 bottom-14 sm:bottom-16 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
+          className="absolute top-24 sm:top-28 bottom-24 sm:bottom-28 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',
@@ -466,12 +466,10 @@ export function HeroSection({
             <span
               className={`group-hover:text-himalayan-amber transition-colors mb-1 sm:mb-2 text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-semibold ${
                 isLight ? 'text-stone-800' : 'text-himalayan-ivory'
-              }`}
+              } ${isAltarStage ? 'hidden' : 'block'}`}
             >
               {isSummitStage
                 ? 'SCROLL TO EXPLORE 3D EXPEDITION'
-                : isAltarStage
-                ? 'SCROLL DOWN TO ENTER CHAPTERS'
                 : 'DESCENDING INTO CHAPTER 01'}
             </span>
             <div className={`w-[1px] h-6 sm:h-8 relative overflow-hidden ${isLight ? 'bg-stone-400' : 'bg-himalayan-ivory/20'}`}>

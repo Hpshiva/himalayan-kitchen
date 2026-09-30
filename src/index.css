@@ -11,8 +11,6 @@ html {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: #050607;
   transition: background-color 0.5s ease, color 0.5s ease;
-  overflow-x: hidden;
-  max-width: 100%;
 }
 
 html.light {
@@ -30,7 +28,7 @@ body {
   padding: 0;
   background: #050607;
   color: #f4f0e8;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
