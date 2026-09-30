@@ -83,7 +83,7 @@ export function HeroSection({
         
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
-          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-1.5 sm:py-2 gap-2 sm:gap-4 z-20 transition-colors ${
+          className={`shrink-0 flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-1.5 sm:py-2 gap-2 sm:gap-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
@@ -109,6 +109,11 @@ export function HeroSection({
             </span>
           </div>
         </div>
+
+        {/* ------------------------------------------------------------------ */}
+        {/* Middle Stage Content Viewport (Dynamically bounded, zero overlap) */}
+        {/* ------------------------------------------------------------------ */}
+        <div className="relative flex-1 w-full min-h-0 flex flex-col justify-center my-auto">
 
         {/* ------------------------------------------------------------------ */}
         {/* STAGE 1: MONUMENTAL TECTONIC GATES (Parting on scroll) */}
@@ -219,7 +224,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-[96px] sm:top-[116px] md:top-[128px] bottom-14 sm:bottom-18 md:bottom-22 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute inset-0 pt-3 sm:pt-4 md:pt-5 pb-1 sm:pb-2 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
@@ -228,7 +233,7 @@ export function HeroSection({
           {/* Altar Header & Dialect Tuner */}
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center w-full px-2 sm:px-4 shrink-0 pointer-events-auto">
             <div
-              className={`px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl border backdrop-blur-md shadow-2xl transition-all w-full max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl ${
+              className={`px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl border backdrop-blur-md shadow-2xl transition-all w-full max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl ${
                 isLight
                   ? 'bg-stone-100/90 border-stone-300 text-stone-900'
                   : 'bg-black/80 border-white/10 text-white'
@@ -398,7 +403,7 @@ export function HeroSection({
         {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-[96px] sm:top-[116px] md:top-[128px] bottom-14 sm:bottom-18 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',
@@ -437,12 +442,13 @@ export function HeroSection({
             </div>
           </div>
         </div>
+      </div>
 
         {/* ------------------------------------------------------------------ */}
         {/* Bottom Hero HUD: Atmospheric Specs & Seating Inquiries */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.18em] sm:tracking-[0.2em] border-t pt-2.5 sm:pt-4 z-20 transition-colors ${
+          className={`shrink-0 grid grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.18em] sm:tracking-[0.2em] border-t pt-2.5 sm:pt-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
