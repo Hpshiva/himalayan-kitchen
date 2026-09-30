@@ -13,66 +13,64 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
   return (
     <section
       id="journey"
-      className="relative min-h-screen w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 flex flex-col justify-center pointer-events-auto overflow-hidden"
+      className="relative min-h-screen w-full py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-12 flex flex-col justify-center pointer-events-auto overflow-hidden"
     >
-      {/* Subtle Atmospheric Contrast Shield (softens 3D river beneath text) */}
+      {/* Seamless Atmosphere Wash: gives 100% text contrast without needing any boxes or cards */}
       <div
         className={`absolute inset-0 pointer-events-none transition-colors duration-700 ${
           isLight
-            ? 'bg-gradient-to-b from-[#f2eee6]/50 via-[#f2eee6]/80 to-[#f2eee6]/50 backdrop-blur-[3px]'
-            : 'bg-gradient-to-b from-black/40 via-black/65 to-black/40 backdrop-blur-[3px]'
+            ? 'bg-[#f2eee6]/90 backdrop-blur-md'
+            : 'bg-[#050607]/85 backdrop-blur-md'
         }`}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        {/* Section Header Card with Frosted Backdrop */}
+        {/* Section Header: Pure Editorial Layout (No box) */}
         <div
-          className={`p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-xl shadow-xl transition-all mb-6 sm:mb-10 ${
-            isLight
-              ? 'bg-stone-100/92 border-stone-300 text-stone-900 shadow-[0_12px_36px_-10px_rgba(0,0,0,0.06)]'
-              : 'bg-black/75 border-white/10 text-white shadow-2xl'
+          className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-6 sm:pb-8 mb-10 sm:mb-14 gap-4 sm:gap-8 ${
+            isLight ? 'border-stone-300' : 'border-white/10'
           }`}
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
-            <div>
-              <div className="flex items-center gap-2 text-himalayan-amber text-xs font-mono-tech tracking-[0.3em] uppercase mb-1.5 sm:mb-2 font-semibold">
-                <Compass className="w-4 h-4" />
-                <span>CHAPTER 02 — THE GENESIS</span>
-              </div>
-              <h2
-                className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase tracking-tight font-bold ${
-                  isLight ? 'text-stone-950' : 'text-himalayan-ivory'
-                }`}
-              >
-                The Himalayan Journey
-              </h2>
+          <div>
+            <div className="flex items-center gap-2 text-himalayan-amber text-xs font-mono-tech tracking-[0.3em] uppercase mb-2 font-semibold">
+              <Compass className="w-4 h-4" />
+              <span>CHAPTER 02 — THE GENESIS</span>
             </div>
-
-            <div
-              className={`max-w-md text-xs font-mono-tech tracking-widest uppercase font-medium leading-relaxed ${
-                isLight ? 'text-stone-700' : 'text-himalayan-fog'
+            <h2
+              className={`font-display text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight font-bold ${
+                isLight ? 'text-stone-950' : 'text-himalayan-ivory'
               }`}
             >
-              ELEVATION TRANSCENDS INGREDIENTS. WE BRING THE FORGOTTEN MOUNTAIN ESSENCE FROM HIGH GLACIERS TO YOUR PALATE.
-            </div>
+              The Himalayan Journey
+            </h2>
+          </div>
+
+          <div
+            className={`max-w-md text-xs font-mono-tech tracking-widest uppercase leading-relaxed ${
+              isLight ? 'text-stone-700 font-medium' : 'text-himalayan-fog'
+            }`}
+          >
+            ELEVATION TRANSCENDS INGREDIENTS. WE BRING THE FORGOTTEN MOUNTAIN ESSENCE FROM HIGH GLACIERS TO YOUR PALATE.
           </div>
         </div>
 
-        {/* Central Monumental Manifesto Triad: High-Contrast Frosted Glass Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 my-6 sm:my-10">
-          {/* Card 1: Origin */}
+        {/* Central Manifesto Triad: 3 Clean Editorial Columns (No box cards!) */}
+        <div
+          className={`my-10 sm:my-14 py-8 sm:py-12 border-b grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 ${
+            isLight ? 'border-stone-300' : 'border-white/10'
+          }`}
+        >
+          {/* Column 1: Origin */}
           <div
-            className={`p-5 sm:p-7 rounded-2xl border backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-md ${
-              isLight
-                ? 'bg-stone-100/95 border-stone-300 text-stone-900 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.05)]'
-                : 'bg-black/80 border-white/10 text-white shadow-2xl'
+            className={`flex flex-col md:pr-8 lg:pr-12 md:border-r ${
+              isLight ? 'border-stone-300' : 'border-white/10'
             }`}
           >
-            <span className="inline-block text-[10px] font-mono-tech text-himalayan-amber bg-himalayan-amber/15 border border-himalayan-amber/30 px-2.5 py-0.5 rounded-full tracking-[0.25em] mb-2.5 font-semibold">
-              01 ORIGIN
+            <span className="text-[11px] font-mono-tech text-himalayan-amber font-bold tracking-[0.25em] uppercase mb-2 block">
+              [ 01 ORIGIN ]
             </span>
             <h3
-              className={`font-display text-lg sm:text-xl md:text-2xl tracking-wide uppercase mb-2 font-bold ${
+              className={`font-display text-xl sm:text-2xl lg:text-3xl tracking-wide uppercase mb-3 font-bold ${
                 isLight ? 'text-stone-950' : 'text-himalayan-ivory'
               }`}
             >
@@ -80,26 +78,24 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
             </h3>
             <p
               className={`text-xs sm:text-sm font-sans-clean leading-relaxed ${
-                isLight ? 'text-stone-700 font-medium' : 'text-himalayan-fog'
+                isLight ? 'text-stone-700' : 'text-himalayan-fog'
               }`}
             >
-              Forged in the shadow of peaks that touch the stratosphere, where icy winds sculpt resilient ecosystems.
+              Forged in the shadow of peaks that touch the stratosphere, where icy winds sculpt resilient ecosystems and mineral-rich glacial soils.
             </p>
           </div>
 
-          {/* Card 2: Heritage */}
+          {/* Column 2: Heritage */}
           <div
-            className={`p-5 sm:p-7 rounded-2xl border backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-md ${
-              isLight
-                ? 'bg-stone-100/95 border-stone-300 text-stone-900 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.05)]'
-                : 'bg-black/80 border-white/10 text-white shadow-2xl'
+            className={`flex flex-col md:px-8 lg:px-12 md:border-r ${
+              isLight ? 'border-stone-300' : 'border-white/10'
             }`}
           >
-            <span className="inline-block text-[10px] font-mono-tech text-himalayan-amber bg-himalayan-amber/15 border border-himalayan-amber/30 px-2.5 py-0.5 rounded-full tracking-[0.25em] mb-2.5 font-semibold">
-              02 HERITAGE
+            <span className="text-[11px] font-mono-tech text-himalayan-amber font-bold tracking-[0.25em] uppercase mb-2 block">
+              [ 02 HERITAGE ]
             </span>
             <h3
-              className={`font-display text-lg sm:text-xl md:text-2xl tracking-wide uppercase mb-2 font-bold ${
+              className={`font-display text-xl sm:text-2xl lg:text-3xl tracking-wide uppercase mb-3 font-bold ${
                 isLight ? 'text-stone-950' : 'text-himalayan-ivory'
               }`}
             >
@@ -107,26 +103,20 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
             </h3>
             <p
               className={`text-xs sm:text-sm font-sans-clean leading-relaxed ${
-                isLight ? 'text-stone-700 font-medium' : 'text-himalayan-fog'
+                isLight ? 'text-stone-700' : 'text-himalayan-fog'
               }`}
             >
-              Carrying forward centuries of nomadic preservation, sun-cured ferments, and fireside mountain hospitality.
+              Carrying forward centuries of nomadic preservation, sun-cured ferments, and fireside mountain hospitality across high Himalayan passes.
             </p>
           </div>
 
-          {/* Card 3: Elevation */}
-          <div
-            className={`p-5 sm:p-7 rounded-2xl border backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-md ${
-              isLight
-                ? 'bg-stone-100/95 border-stone-300 text-stone-900 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.05)]'
-                : 'bg-black/80 border-white/10 text-white shadow-2xl'
-            }`}
-          >
-            <span className="inline-block text-[10px] font-mono-tech text-himalayan-amber bg-himalayan-amber/15 border border-himalayan-amber/30 px-2.5 py-0.5 rounded-full tracking-[0.25em] mb-2.5 font-semibold">
-              03 ELEVATION
+          {/* Column 3: Elevation */}
+          <div className="flex flex-col md:pl-8 lg:pl-12">
+            <span className="text-[11px] font-mono-tech text-himalayan-amber font-bold tracking-[0.25em] uppercase mb-2 block">
+              [ 03 ELEVATION ]
             </span>
             <h3
-              className={`font-display text-lg sm:text-xl md:text-2xl tracking-wide uppercase mb-2 font-bold ${
+              className={`font-display text-xl sm:text-2xl lg:text-3xl tracking-wide uppercase mb-3 font-bold ${
                 isLight ? 'text-stone-950' : 'text-himalayan-ivory'
               }`}
             >
@@ -134,59 +124,68 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
             </h3>
             <p
               className={`text-xs sm:text-sm font-sans-clean leading-relaxed ${
-                isLight ? 'text-stone-700 font-medium' : 'text-himalayan-fog'
+                isLight ? 'text-stone-700' : 'text-himalayan-fog'
               }`}
             >
-              Refined through modern culinary architecture, marrying ancient ferments with wok hei fire and Michelin-level precision.
+              Refined through modern culinary architecture, marrying ancient ferments with roaring wok hei fire and Michelin-level precision in DIFC.
             </p>
           </div>
         </div>
 
         {/* Interactive Narrative Explorer with Mountain Image & Deep Story */}
-        <div className="mt-8 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-          {/* Left Column: Interactive Chapter Selectors */}
-          <div className="lg:col-span-5 flex flex-col gap-3 sm:gap-4">
-            {NARRATIVE_STOPS.map((stop, idx) => (
-              <div
-                key={stop.number}
-                onClick={() => setActiveStop(idx)}
-                className={`p-4 sm:p-6 rounded-xl border transition-all duration-500 cursor-pointer ${
-                  activeStop === idx
-                    ? isLight
-                      ? 'border-himalayan-amber bg-stone-100 shadow-xl translate-x-1 sm:translate-x-2'
-                      : 'border-himalayan-amber bg-himalayan-charcoal/80 shadow-2xl translate-x-1 sm:translate-x-2'
-                    : isLight
-                    ? 'border-stone-300 bg-stone-100/90 backdrop-blur-md hover:border-stone-400'
-                    : 'border-himalayan-ivory/10 bg-himalayan-void/70 backdrop-blur-md hover:border-himalayan-ivory/30'
-                }`}
-                data-cursor="EXPEDITION"
-              >
-                <div className="flex items-center justify-between mb-1 sm:mb-2">
-                  <span className="font-mono-tech text-xs tracking-[0.25em] text-himalayan-amber font-semibold">
-                    {stop.tag}
-                  </span>
-                  <span className={`font-mono-tech text-xs ${isLight ? 'text-stone-400' : 'text-himalayan-fog/60'}`}>
-                    STOP {stop.number}
-                  </span>
+        <div className="mt-10 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
+          {/* Left Column: Sleek Editorial List Items (No bulky boxes) */}
+          <div className="lg:col-span-5 flex flex-col gap-2.5 sm:gap-3">
+            {NARRATIVE_STOPS.map((stop, idx) => {
+              const isActive = activeStop === idx;
+              return (
+                <div
+                  key={stop.number}
+                  onClick={() => setActiveStop(idx)}
+                  className={`py-3.5 px-4 sm:px-5 rounded-lg transition-all duration-300 cursor-pointer border-l-2 ${
+                    isActive
+                      ? isLight
+                        ? 'border-l-himalayan-amber bg-stone-200/60 pl-5 sm:pl-6'
+                        : 'border-l-himalayan-amber bg-white/10 pl-5 sm:pl-6'
+                      : isLight
+                      ? 'border-l-stone-300/60 hover:border-l-stone-400 hover:bg-stone-200/30'
+                      : 'border-l-white/10 hover:border-l-white/30 hover:bg-white/5'
+                  }`}
+                  data-cursor="EXPEDITION"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-mono-tech text-[10px] tracking-[0.25em] text-himalayan-amber font-semibold uppercase">
+                      {stop.tag}
+                    </span>
+                    <span className={`font-mono-tech text-[10px] ${isLight ? 'text-stone-500' : 'text-himalayan-fog/60'}`}>
+                      STOP {stop.number}
+                    </span>
+                  </div>
+                  <h4
+                    className={`font-display text-base sm:text-lg uppercase tracking-wide font-bold ${
+                      isLight ? 'text-stone-950' : 'text-himalayan-ivory'
+                    }`}
+                  >
+                    {stop.title}
+                  </h4>
+                  <p
+                    className={`text-xs font-editorial italic mt-0.5 ${
+                      isLight ? 'text-stone-700' : 'text-himalayan-bone'
+                    }`}
+                  >
+                    {stop.subtitle}
+                  </p>
                 </div>
-                <h4 className={`font-display text-lg sm:text-xl uppercase tracking-wide mb-0.5 sm:mb-1 ${
-                  isLight ? 'text-stone-900' : 'text-himalayan-ivory'
-                }`}>
-                  {stop.title}
-                </h4>
-                <p className={`text-xs font-editorial italic ${
-                  isLight ? 'text-stone-700' : 'text-himalayan-bone'
-                }`}>
-                  {stop.subtitle}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Right Column: Visual Stage with Mountain Backdrop & Poetic Readout */}
-          <div className={`lg:col-span-7 relative rounded-2xl overflow-hidden border shadow-2xl group ${
-            isLight ? 'border-stone-300 bg-stone-900 text-white' : 'border-himalayan-ivory/15 bg-himalayan-black'
-          }`}>
+          <div
+            className={`lg:col-span-7 relative rounded-2xl overflow-hidden border shadow-2xl group ${
+              isLight ? 'border-stone-300 bg-stone-900 text-white' : 'border-himalayan-ivory/15 bg-himalayan-black'
+            }`}
+          >
             <div className="relative h-[340px] sm:h-[420px] md:h-[480px] w-full overflow-hidden">
               <img
                 src="/images/peaks_mist.jpg"
