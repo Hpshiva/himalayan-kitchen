@@ -324,9 +324,7 @@ export function ProceduralMountains({
 
         // River width safely fits within canyon floor (never clips into mountain rock)
         const maxRiverHalfWidth = partAmount * 0.80;
-        const flow1 = time * 2.5;
-        const flow2 = time * 3.3;
-        const flow3 = time * 1.7;
+        const flowSpeed = time * 2.8;
 
         for (let i = 0; i < riverVertCount; i++) {
           const u = riverUCoords[i];
@@ -336,48 +334,34 @@ export function ProceduralMountains({
           const currentHalfWidth = maxRiverHalfWidth * taper;
           const x = seamX + u * currentHalfWidth;
 
-          // Multi-harmonic non-repeating wave dynamics
-          const w1 = Math.sin(z * 0.37 - flow1 + u * 1.6) * 0.040;
-          const w2 = Math.cos(z * 0.83 - flow2 - u * 2.3) * 0.022;
-          const w3 = Math.sin(z * 1.91 + flow3 * 1.2 + u * 3.7) * 0.012;
-          const w4 = Math.cos(z * 3.47 - flow1 * 1.5 + x * 2.8) * 0.008;
-          const totalWave = w1 + w2 + w3 + w4;
+          // Multi-harmonic fluid wave physics:
+          // 1. Primary downstream glacial current
+          const wave1 = Math.sin(z * 0.45 - flowSpeed + u * 1.2) * 0.045;
+          // 2. Secondary lateral eddy swell
+          const wave2 = Math.cos(z * 0.95 - flowSpeed * 1.5 - u * 2.0) * 0.025;
+          // 3. High-frequency water chop
+          const ripple = Math.sin(z * 2.4 - flowSpeed * 2.8 + u * 3.6) * 0.015;
+          const totalWave = wave1 + wave2 + ripple;
           const y = -2.12 + totalWave * partingT;
 
           posArr[i * 3] = x;
           posArr[i * 3 + 1] = y;
           posArr[i * 3 + 2] = z;
 
-          // Multi-octave organic turbulence for completely non-repeating natural whitewater froth
-          const turb1 = Math.sin(z * 0.17 + x * 0.85 - flow1 * 0.8);
-          const turb2 = Math.cos(z * 0.47 - x * 1.35 + flow2 * 0.6);
-          const turb3 = Math.sin(z * 1.13 + z * 0.05 * x - flow3 * 1.4);
-          const turb4 = Math.sin(z * 2.71 - flow1 * 1.8 + u * 3.1);
-          const rawTurbulence = turb1 * 0.42 + turb2 * 0.30 + turb3 * 0.18 + turb4 * 0.10;
+          // Dynamic foam crest on wave peaks in the central current (integrated into fluid surface)
+          const centerCurrent = Math.max(0, 1.0 - Math.abs(u) * 1.8);
+          const foamIntensity = Math.max(0, Math.min(1.0, (totalWave - 0.018) / 0.045)) * centerCurrent * partingT;
 
-          // Natural rapids zones: alternating churning rapids chutes and calm deep pools
-          const rapidsChute = Math.sin(z * 0.072 + 1.3) * Math.cos(z * 0.153 - 0.9);
-
-          // Meandering center current line with subtle organic drift
-          const currentCenterOffset = Math.sin(z * 0.11 + flow3 * 0.4) * 0.22;
-          const distFromCurrent = Math.abs(u - currentCenterOffset);
-          const channelWeight = Math.max(0, 1.0 - distFromCurrent * 2.0);
-
-          // Calculate organic froth: only forms on chaotic wave crests inside rapids zones
-          const foamScore = rawTurbulence * 0.55 + rapidsChute * 0.45 + totalWave * 4.5;
-          const rawFoam = Math.max(0, Math.min(1.0, (foamScore - 0.15) / 0.55));
-          const foamIntensity = Math.pow(rawFoam, 1.6) * channelWeight * partingT;
-
-          // Base glacial gradient: deep sapphire in channel center, sunlit aquamarine at banks
+          // Base glacial gradient: deep azure in center, shimmering aqua at banks
           const bankDist = Math.pow(Math.abs(u), 1.3);
           const baseR = THREE.MathUtils.lerp(cWaterDeep.r, cWaterAqua.r, bankDist);
           const baseG = THREE.MathUtils.lerp(cWaterDeep.g, cWaterAqua.g, bankDist);
           const baseB = THREE.MathUtils.lerp(cWaterDeep.b, cWaterAqua.b, bankDist);
 
-          // Blend into sparkling white froth at peak rapids
-          colArr[i * 3] = THREE.MathUtils.lerp(baseR, cFoamWhite.r, foamIntensity * 0.88);
-          colArr[i * 3 + 1] = THREE.MathUtils.lerp(baseG, cFoamWhite.g, foamIntensity * 0.88);
-          colArr[i * 3 + 2] = THREE.MathUtils.lerp(baseB, cFoamWhite.b, foamIntensity * 0.88);
+          // Blend seamlessly into white froth at peak rapids
+          colArr[i * 3] = THREE.MathUtils.lerp(baseR, cFoamWhite.r, foamIntensity * 0.85);
+          colArr[i * 3 + 1] = THREE.MathUtils.lerp(baseG, cFoamWhite.g, foamIntensity * 0.85);
+          colArr[i * 3 + 2] = THREE.MathUtils.lerp(baseB, cFoamWhite.b, foamIntensity * 0.85);
         }
 
         pos.needsUpdate = true;
