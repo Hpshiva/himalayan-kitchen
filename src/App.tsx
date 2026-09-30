@@ -71,16 +71,16 @@ export default function App() {
   // Initialize Ultra-Smooth Lenis Momentum Scroll (Desktop & Mobile)
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.8,
+      wheelMultiplier: 0.72,
+      touchMultiplier: 0.85,
       syncTouch: true,
-      syncTouchLerp: 0.08,
-      touchInertiaExponent: 1.6,
+      syncTouchLerp: 0.055,
+      touchInertiaExponent: 1.7,
       autoResize: true,
     });
     lenisRef.current = lenis;
@@ -90,8 +90,8 @@ export default function App() {
       const progress = e.progress;
       setScrollProgress(progress);
 
-      // Hero section scroll track calculation (h-[290vh] has ~1.9 * innerHeight scroll range)
-      const heroTrack = window.innerHeight * 1.9;
+      // Hero section scroll track calculation (h-[360vh] has ~2.6 * innerHeight scroll range)
+      const heroTrack = window.innerHeight * 2.6;
       const currentHeroProgress = Math.min(1, Math.max(0, scrollY / heroTrack));
       setHeroProgress(currentHeroProgress);
 

@@ -51,33 +51,33 @@ export function HeroSection({
 
   // Stage thresholds:
   // Stage 1 (High Summit & Parting Gates): 0.00 - 0.28
-  // Stage 2 (The Sacred Altar & 3 Dialects): 0.25 - 0.82
+  // Stage 2 (The Sacred Altar & 3 Dialects): 0.20 - 0.84
   // Stage 3 (Descent into Chapter 01): 0.82 - 1.00
   const isSummitStage = heroProgress < 0.28;
-  const isAltarStage = heroProgress >= 0.22 && heroProgress < 0.84;
+  const isAltarStage = heroProgress >= 0.20 && heroProgress < 0.84;
   const isDescentStage = heroProgress >= 0.82;
 
-  // Tectonic slide offsets for typography parting
-  const tectonicOffset = Math.min(1, heroProgress * 3.4);
+  // Tectonic slide offsets for typography parting (gentler curve)
+  const tectonicOffset = Math.min(1, heroProgress * 3.0);
   const leftShift = tectonicOffset * 120;
   const rightShift = tectonicOffset * 120;
-  const summitOpacity = Math.max(0, 1 - heroProgress * 3.6);
+  const summitOpacity = Math.max(0, 1 - heroProgress * 3.2);
 
-  // Altar UI opacity curve
+  // Altar UI opacity curve (extended duration)
   let altarOpacity = 0;
-  if (heroProgress >= 0.22 && heroProgress <= 0.34) {
-    altarOpacity = (heroProgress - 0.22) / 0.12;
-  } else if (heroProgress > 0.34 && heroProgress < 0.78) {
+  if (heroProgress >= 0.20 && heroProgress <= 0.32) {
+    altarOpacity = (heroProgress - 0.20) / 0.12;
+  } else if (heroProgress > 0.32 && heroProgress < 0.80) {
     altarOpacity = 1;
-  } else if (heroProgress >= 0.78 && heroProgress < 0.84) {
-    altarOpacity = 1 - (heroProgress - 0.78) / 0.06;
+  } else if (heroProgress >= 0.80 && heroProgress < 0.86) {
+    altarOpacity = 1 - (heroProgress - 0.80) / 0.06;
   }
 
   // Descent stage opacity
   const descentOpacity = heroProgress >= 0.82 ? Math.min(1, (heroProgress - 0.82) / 0.12) : 0;
 
   return (
-    <section id="hero" className="relative h-[290vh] w-full">
+    <section id="hero" className="relative h-[360vh] w-full">
       {/* Sticky Pinned Viewport Container (100dvh for mobile address bar safety) */}
       <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between pt-[54px] sm:pt-[70px] md:pt-[78px] pb-3 sm:pb-5 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
         

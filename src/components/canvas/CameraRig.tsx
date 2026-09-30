@@ -88,9 +88,9 @@ export function CameraRig({ scrollProgress, heroProgress = 0 }: CameraRigProps) 
     targetPos.x += parallaxX;
     targetPos.y += parallaxY;
 
-    // Smooth inertia interpolation
-    currentPos.current.lerp(targetPos, 0.06);
-    currentLookAt.current.lerp(targetLookAt, 0.06);
+    // Smooth inertia interpolation (cinematic gliding damping)
+    currentPos.current.lerp(targetPos, 0.045);
+    currentLookAt.current.lerp(targetLookAt, 0.045);
 
     camera.position.copy(currentPos.current);
     camera.lookAt(currentLookAt.current);
