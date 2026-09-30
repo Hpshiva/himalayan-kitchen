@@ -226,20 +226,20 @@ export function HeroSection({
           }}
         >
           {/* Altar Header & Dialect Tuner */}
-          <div className="text-center max-w-xl mx-auto flex flex-col items-center w-full px-1 sm:px-2 shrink-0 pointer-events-auto">
+          <div className="text-center max-w-4xl mx-auto flex flex-col items-center w-full px-2 sm:px-4 shrink-0 pointer-events-auto">
             <div
-              className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border backdrop-blur-md shadow-lg transition-all w-full max-w-md ${
+              className={`px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl border backdrop-blur-md shadow-2xl transition-all w-full max-w-lg sm:max-w-2xl md:max-w-3xl lg:max-w-4xl ${
                 isLight
                   ? 'bg-stone-100/90 border-stone-300 text-stone-900'
                   : 'bg-black/80 border-white/10 text-white'
               }`}
             >
-              <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.2em] sm:tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-0.5">
+              <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.2em] sm:tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-0.5 sm:mb-1">
                 3 GASTRONOMIC DIALECTS
               </span>
 
               <h3
-                className={`font-display text-base sm:text-2xl md:text-3xl uppercase tracking-wide font-bold transition-all ${
+                className={`font-display text-base sm:text-2xl md:text-3xl lg:text-4xl uppercase tracking-wide font-bold transition-all whitespace-normal sm:whitespace-nowrap ${
                   isLight ? 'text-stone-950' : 'text-himalayan-ivory'
                 }`}
               >
@@ -247,7 +247,7 @@ export function HeroSection({
               </h3>
 
               <p
-                className={`font-editorial text-[11px] sm:text-sm italic ${
+                className={`font-editorial text-[11px] sm:text-base italic mt-0.5 ${
                   isLight ? 'text-stone-700' : 'text-himalayan-bone'
                 }`}
               >
@@ -256,21 +256,22 @@ export function HeroSection({
 
               {/* Integrated Dialect Tabs */}
               <div
-                className={`mt-2 inline-flex items-center gap-1 p-0.5 sm:p-1 rounded-full border backdrop-blur-md max-w-full overflow-x-auto ${
+                className={`mt-2.5 sm:mt-3 inline-flex items-center justify-center gap-1 sm:gap-2 p-1 sm:p-1.5 rounded-full border backdrop-blur-md max-w-full overflow-x-auto [&::-webkit-scrollbar]:hidden ${
                   isLight
                     ? 'border-stone-300 bg-stone-200/70'
                     : 'border-white/10 bg-white/10'
                 }`}
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {[
                   { id: 'nepali', label: '01 // NEPALI MOMO', shortLabel: '01 NEPALI' },
                   { id: 'indochinese', label: '02 // TANGRA WOK', shortLabel: '02 TANGRA' },
-                  { id: 'botanical', label: '03 // BOTANICAL', shortLabel: '03 BOTANICAL' },
+                  { id: 'botanical', label: '03 // BOTANICAL ELIXIR', shortLabel: '03 BOTANICAL' },
                 ].map((dialect) => (
                   <button
                     key={dialect.id}
                     onClick={() => handleDialectChange(dialect.id as any)}
-                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-mono-tech tracking-wider uppercase transition-all duration-300 shrink-0 ${
+                    className={`px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 md:py-2 rounded-full text-[9px] sm:text-[10px] md:text-[11px] font-mono-tech tracking-wider uppercase transition-all duration-300 shrink-0 whitespace-nowrap ${
                       activeCategory === dialect.id
                         ? 'bg-himalayan-amber text-white shadow-md shadow-himalayan-amber/30 font-semibold'
                         : isLight
@@ -279,8 +280,8 @@ export function HeroSection({
                     }`}
                     data-cursor="SWITCH"
                   >
-                    <span className="hidden md:inline">{dialect.label}</span>
-                    <span className="md:hidden">{dialect.shortLabel}</span>
+                    <span className="hidden sm:inline">{dialect.label}</span>
+                    <span className="sm:hidden">{dialect.shortLabel}</span>
                   </button>
                 ))}
               </div>
