@@ -224,7 +224,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute inset-0 pt-3 sm:pt-4 md:pt-5 pb-1 sm:pb-2 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute inset-0 pt-4 sm:pt-5 md:pt-6 pb-1 sm:pb-2 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
