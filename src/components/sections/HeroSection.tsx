@@ -25,6 +25,7 @@ export function HeroSection({
   onCategoryChange,
 }: HeroSectionProps) {
   const [isPlayingSound, setIsPlayingSound] = useState(!soundEngine.getMuted());
+  const [altarTilt, setAltarTilt] = useState({ x: 0, y: 0 });
   const isLight = theme === 'light';
 
   useEffect(() => {
@@ -289,6 +290,76 @@ export function HeroSection({
                     <span className="sm:hidden">{dialect.shortLabel}</span>
                   </button>
                 ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Central Interactive Photorealistic Culinary Showcase */}
+          <div className="flex-1 min-h-0 flex items-center justify-center my-auto py-1 sm:py-2 pointer-events-auto">
+            <div
+              onClick={() => onSelectDish(currentDish)}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                setAltarTilt({ x: Math.round(x * 20), y: Math.round(-y * 20) });
+              }}
+              onMouseLeave={() => setAltarTilt({ x: 0, y: 0 })}
+              className="relative group cursor-pointer transition-transform duration-300 ease-out"
+              style={{ perspective: '1000px' }}
+              data-cursor="INSPECT"
+            >
+              {/* Volcanic Slate Platter Frame with Brass Bezel */}
+              <div
+                className={`relative w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full p-2.5 sm:p-3 border-2 transition-all duration-500 shadow-2xl ${
+                  isLight
+                    ? 'border-stone-300/80 bg-stone-900 shadow-[0_20px_50px_-10px_rgba(40,30,20,0.5)]'
+                    : 'border-himalayan-amber/50 bg-black/90 shadow-[0_20px_60px_-10px_rgba(217,100,42,0.45)]'
+                }`}
+                style={{
+                  transform: `rotateX(${altarTilt.y}deg) rotateY(${altarTilt.x}deg)`,
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                {/* Hand-hammered Himalayan Brass Inlay Accent */}
+                <div className="absolute inset-1.5 sm:inset-2 rounded-full border border-himalayan-amber/50 pointer-events-none" />
+
+                {/* Inner Photographic Dish Container with Soft Glow */}
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-inner">
+                  <img
+                    key={currentDish.id}
+                    src={currentDish.image}
+                    alt={currentDish.name}
+                    className="w-full h-full object-cover group-hover:scale-108 transition-all duration-700 ease-out"
+                  />
+                  {/* Subtle Culinary Liquid / Broth Glaze */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-white/10 pointer-events-none" />
+                  {/* Dark Vignette Rim Blend */}
+                  <div className="absolute inset-0 rounded-full shadow-[inset_0_0_24px_rgba(0,0,0,0.7)] pointer-events-none" />
+                </div>
+
+                {/* Interactive Center Hover Overlay Badge */}
+                <div className="absolute inset-0 rounded-full flex flex-col items-center justify-center bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] pointer-events-none text-white text-center p-3">
+                  <Eye className="w-5 h-5 text-himalayan-amber mb-1 animate-pulse" />
+                  <span className="text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
+                    INSPECT DOSSIER
+                  </span>
+                  <span className="text-[9px] font-editorial italic text-stone-200 mt-0.5">
+                    {currentDish.elevation}
+                  </span>
+                </div>
+
+                {/* Floating Altitude Pill Badge */}
+                <div className="absolute -bottom-2 sm:-bottom-2.5 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full bg-black/90 border border-himalayan-amber/60 backdrop-blur-md shadow-lg flex items-center gap-1.5 whitespace-nowrap pointer-events-none">
+                  <Sparkles className="w-3 h-3 text-himalayan-amber shrink-0" />
+                  <span className="text-[8px] sm:text-[9px] font-mono-tech text-himalayan-ivory tracking-widest uppercase font-medium">
+                    {activeCategory === 'nepali'
+                      ? 'KHUMBU VALLEY • 3,800M'
+                      : activeCategory === 'indochinese'
+                      ? '800°C ROARING WOK HEI'
+                      : '5,364M BASECAMP SPIRITS'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
