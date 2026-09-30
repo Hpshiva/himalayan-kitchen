@@ -48,25 +48,22 @@ export function ProceduralMountains({
   const rightGroupRef = useRef<THREE.Group>(null);
   const cleftBedRef = useRef<THREE.Mesh>(null);
   const riverMeshRef = useRef<THREE.Mesh>(null);
-  const rapidsFoamRef = useRef<THREE.Mesh>(null);
 
   const isLight = theme === 'light';
 
-  // Build Left Ridge (-80 <= X <= 0), Right Ridge (0 <= X <= 80), Submerged Riverbed, and Flowing Glacial River
+  // Build Left Ridge (-80 <= X <= 0), Right Ridge (0 <= X <= 80), Submerged Riverbed, and Fluid Glacial River
   const {
     leftGeo,
     rightGeo,
     cleftGeo,
     riverGeo,
-    foamGeo,
     riverVertCount,
     riverUCoords,
     riverZCoords,
     riverDistanceTapers,
-    foamVertCount,
-    foamUCoords,
-    foamZCoords,
-    foamDistanceTapers,
+    cWaterDeep,
+    cWaterAqua,
+    cFoamWhite,
   } = useMemo(() => {
     const halfWidth = 80;
     const depth = 160;
@@ -147,10 +144,10 @@ export function ProceduralMountains({
     };
 
     // -------------------------------------------------------------
-    // 2. SUBMERGED CANYON RIVERBED (Deep Channel Under the Water)
+    // 2. SUBMERGED CANYON RIVERBED (Smooth Channel Bed Under Water)
     // -------------------------------------------------------------
-    const cSegsX = 26;
-    const cSegsZ = 120;
+    const cSegsX = 28;
+    const cSegsZ = 130;
     const cleft = new THREE.BufferGeometry();
     const cVertCount = (cSegsX + 1) * (cSegsZ + 1);
     const cPositions = new Float32Array(cVertCount * 3);
@@ -201,10 +198,10 @@ export function ProceduralMountains({
     cleft.computeVertexNormals();
 
     // -------------------------------------------------------------
-    // 3. GLACIAL MELTWATER RIVER SURFACE
+    // 3. UNIFIED HIGH-DENSITY FLUID WATER SURFACE (Zero Z-Fighting)
     // -------------------------------------------------------------
-    const rSegsX = 32;
-    const rSegsZ = 130;
+    const rSegsX = 40;
+    const rSegsZ = 160;
     const rGeo = new THREE.BufferGeometry();
     const rVertCount = (rSegsX + 1) * (rSegsZ + 1);
     const rPositions = new Float32Array(rVertCount * 3);
@@ -213,8 +210,9 @@ export function ProceduralMountains({
     const rZ = new Float32Array(rVertCount);
     const rTapers = new Float32Array(rVertCount);
 
-    const cWaterDeep = isLight ? new THREE.Color('#0284c7') : new THREE.Color('#0369a1');
-    const cWaterAqua = isLight ? new THREE.Color('#38bdf8') : new THREE.Color('#0ea5e9');
+    const waterDeep = isLight ? new THREE.Color('#0284c7') : new THREE.Color('#0369a1');
+    const waterAqua = isLight ? new THREE.Color('#38bdf8') : new THREE.Color('#0ea5e9');
+    const foamWhite = new THREE.Color('#ffffff');
 
     let vIdx = 0;
     for (let iz = 0; iz <= rSegsZ; iz++) {
@@ -238,7 +236,7 @@ export function ProceduralMountains({
         rPositions[vIdx * 3 + 2] = z;
 
         // Gradient from deep glacier blue in center to luminous aquamarine at banks
-        const col = cWaterDeep.clone().lerp(cWaterAqua, Math.pow(Math.abs(u), 1.3));
+        const col = waterDeep.clone().lerp(waterAqua, Math.pow(Math.abs(u), 1.3));
         rColors[vIdx * 3] = col.r;
         rColors[vIdx * 3 + 1] = col.g;
         rColors[vIdx * 3 + 2] = col.b;
@@ -262,68 +260,18 @@ export function ProceduralMountains({
     rGeo.setAttribute('color', new THREE.BufferAttribute(rColors, 3));
     rGeo.computeVertexNormals();
 
-    // -------------------------------------------------------------
-    // 4. WHITE-WATER RAPIDS & FOAM CRESTS
-    // -------------------------------------------------------------
-    const fSegsX = 16;
-    const fSegsZ = 90;
-    const fGeo = new THREE.BufferGeometry();
-    const fVertCount = (fSegsX + 1) * (fSegsZ + 1);
-    const fPositions = new Float32Array(fVertCount * 3);
-    const fU = new Float32Array(fVertCount);
-    const fZ = new Float32Array(fVertCount);
-    const fTapers = new Float32Array(fVertCount);
-
-    let fIdx = 0;
-    for (let iz = 0; iz <= fSegsZ; iz++) {
-      const tz = iz / fSegsZ;
-      const z = -85 + tz * 150;
-      const headTaper = Math.min(1.0, Math.max(0, (z - (-85)) / 25.0));
-      const tailTaper = Math.min(1.0, Math.max(0, (65 - z) / 20.0));
-      const distanceTaper = headTaper * tailTaper;
-
-      for (let ix = 0; ix <= fSegsX; ix++) {
-        const u = (ix / fSegsX) * 2 - 1;
-        fU[fIdx] = u;
-        fZ[fIdx] = z;
-        fTapers[fIdx] = distanceTaper;
-
-        fPositions[fIdx * 3] = 0;
-        fPositions[fIdx * 3 + 1] = -2.10;
-        fPositions[fIdx * 3 + 2] = z;
-        fIdx++;
-      }
-    }
-
-    const fIndices: number[] = [];
-    for (let iz = 0; iz < fSegsZ; iz++) {
-      for (let ix = 0; ix < fSegsX; ix++) {
-        const a = iz * (fSegsX + 1) + ix;
-        const b = a + 1;
-        const c = a + (fSegsX + 1);
-        const d = c + 1;
-        fIndices.push(a, c, b);
-        fIndices.push(b, c, d);
-      }
-    }
-    fGeo.setIndex(fIndices);
-    fGeo.setAttribute('position', new THREE.BufferAttribute(fPositions, 3));
-    fGeo.computeVertexNormals();
-
     return {
       leftGeo: buildRidge(true),
       rightGeo: buildRidge(false),
       cleftGeo: cleft,
       riverGeo: rGeo,
-      foamGeo: fGeo,
       riverVertCount: rVertCount,
       riverUCoords: rU,
       riverZCoords: rZ,
       riverDistanceTapers: rTapers,
-      foamVertCount: fVertCount,
-      foamUCoords: fU,
-      foamZCoords: fZ,
-      foamDistanceTapers: fTapers,
+      cWaterDeep: waterDeep,
+      cWaterAqua: waterAqua,
+      cFoamWhite: foamWhite,
     };
   }, [theme, isLight]);
 
@@ -363,7 +311,7 @@ export function ProceduralMountains({
       cleftBedRef.current.visible = partingT > 0.005;
     }
 
-    // Dynamic Glacial River Wave Animation
+    // Dynamic Real Water Fluid Waves & Organic White-Water Froth (Single Unified Mesh)
     if (riverMeshRef.current) {
       riverMeshRef.current.position.set(0, basePosY, basePosZ);
       riverMeshRef.current.visible = partingT > 0.005;
@@ -371,6 +319,9 @@ export function ProceduralMountains({
       if (partingT > 0.005) {
         const pos = riverGeo.attributes.position;
         const posArr = pos.array as Float32Array;
+        const colAttr = riverGeo.attributes.color;
+        const colArr = colAttr.array as Float32Array;
+
         // River width safely fits within canyon floor (never clips into mountain rock)
         const maxRiverHalfWidth = partAmount * 0.80;
         const flowSpeed = time * 2.8;
@@ -383,53 +334,39 @@ export function ProceduralMountains({
           const currentHalfWidth = maxRiverHalfWidth * taper;
           const x = seamX + u * currentHalfWidth;
 
-          // Multi-harmonic river current waves flowing downstream (+Z)
-          const wave1 = Math.sin(z * 0.42 - flowSpeed + u * 1.5) * 0.045;
-          const wave2 = Math.cos(z * 0.88 - flowSpeed * 1.6 - u * 2.2) * 0.025;
-          const ripple = Math.sin(z * 2.2 - flowSpeed * 2.6 + u * 4.0) * 0.015;
-          const y = -2.12 + (wave1 + wave2 + ripple) * partingT;
+          // Multi-harmonic fluid wave physics:
+          // 1. Primary downstream glacial current
+          const wave1 = Math.sin(z * 0.45 - flowSpeed + u * 1.2) * 0.045;
+          // 2. Secondary lateral eddy swell
+          const wave2 = Math.cos(z * 0.95 - flowSpeed * 1.5 - u * 2.0) * 0.025;
+          // 3. High-frequency water chop
+          const ripple = Math.sin(z * 2.4 - flowSpeed * 2.8 + u * 3.6) * 0.015;
+          const totalWave = wave1 + wave2 + ripple;
+          const y = -2.12 + totalWave * partingT;
 
           posArr[i * 3] = x;
           posArr[i * 3 + 1] = y;
           posArr[i * 3 + 2] = z;
+
+          // Dynamic foam crest on wave peaks in the central current (integrated into fluid surface)
+          const centerCurrent = Math.max(0, 1.0 - Math.abs(u) * 1.8);
+          const foamIntensity = Math.max(0, Math.min(1.0, (totalWave - 0.018) / 0.045)) * centerCurrent * partingT;
+
+          // Base glacial gradient: deep azure in center, shimmering aqua at banks
+          const bankDist = Math.pow(Math.abs(u), 1.3);
+          const baseR = THREE.MathUtils.lerp(cWaterDeep.r, cWaterAqua.r, bankDist);
+          const baseG = THREE.MathUtils.lerp(cWaterDeep.g, cWaterAqua.g, bankDist);
+          const baseB = THREE.MathUtils.lerp(cWaterDeep.b, cWaterAqua.b, bankDist);
+
+          // Blend seamlessly into white froth at peak rapids
+          colArr[i * 3] = THREE.MathUtils.lerp(baseR, cFoamWhite.r, foamIntensity * 0.85);
+          colArr[i * 3 + 1] = THREE.MathUtils.lerp(baseG, cFoamWhite.g, foamIntensity * 0.85);
+          colArr[i * 3 + 2] = THREE.MathUtils.lerp(baseB, cFoamWhite.b, foamIntensity * 0.85);
         }
+
         pos.needsUpdate = true;
+        colAttr.needsUpdate = true;
         riverGeo.computeVertexNormals();
-      }
-    }
-
-    // Dynamic Rapids Foam Animation
-    if (rapidsFoamRef.current) {
-      rapidsFoamRef.current.position.set(0, basePosY, basePosZ);
-      rapidsFoamRef.current.visible = partingT > 0.05;
-
-      if (partingT > 0.05) {
-        const pos = foamGeo.attributes.position;
-        const posArr = pos.array as Float32Array;
-        const foamHalfWidth = partAmount * 0.45;
-        const flowSpeed = time * 3.2;
-
-        for (let i = 0; i < foamVertCount; i++) {
-          const u = foamUCoords[i];
-          const z = foamZCoords[i];
-          const taper = foamDistanceTapers[i];
-          const seamX = getSeamOffset(z);
-          const x = seamX + u * foamHalfWidth * taper;
-
-          const wave1 = Math.sin(z * 0.42 - flowSpeed + u * 1.5) * 0.045;
-          const wave2 = Math.cos(z * 0.88 - flowSpeed * 1.6 - u * 2.2) * 0.025;
-          const y = -2.10 + (wave1 + wave2) * partingT + 0.02;
-
-          posArr[i * 3] = x;
-          posArr[i * 3 + 1] = y;
-          posArr[i * 3 + 2] = z;
-        }
-        pos.needsUpdate = true;
-
-        const mat = rapidsFoamRef.current.material as THREE.MeshStandardMaterial;
-        if (mat) {
-          mat.opacity = 0.15 + partingT * 0.35;
-        }
       }
     }
   });
@@ -446,30 +383,17 @@ export function ProceduralMountains({
         />
       </mesh>
 
-      {/* Glacial Meltwater River (Glistening Azure Water Flowing in Canyon) */}
+      {/* Glacial Meltwater River (Real Liquid Fluid with Clearcoat Specular Sheen) */}
       <mesh ref={riverMeshRef} geometry={riverGeo} receiveShadow>
-        <meshStandardMaterial
+        <meshPhysicalMaterial
           vertexColors
-          roughness={0.06}
-          metalness={0.22}
+          roughness={0.08}
+          metalness={0.15}
+          clearcoat={1.0}
+          clearcoatRoughness={0.05}
           transparent
           opacity={0.92}
           depthWrite={true}
-          flatShading={false}
-        />
-      </mesh>
-
-      {/* White-Water Rapids Foam Crests */}
-      <mesh ref={rapidsFoamRef} geometry={foamGeo}>
-        <meshStandardMaterial
-          color="#ffffff"
-          emissive="#bae6fd"
-          roughness={0.3}
-          metalness={0.05}
-          transparent
-          opacity={0.4}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
           flatShading={false}
         />
       </mesh>
