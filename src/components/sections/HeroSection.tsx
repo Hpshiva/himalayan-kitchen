@@ -79,7 +79,7 @@ export function HeroSection({
   return (
     <section id="hero" className="relative h-[290vh] w-full">
       {/* Sticky Pinned Viewport Container */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-16 sm:pt-20 pb-4 sm:pb-6 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-6 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
         
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
@@ -219,7 +219,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-32 sm:top-36 md:top-40 bottom-24 sm:bottom-28 md:bottom-32 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute top-36 sm:top-44 md:top-48 bottom-20 sm:bottom-24 md:bottom-28 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
@@ -398,7 +398,7 @@ export function HeroSection({
         {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-32 sm:top-36 md:top-40 bottom-24 sm:bottom-28 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
+          className="absolute top-36 sm:top-44 md:top-48 bottom-20 sm:bottom-24 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',
