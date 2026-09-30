@@ -6,8 +6,29 @@
   color-scheme: dark;
 }
 
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 html {
-  scroll-behavior: smooth;
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: #050607;
   transition: background-color 0.5s ease, color 0.5s ease;

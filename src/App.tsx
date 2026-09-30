@@ -68,20 +68,26 @@ export default function App() {
     };
   }, []);
 
-  // Initialize Lenis Smooth Scroll
+  // Initialize Ultra-Smooth Lenis Momentum Scroll (Desktop & Mobile)
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.25,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.8,
+      syncTouch: true,
+      syncTouchLerp: 0.08,
+      touchInertiaExponent: 1.6,
+      autoResize: true,
     });
     lenisRef.current = lenis;
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
+    const unsubscribe = lenis.on('scroll', (e) => {
+      const scrollY = e.scroll;
+      const progress = e.progress;
       setScrollProgress(progress);
 
       // Hero section scroll track calculation (h-[290vh] has ~1.9 * innerHeight scroll range)
@@ -106,19 +112,23 @@ export default function App() {
       } else {
         setCurrentChapter('06 HEARTH');
       }
-    };
+    });
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial sync
+    lenis.resize();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+      if (typeof unsubscribe === 'function') unsubscribe();
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
@@ -128,18 +138,18 @@ export default function App() {
       const targetId = sectionId === 'mountain-emergence' ? 'journey' : sectionId;
       const el = document.getElementById(targetId);
       if (el && lenisRef.current) {
-        lenisRef.current.scrollTo(el, { offset: -60, duration: 1.5 });
+        lenisRef.current.scrollTo(el, { offset: -60, duration: 1.4 });
       } else if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        el.scrollIntoView();
       }
     }, 50);
   };
 
   const scrollToTop = () => {
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { duration: 1.8 });
+      lenisRef.current.scrollTo(0, { duration: 1.6 });
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
   };
 
