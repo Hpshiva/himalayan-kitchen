@@ -79,32 +79,32 @@ export function HeroSection({
   return (
     <section id="hero" className="relative h-[290vh] w-full">
       {/* Sticky Pinned Viewport Container */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-20 pb-6 px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-16 sm:pt-20 pb-4 sm:pb-6 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
         
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
-          className={`flex flex-wrap items-center justify-between text-[11px] font-mono-tech tracking-[0.25em] border-b pb-4 gap-4 z-20 transition-colors ${
+          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b pb-2.5 sm:pb-4 gap-2 sm:gap-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
-          <div className="flex items-center gap-3">
-            <Mountain className="w-4 h-4 text-himalayan-amber" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Mountain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-himalayan-amber shrink-0" />
             <span className={isLight ? 'text-stone-900 font-semibold' : 'text-himalayan-ivory'}>
-              SAGARMATHA RANGE
+              SAGARMATHA
             </span>
             <span className="hidden sm:inline opacity-40">•</span>
-            <span className="hidden sm:inline">27°59′17″N 86°55′31″E</span>
+            <span className="hidden md:inline">27°59′17″N 86°55′31″E</span>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            <span className="px-2.5 py-0.5 rounded border border-himalayan-amber/50 bg-himalayan-amber/10 text-himalayan-amber text-[10px] font-semibold">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="px-2 sm:px-2.5 py-0.5 rounded border border-himalayan-amber/50 bg-himalayan-amber/10 text-himalayan-amber text-[9px] sm:text-[10px] font-semibold whitespace-nowrap">
               {isSummitStage
-                ? 'STAGE 01 // HIGH SUMMIT'
+                ? 'STAGE 01 // SUMMIT'
                 : isAltarStage
-                ? 'STAGE 02 // GASTRONOMIC ALTAR'
-                : 'STAGE 03 // SANCTUARY LANDING'}
+                ? 'STAGE 02 // ALTAR'
+                : 'STAGE 03 // SANCTUARY'}
             </span>
-            <span className={`hidden md:inline ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
+            <span className={`hidden sm:inline ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
               {isSummitStage ? '8,848M ELEVATION' : isAltarStage ? '3,800M CLEFT' : '1,400M HEARTH'}
             </span>
           </div>
@@ -114,7 +114,7 @@ export function HeroSection({
         {/* STAGE 1: MONUMENTAL TECTONIC GATES (Parting on scroll) */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="my-auto py-2 text-center flex flex-col items-center justify-center transition-transform duration-300 pointer-events-auto"
+          className="my-auto py-1 sm:py-2 text-center flex flex-col items-center justify-center transition-transform duration-300 pointer-events-auto"
           style={{
             opacity: summitOpacity,
             pointerEvents: heroProgress > 0.22 ? 'none' : 'auto',
@@ -122,15 +122,15 @@ export function HeroSection({
         >
           {/* Subtle Category Lead */}
           <div
-            className={`inline-flex items-center gap-2 mb-3 px-3.5 py-1.5 rounded-full border backdrop-blur-md transition-colors ${
+            className={`inline-flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border backdrop-blur-md transition-colors ${
               isLight
                 ? 'border-stone-300 bg-stone-200/60 text-stone-800'
                 : 'border-himalayan-ivory/10 bg-himalayan-charcoal/40 text-himalayan-ivory/90'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-himalayan-amber" />
-            <span className="text-[10px] md:text-xs font-mono-tech tracking-[0.25em] uppercase font-medium">
-              Modified Nepali Botanicals • Tangra Wok Hei Fire
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-himalayan-amber shrink-0" />
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] uppercase font-medium">
+              Modified Nepali Botanicals • Tangra Wok Fire
             </span>
           </div>
 
@@ -142,7 +142,7 @@ export function HeroSection({
             }}
           >
             <h1
-              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.14em] uppercase leading-none drop-shadow-2xl transition-colors ${
+              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.1em] sm:tracking-[0.14em] uppercase leading-none drop-shadow-2xl transition-colors ${
                 isLight ? 'text-stone-900' : 'text-himalayan-ivory'
               }`}
             >
@@ -151,9 +151,9 @@ export function HeroSection({
           </div>
 
           {/* Editorial Subline */}
-          <div className="max-w-2xl my-2 md:my-3 px-4">
+          <div className="max-w-2xl my-1 sm:my-2 md:my-3 px-3">
             <p
-              className={`font-editorial text-xl sm:text-3xl md:text-4xl italic tracking-wide ${
+              className={`font-editorial text-base sm:text-2xl md:text-4xl italic tracking-wide leading-tight ${
                 isLight ? 'text-stone-800' : 'text-himalayan-bone'
               }`}
             >
@@ -169,9 +169,9 @@ export function HeroSection({
             }}
           >
             <h2
-              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.18em] uppercase leading-none ${
+              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.12em] sm:tracking-[0.18em] uppercase leading-none ${
                 isLight
-                  ? 'text-transparent [-webkit-text-stroke:1.5px_rgba(25,28,32,0.45)] hover:[-webkit-text-stroke:1.5px_#d9642a] hover:text-stone-900 transition-all duration-500'
+                  ? 'text-transparent [-webkit-text-stroke:1px_rgba(25,28,32,0.45)] sm:[-webkit-text-stroke:1.5px_rgba(25,28,32,0.45)] hover:[-webkit-text-stroke:1.5px_#d9642a] hover:text-stone-900 transition-all duration-500'
                   : 'text-stroke-himalayan'
               }`}
             >
@@ -180,10 +180,10 @@ export function HeroSection({
           </div>
 
           {/* Alpine Sound Activation Trigger */}
-          <div className="mt-4">
+          <div className="mt-3 sm:mt-4">
             <button
               onClick={handleHeroSoundClick}
-              className={`group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border text-xs font-mono-tech tracking-wider transition-all ${
+              className={`group inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border text-[10px] sm:text-xs font-mono-tech tracking-wider transition-all ${
                 isPlayingSound
                   ? 'border-himalayan-amber bg-himalayan-amber/15 text-himalayan-amber'
                   : isLight
@@ -194,52 +194,52 @@ export function HeroSection({
             >
               {isPlayingSound ? (
                 <>
-                  <Volume2 className="w-3.5 h-3.5 text-himalayan-amber animate-pulse" />
-                  <span>ALPINE SOUNDSCAPE ACTIVE (432HZ)</span>
-                  <span className="w-2 h-2 rounded-full bg-himalayan-amber animate-ping" />
+                  <Volume2 className="w-3.5 h-3.5 text-himalayan-amber animate-pulse shrink-0" />
+                  <span>SOUNDSCAPE ACTIVE (432HZ)</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-ping" />
                 </>
               ) : (
                 <>
-                  <VolumeX className="w-3.5 h-3.5 text-himalayan-amber" />
-                  <span>TAP TO ACTIVATE ALPINE AMBIENCE</span>
+                  <VolumeX className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
+                  <span>TAP TO ACTIVATE ALPINE SOUND</span>
                 </>
               )}
             </button>
           </div>
 
-
           {/* Scroll Cue */}
-          <div className="mt-5 flex items-center gap-2 text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] uppercase animate-pulse">
-            <ArrowDown className="w-3.5 h-3.5" />
-            <span>SCROLL TO PART THE MOUNTAINS & REVEAL THE CULINARY ALTAR</span>
+          <div className="mt-3 sm:mt-5 flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.15em] sm:tracking-[0.2em] uppercase animate-pulse">
+            <ArrowDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+            <span className="hidden sm:inline">SCROLL TO PART THE MOUNTAINS & REVEAL THE CULINARY ALTAR</span>
+            <span className="sm:hidden">SCROLL TO REVEAL CULINARY ALTAR</span>
           </div>
         </div>
 
         {/* ------------------------------------------------------------------ */}
-        {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR (The New Core Innovation) */}
+        {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute inset-0 flex flex-col justify-between pt-24 pb-12 px-6 md:px-12 transition-all duration-500 pointer-events-none z-10"
+          className="absolute inset-0 flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-10 px-3 sm:px-6 md:px-12 transition-all duration-500 pointer-events-none z-10"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
           }}
         >
           {/* Altar Header & Dialect Tuner */}
-          <div className="text-center max-w-2xl mx-auto flex flex-col items-center">
+          <div className="text-center max-w-2xl mx-auto flex flex-col items-center w-full">
             <div
-              className={`px-6 py-3.5 rounded-2xl border backdrop-blur-md shadow-lg transition-all ${
+              className={`px-4 sm:px-6 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl border backdrop-blur-md shadow-lg transition-all w-full sm:w-auto ${
                 isLight
                   ? 'bg-stone-100/90 border-stone-300 text-stone-900'
                   : 'bg-black/80 border-white/10 text-white'
               }`}
             >
-              <span className="text-[10px] font-mono-tech tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-1">
-                THE CLEFT OPENS • THE 3 GASTRONOMIC DIALECTS
+              <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.25em] sm:tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-0.5 sm:mb-1">
+                THE CLEFT OPENS • 3 GASTRONOMIC DIALECTS
               </span>
 
               <h3
-                className={`font-display text-2xl sm:text-4xl uppercase tracking-wide font-bold transition-all ${
+                className={`font-display text-lg sm:text-3xl md:text-4xl uppercase tracking-wide font-bold transition-all ${
                   isLight ? 'text-stone-950' : 'text-himalayan-ivory'
                 }`}
               >
@@ -247,7 +247,7 @@ export function HeroSection({
               </h3>
 
               <p
-                className={`font-editorial text-sm sm:text-base italic mt-0.5 ${
+                className={`font-editorial text-xs sm:text-base italic mt-0.5 ${
                   isLight ? 'text-stone-700' : 'text-himalayan-bone'
                 }`}
               >
@@ -257,21 +257,21 @@ export function HeroSection({
 
             {/* Interactive Dialect Tuner Tabs */}
             <div
-              className={`mt-4 inline-flex items-center gap-1.5 p-1.5 rounded-full border backdrop-blur-md shadow-xl ${
+              className={`mt-2.5 sm:mt-4 inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full border backdrop-blur-md shadow-xl max-w-full overflow-x-auto ${
                 isLight
                   ? 'border-stone-300 bg-stone-100/90'
                   : 'border-himalayan-ivory/15 bg-himalayan-void/85'
               }`}
             >
               {[
-                { id: 'nepali', label: '01 // MODIFIED NEPALI (MOREL MOMO)' },
-                { id: 'indochinese', label: '02 // TANGRA WOK (FIRE PRAWN)' },
-                { id: 'botanical', label: '03 // BOTANICAL (SMOKED ELIXIR)' },
+                { id: 'nepali', label: '01 // MODIFIED NEPALI (MOREL MOMO)', shortLabel: '01 NEPALI' },
+                { id: 'indochinese', label: '02 // TANGRA WOK (FIRE PRAWN)', shortLabel: '02 TANGRA' },
+                { id: 'botanical', label: '03 // BOTANICAL (SMOKED ELIXIR)', shortLabel: '03 BOTANICAL' },
               ].map((dialect) => (
                 <button
                   key={dialect.id}
                   onClick={() => handleDialectChange(dialect.id as any)}
-                  className={`px-3.5 py-1.5 rounded-full text-[10px] font-mono-tech tracking-wider uppercase transition-all duration-300 ${
+                  className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-mono-tech tracking-wider uppercase transition-all duration-300 shrink-0 ${
                     activeCategory === dialect.id
                       ? 'bg-himalayan-amber text-white shadow-md shadow-himalayan-amber/30 font-semibold'
                       : isLight
@@ -280,17 +280,18 @@ export function HeroSection({
                   }`}
                   data-cursor="SWITCH"
                 >
-                  {dialect.label}
+                  <span className="hidden sm:inline">{dialect.label}</span>
+                  <span className="sm:hidden">{dialect.shortLabel}</span>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Floating Lower Telemetry & Action Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 items-end gap-6 max-w-6xl mx-auto w-full my-auto pointer-events-auto">
-            {/* Left Telemetry: Forage Origin & Key Botanicals */}
+          <div className="grid grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 max-w-6xl mx-auto w-full my-auto pointer-events-auto">
+            {/* Left Telemetry: Forage Origin & Key Botanicals (Hidden on small mobile to give full view of 3D dish) */}
             <div
-              className={`p-4 rounded-xl border backdrop-blur-md text-xs font-mono-tech transition-all shadow-lg ${
+              className={`hidden md:block p-4 rounded-xl border backdrop-blur-md text-xs font-mono-tech transition-all shadow-lg ${
                 isLight
                   ? 'border-stone-300 bg-stone-100/85 text-stone-800'
                   : 'border-himalayan-ivory/15 bg-black/75 text-himalayan-bone'
@@ -320,21 +321,28 @@ export function HeroSection({
             <div className="flex flex-col items-center justify-center text-center">
               <button
                 onClick={() => onSelectDish(currentDish)}
-                className="px-7 py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-[0.2em] uppercase transition-all shadow-xl shadow-himalayan-amber/30 flex items-center gap-2.5 group hover:scale-105 active:scale-95"
+                className="px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-ember text-white text-[11px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all shadow-xl shadow-himalayan-amber/30 flex items-center gap-2 group hover:scale-105 active:scale-95"
                 data-cursor="INSPECT"
               >
-                <Eye className="w-4 h-4" />
+                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>INSPECT CULINARY DOSSIER</span>
               </button>
-              <div className="flex items-center gap-1.5 text-[9px] font-mono-tech text-himalayan-amber tracking-widest uppercase mt-2.5">
+
+              {/* Mobile Compact Origin Badge */}
+              <div className="md:hidden flex items-center justify-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-stone-900/70 border border-white/10 text-[9px] font-mono-tech text-himalayan-amber">
+                <Wind className="w-3 h-3" />
+                <span>LANGTANG 3,800M • WILD TIMUR & JIMBU</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] font-mono-tech text-himalayan-amber tracking-widest uppercase mt-2">
                 <Layers className="w-3 h-3" />
-                <span>DRAG CURSOR TO ROTATE 3D ARTIFACT (360°)</span>
+                <span>DRAG TO ROTATE 3D ARTIFACT (360°)</span>
               </div>
             </div>
 
-            {/* Right Telemetry: Sensory Matrix */}
+            {/* Right Telemetry: Sensory Matrix (Hidden on mobile) */}
             <div
-              className={`p-4 rounded-xl border backdrop-blur-md text-xs font-mono-tech transition-all shadow-lg ${
+              className={`hidden md:block p-4 rounded-xl border backdrop-blur-md text-xs font-mono-tech transition-all shadow-lg ${
                 isLight
                   ? 'border-stone-300 bg-stone-100/85 text-stone-800'
                   : 'border-himalayan-ivory/15 bg-black/75 text-himalayan-bone'
@@ -386,44 +394,44 @@ export function HeroSection({
         </div>
 
         {/* ------------------------------------------------------------------ */}
-        {/* STAGE 3: DESCENT INTO THE SANCTUARY (Smooth handoff to Chapter 01) */}
+        {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 transition-all duration-500 pointer-events-none z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-10"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',
           }}
         >
           <div
-            className={`p-8 rounded-3xl border backdrop-blur-md max-w-xl mx-auto shadow-2xl transition-all ${
+            className={`p-5 sm:p-8 rounded-2xl sm:rounded-3xl border backdrop-blur-md max-w-xl mx-auto shadow-2xl transition-all ${
               isLight
                 ? 'border-stone-300 bg-stone-100/90 text-stone-900'
                 : 'border-himalayan-ivory/15 bg-himalayan-void/90 text-himalayan-ivory'
             }`}
           >
-            <div className="w-12 h-12 rounded-full border border-himalayan-amber/50 bg-himalayan-amber/10 flex items-center justify-center mx-auto mb-4 text-himalayan-amber">
-              <Compass className="w-6 h-6 animate-spin" style={{ animationDuration: '24s' }} />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-himalayan-amber/50 bg-himalayan-amber/10 flex items-center justify-center mx-auto mb-3 sm:mb-4 text-himalayan-amber">
+              <Compass className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" style={{ animationDuration: '24s' }} />
             </div>
 
-            <span className="text-[10px] font-mono-tech tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-2">
+            <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.25em] sm:tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-1 sm:mb-2">
               DESCENT COMPLETE // 1,400M HEARTH
             </span>
 
-            <h3 className="font-display text-2xl sm:text-4xl uppercase tracking-wide mb-3">
+            <h3 className="font-display text-xl sm:text-4xl uppercase tracking-wide mb-2 sm:mb-3">
               Enter The Himalayan Odyssey
             </h3>
 
             <p
-              className={`font-editorial text-base sm:text-lg italic mb-6 ${
+              className={`font-editorial text-sm sm:text-lg italic mb-4 sm:mb-6 ${
                 isLight ? 'text-stone-700' : 'text-himalayan-bone'
               }`}
             >
               “From high glacial ridges into the warm fragrance of cedarwood, timur, and live wok fire.”
             </p>
 
-            <div className="flex items-center justify-center gap-2 text-xs font-mono-tech text-himalayan-amber tracking-widest uppercase animate-bounce">
-              <ArrowDown className="w-4 h-4" />
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-widest uppercase animate-bounce">
+              <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>CONTINUE SCROLLING TO BEGIN CHAPTER 01</span>
             </div>
           </div>
@@ -433,7 +441,7 @@ export function HeroSection({
         {/* Bottom Hero HUD: Atmospheric Specs & Seating Inquiries */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 items-end gap-6 text-[10px] font-mono-tech tracking-[0.2em] border-t pt-4 z-20 transition-colors ${
+          className={`grid grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.18em] sm:tracking-[0.2em] border-t pt-2.5 sm:pt-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
@@ -456,7 +464,7 @@ export function HeroSection({
             data-cursor="SCROLL"
           >
             <span
-              className={`group-hover:text-himalayan-amber transition-colors mb-2 text-[9px] tracking-[0.3em] font-semibold ${
+              className={`group-hover:text-himalayan-amber transition-colors mb-1 sm:mb-2 text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-semibold ${
                 isLight ? 'text-stone-800' : 'text-himalayan-ivory'
               }`}
             >
@@ -466,7 +474,7 @@ export function HeroSection({
                 ? 'SCROLL DOWN TO ENTER CHAPTERS'
                 : 'DESCENDING INTO CHAPTER 01'}
             </span>
-            <div className={`w-[1px] h-8 relative overflow-hidden ${isLight ? 'bg-stone-400' : 'bg-himalayan-ivory/20'}`}>
+            <div className={`w-[1px] h-6 sm:h-8 relative overflow-hidden ${isLight ? 'bg-stone-400' : 'bg-himalayan-ivory/20'}`}>
               <div className="w-full h-1/2 bg-himalayan-amber animate-bounce" />
             </div>
           </div>

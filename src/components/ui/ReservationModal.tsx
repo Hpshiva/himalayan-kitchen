@@ -34,7 +34,7 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
   };
 
   return (
-    <div className="fixed inset-0 z-[130] flex items-center justify-center p-4 sm:p-6 md:p-10 pointer-events-auto">
+    <div className="fixed inset-0 z-[130] flex items-center justify-center p-3 sm:p-6 md:p-10 pointer-events-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/80 backdrop-blur-xl transition-opacity animate-fadeIn"
@@ -42,7 +42,7 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
       />
 
       {/* Modal Dialog */}
-      <div className={`relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-3xl shadow-2xl z-10 p-6 md:p-10 border ${
+      <div className={`relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl sm:rounded-3xl shadow-2xl z-10 p-5 sm:p-8 md:p-10 border ${
         isLight
           ? 'bg-stone-100 border-stone-300 text-stone-900'
           : 'bg-himalayan-black border-himalayan-ivory/20 text-himalayan-ivory'
@@ -50,14 +50,15 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
         {/* Close Button */}
         <button
           onClick={onClose}
-          className={`absolute top-6 right-6 p-2 rounded-full border transition-colors ${
+          className={`absolute top-4 right-4 sm:top-6 sm:right-6 p-1.5 sm:p-2 rounded-full border transition-colors z-20 ${
             isLight
-              ? 'border-stone-400 text-stone-600 hover:text-stone-900 hover:border-himalayan-amber'
-              : 'border-himalayan-ivory/20 text-himalayan-fog hover:text-white hover:border-himalayan-amber'
+              ? 'border-stone-400 text-stone-600 hover:text-stone-900 hover:border-himalayan-amber bg-stone-200/50'
+              : 'border-himalayan-ivory/20 text-himalayan-fog hover:text-white hover:border-himalayan-amber bg-black/50'
           }`}
           data-cursor="CLOSE"
+          aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {confirmed ? (

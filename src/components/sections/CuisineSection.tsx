@@ -18,11 +18,11 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
   return (
     <section
       id="cuisine"
-      className="relative min-h-screen w-full py-32 px-6 md:px-12 flex flex-col justify-center pointer-events-auto"
+      className="relative min-h-screen w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 flex flex-col justify-center pointer-events-auto"
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-6 mb-12 gap-6 ${
+        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-4 sm:pb-6 mb-8 sm:mb-12 gap-4 sm:gap-6 ${
           isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'
         }`}>
           <div>
@@ -30,7 +30,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
               <Compass className="w-4 h-4" />
               <span>CHAPTER 03 — DUAL CULINARY DIALECT</span>
             </div>
-            <h2 className={`font-display text-3xl md:text-5xl lg:text-6xl uppercase tracking-tight ${
+            <h2 className={`font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight ${
               isLight ? 'text-stone-900' : 'text-himalayan-ivory'
             }`}>
               Two Traditions. One High Peak.
@@ -38,14 +38,14 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
           </div>
 
           {/* Interactive Dualism Switcher */}
-          <div className={`flex rounded-full p-1 border backdrop-blur-md ${
+          <div className={`flex rounded-full p-1 border backdrop-blur-md self-start md:self-auto ${
             isLight ? 'border-stone-300 bg-stone-200/80' : 'border-himalayan-ivory/15 bg-himalayan-charcoal/60'
           }`}>
             <button
               onClick={() => setActiveTab('nepali')}
-              className={`px-6 py-2.5 rounded-full text-xs font-mono-tech tracking-[0.2em] uppercase transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all duration-300 ${
                 activeTab === 'nepali'
-                  ? 'bg-himalayan-amber text-white shadow-lg'
+                  ? 'bg-himalayan-amber text-white shadow-lg font-semibold'
                   : isLight
                   ? 'text-stone-600 hover:text-stone-900'
                   : 'text-himalayan-fog hover:text-himalayan-ivory'
@@ -56,9 +56,9 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
             </button>
             <button
               onClick={() => setActiveTab('indochinese')}
-              className={`px-6 py-2.5 rounded-full text-xs font-mono-tech tracking-[0.2em] uppercase transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all duration-300 ${
                 activeTab === 'indochinese'
-                  ? 'bg-himalayan-amber text-white shadow-lg'
+                  ? 'bg-himalayan-amber text-white shadow-lg font-semibold'
                   : isLight
                   ? 'text-stone-600 hover:text-stone-900'
                   : 'text-himalayan-fog hover:text-himalayan-ivory'
@@ -71,11 +71,11 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
         </div>
 
         {/* Dynamic Dual Interactive Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Deep Culinary Narrative & Flavor Mechanics */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             {activeTab === 'nepali' ? (
-              <div className="animate-fadeIn space-y-6">
+              <div className="animate-fadeIn space-y-4 sm:space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-himalayan-amber/50 bg-himalayan-amber/15">
                   <Wind className="w-3.5 h-3.5 text-himalayan-amber" />
                   <span className={`text-[10px] font-mono-tech tracking-[0.25em] uppercase font-semibold ${
@@ -85,13 +85,13 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                   </span>
                 </div>
 
-                <h3 className={`font-display text-3xl md:text-5xl uppercase leading-tight ${
+                <h3 className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase leading-tight ${
                   isLight ? 'text-stone-900' : 'text-himalayan-ivory'
                 }`}>
                   Modified Nepali Cuisine
                 </h3>
 
-                <p className={`font-editorial text-xl italic leading-relaxed ${
+                <p className={`font-editorial text-lg sm:text-xl italic leading-relaxed ${
                   isLight ? 'text-stone-800' : 'text-himalayan-bone'
                 }`}>
                   “The subtle alchemy of high-altitude foraging, sun-dried fermentation, and electric timur peppercorns.”
@@ -125,10 +125,10 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                   </div>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2 sm:pt-4">
                   <button
                     onClick={() => onSelectDish(nepaliDish)}
-                    className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-himalayan-amber text-himalayan-amber hover:bg-himalayan-amber hover:text-white text-xs font-mono-tech tracking-[0.2em] uppercase transition-all shadow-md"
+                    className="group inline-flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full border border-himalayan-amber text-himalayan-amber hover:bg-himalayan-amber hover:text-white text-[11px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all shadow-md"
                     data-cursor="INSPECT"
                   >
                     <Eye className="w-4 h-4" />
@@ -137,7 +137,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                 </div>
               </div>
             ) : (
-              <div className="animate-fadeIn space-y-6">
+              <div className="animate-fadeIn space-y-4 sm:space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-himalayan-amber/50 bg-himalayan-amber/15">
                   <Flame className="w-3.5 h-3.5 text-himalayan-amber" />
                   <span className={`text-[10px] font-mono-tech tracking-[0.25em] uppercase font-semibold ${
@@ -147,13 +147,13 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                   </span>
                 </div>
 
-                <h3 className={`font-display text-3xl md:text-5xl uppercase leading-tight ${
+                <h3 className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase leading-tight ${
                   isLight ? 'text-stone-900' : 'text-himalayan-ivory'
                 }`}>
                   Indian Chinese Cuisine
                 </h3>
 
-                <p className={`font-editorial text-xl italic leading-relaxed ${
+                <p className={`font-editorial text-lg sm:text-xl italic leading-relaxed ${
                   isLight ? 'text-stone-800' : 'text-himalayan-bone'
                 }`}>
                   “Born in the immigrant tanneries of Tangra, elevated with high-altitude mountain smoke and fiery precision.”
@@ -187,10 +187,10 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                   </div>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2 sm:pt-4">
                   <button
                     onClick={() => onSelectDish(indochineseDish)}
-                    className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full border border-himalayan-amber text-himalayan-amber hover:bg-himalayan-amber hover:text-white text-xs font-mono-tech tracking-[0.2em] uppercase transition-all shadow-md"
+                    className="group inline-flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full border border-himalayan-amber text-himalayan-amber hover:bg-himalayan-amber hover:text-white text-[11px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all shadow-md"
                     data-cursor="INSPECT"
                   >
                     <Eye className="w-4 h-4" />
@@ -210,7 +210,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
               }`}
               data-cursor="INSPECT"
             >
-              <div className="relative h-[520px] w-full overflow-hidden">
+              <div className="relative h-[320px] sm:h-[420px] md:h-[520px] w-full overflow-hidden">
                 <img
                   src={activeTab === 'nepali' ? nepaliDish.image : indochineseDish.image}
                   alt={activeTab === 'nepali' ? nepaliDish.name : indochineseDish.name}
@@ -220,25 +220,25 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
 
                 {/* Overlaid Badges */}
-                <div className="absolute top-6 left-6 right-6 flex justify-between items-center">
-                  <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-mono-tech text-himalayan-amber tracking-widest uppercase">
+                <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex justify-between items-center">
+                  <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech text-himalayan-amber tracking-widest uppercase">
                     {activeTab === 'nepali' ? 'SIGNATURE NEPALI' : 'SIGNATURE HAKKA'}
                   </span>
-                  <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[10px] font-mono-tech text-white tracking-widest">
+                  <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech text-white tracking-widest">
                     {activeTab === 'nepali' ? '3,800M ELEVATION' : 'HIGH WOK INTENSITY'}
                   </span>
                 </div>
 
                 {/* Bottom Overlaid Title */}
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <span className="text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] block mb-1">
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
+                  <span className="text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] block mb-1">
                     {activeTab === 'nepali' ? nepaliDish.indigenousName : indochineseDish.indigenousName}
                   </span>
-                  <h4 className="font-display text-2xl md:text-3xl uppercase tracking-wide">
+                  <h4 className="font-display text-xl sm:text-2xl md:text-3xl uppercase tracking-wide">
                     {activeTab === 'nepali' ? nepaliDish.name : indochineseDish.name}
                   </h4>
-                  <div className="flex items-center gap-3 mt-2 text-xs font-mono-tech text-stone-300">
-                    <span>CLICK TO REVEAL INGREDIENTS & PAIRING</span>
+                  <div className="flex items-center gap-2 sm:gap-3 mt-1.5 sm:mt-2 text-[10px] sm:text-xs font-mono-tech text-stone-300">
+                    <span>TAP TO REVEAL INGREDIENTS & PAIRING</span>
                     <Sparkles className="w-3.5 h-3.5 text-himalayan-amber" />
                   </div>
                 </div>

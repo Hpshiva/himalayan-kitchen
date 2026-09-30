@@ -28,39 +28,39 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
   };
 
   return (
-    <div className={`min-h-screen w-full pt-28 pb-20 px-6 md:px-12 relative z-30 transition-colors ${
+    <div className={`min-h-screen w-full pt-20 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 relative z-30 transition-colors ${
       isLight ? 'bg-stone-50 text-stone-900' : 'bg-himalayan-void text-himalayan-ivory'
     }`}>
       <div className="max-w-6xl mx-auto w-full">
         {/* Top Back Navigation */}
         <button
           onClick={onBack}
-          className={`group inline-flex items-center gap-3 text-xs font-mono-tech tracking-[0.25em] uppercase transition-colors mb-12 border-b border-transparent hover:border-himalayan-amber pb-1 ${
+          className={`group inline-flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-colors mb-6 sm:mb-12 border-b border-transparent hover:border-himalayan-amber pb-1 ${
             isLight ? 'text-stone-600 hover:text-himalayan-amber' : 'text-himalayan-fog hover:text-himalayan-amber'
           }`}
           data-cursor="BACK"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform text-himalayan-amber" />
+          <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform text-himalayan-amber" />
           <span>RETURN TO SANCTUARY EXPEDITION</span>
         </button>
 
         {/* Header Masthead */}
-        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-8 mb-16 gap-6 ${
+        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-4 sm:pb-8 mb-8 sm:mb-16 gap-4 sm:gap-6 ${
           isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'
         }`}>
           <div>
-            <div className="flex items-center gap-2 text-himalayan-amber text-xs font-mono-tech tracking-[0.3em] uppercase mb-2">
-              <Compass className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-himalayan-amber text-[10px] sm:text-xs font-mono-tech tracking-[0.25em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-2">
+              <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span>COMMUNICATION ARCHIVE</span>
             </div>
-            <h1 className={`font-display text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight ${
+            <h1 className={`font-display text-3xl sm:text-5xl md:text-7xl uppercase tracking-tight ${
               isLight ? 'text-stone-900' : 'text-himalayan-ivory'
             }`}>
               Expedition Desk
             </h1>
           </div>
 
-          <div className={`max-w-sm text-xs font-mono-tech tracking-widest uppercase ${
+          <div className={`max-w-sm text-[11px] sm:text-xs font-mono-tech tracking-wider sm:tracking-widest uppercase ${
             isLight ? 'text-stone-600' : 'text-himalayan-fog'
           }`}>
             RESERVATIONS, PRIVATE HEARTH BUYOUTS & FORAGED CULINARY INQUIRIES AT 8,848 METERS.
@@ -68,11 +68,11 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
         </div>
 
         {/* 2-Column Architectural Contact Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: Sanctuary Dossier & Logistics */}
-          <div className="lg:col-span-5 space-y-10">
+          <div className="lg:col-span-5 space-y-6 sm:space-y-10">
             {/* Architectural Dossier */}
-            <div className={`p-8 rounded-2xl border backdrop-blur-md space-y-6 ${
+            <div className={`p-5 sm:p-8 rounded-xl sm:rounded-2xl border backdrop-blur-md space-y-4 sm:space-y-6 ${
               isLight ? 'border-stone-300 bg-stone-200/50' : 'border-himalayan-ivory/15 bg-himalayan-charcoal/40'
             }`}>
               <span className="text-xs font-mono-tech tracking-[0.25em] text-himalayan-amber uppercase block font-semibold">
@@ -129,19 +129,19 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
             </div>
 
             {/* Arrival Protocol */}
-            <div className={`p-8 rounded-2xl border space-y-4 ${
+            <div className={`p-5 sm:p-8 rounded-xl sm:rounded-2xl border space-y-3 sm:space-y-4 ${
               isLight ? 'border-amber-300 bg-amber-50/40' : 'border-himalayan-amber/20 bg-himalayan-void/60'
             }`}>
-              <div className="flex items-center gap-2 text-xs font-mono-tech text-himalayan-amber uppercase tracking-widest font-semibold">
-                <ShieldCheck className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber uppercase tracking-wider sm:tracking-widest font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>EXPEDITION PROTOCOL</span>
               </div>
-              <p className={`text-xs font-sans-clean leading-relaxed ${
+              <p className={`text-[11px] sm:text-xs font-sans-clean leading-relaxed ${
                 isLight ? 'text-stone-700' : 'text-himalayan-fog'
               }`}>
                 Helicopter transfer from Kathmandu Tribhuvan Airport directly to our private mountain pad is available for all evening seatings. Private chauffeured 4x4 vehicles depart Lukla hourly.
               </p>
-              <div className={`pt-2 flex items-center gap-2 text-[11px] font-mono-tech ${
+              <div className={`pt-1 sm:pt-2 flex items-center gap-2 text-[10px] sm:text-[11px] font-mono-tech ${
                 isLight ? 'text-stone-800' : 'text-himalayan-bone'
               }`}>
                 <Globe className="w-3.5 h-3.5 text-himalayan-amber" />
@@ -154,35 +154,35 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
 
           {/* Right Column: Interactive Dispatch Form */}
           <div className="lg:col-span-7">
-            <div className={`p-8 md:p-12 rounded-3xl border backdrop-blur-xl shadow-2xl relative overflow-hidden ${
+            <div className={`p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl border backdrop-blur-xl shadow-2xl relative overflow-hidden ${
               isLight ? 'border-stone-300 bg-stone-100' : 'border-himalayan-ivory/15 bg-himalayan-charcoal/60'
             }`}>
               {submitted ? (
-                <div className="py-16 text-center space-y-6 flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full border border-himalayan-amber bg-himalayan-amber/20 flex items-center justify-center text-himalayan-amber animate-pulse">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="py-12 sm:py-16 text-center space-y-4 sm:space-y-6 flex flex-col items-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-himalayan-amber bg-himalayan-amber/20 flex items-center justify-center text-himalayan-amber animate-pulse">
+                    <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
-                  <h3 className={`font-display text-2xl md:text-3xl uppercase tracking-wide ${
+                  <h3 className={`font-display text-xl sm:text-2xl md:text-3xl uppercase tracking-wide ${
                     isLight ? 'text-stone-900' : 'text-himalayan-ivory'
                   }`}>
                     Dispatch Received
                   </h3>
-                  <p className={`font-editorial text-lg italic max-w-md ${
+                  <p className={`font-editorial text-base sm:text-lg italic max-w-md ${
                     isLight ? 'text-stone-700' : 'text-himalayan-bone'
                   }`}>
                     “Our Expedition Concierge will contact you within 6 hours to confirm your seating and mountain logistics.”
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="px-6 py-2.5 rounded-full border border-himalayan-amber text-xs font-mono-tech tracking-widest uppercase transition-colors text-himalayan-amber hover:bg-himalayan-amber hover:text-white"
+                    className="px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-himalayan-amber text-[10px] sm:text-xs font-mono-tech tracking-widest uppercase transition-colors text-himalayan-amber hover:bg-himalayan-amber hover:text-white"
                   >
                     SEND ANOTHER INQUIRY
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
-                    <span className="text-[10px] font-mono-tech tracking-[0.25em] text-himalayan-amber uppercase block mb-2 font-semibold">
+                    <span className="text-[10px] font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] text-himalayan-amber uppercase block mb-2 font-semibold">
                       INQUIRY SPECIFICATION
                     </span>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -196,7 +196,7 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                           type="button"
                           key={item.id}
                           onClick={() => setFormData({ ...formData, inquiryType: item.id })}
-                          className={`py-2 px-3 text-[10px] font-mono-tech tracking-wider rounded-lg border transition-all text-center ${
+                          className={`py-2 px-2 sm:px-3 text-[9px] sm:text-[10px] font-mono-tech tracking-wider rounded-lg border transition-all text-center ${
                             formData.inquiryType === item.id
                               ? 'border-himalayan-amber bg-himalayan-amber/20 text-himalayan-amber font-bold'
                               : isLight
@@ -211,9 +211,9 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   </div>
 
                   {/* Name & Email Fields */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className={`text-[11px] font-mono-tech tracking-wider block uppercase ${
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <label className={`text-[10px] sm:text-[11px] font-mono-tech tracking-wider block uppercase ${
                         isLight ? 'text-stone-700' : 'text-himalayan-fog'
                       }`}>
                         GUEST FULL NAME *
@@ -224,14 +224,14 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Tenzing Norgay"
-                        className={`w-full border rounded-lg px-4 py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
+                        className={`w-full border rounded-lg px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
                           isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-himalayan-void/80 border-himalayan-ivory/15 text-himalayan-ivory'
                         }`}
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <label className={`text-[11px] font-mono-tech tracking-wider block uppercase ${
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <label className={`text-[10px] sm:text-[11px] font-mono-tech tracking-wider block uppercase ${
                         isLight ? 'text-stone-700' : 'text-himalayan-fog'
                       }`}>
                         EMAIL DISPATCH *
@@ -242,7 +242,7 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="guest@sanctuary.com"
-                        className={`w-full border rounded-lg px-4 py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
+                        className={`w-full border rounded-lg px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
                           isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-himalayan-void/80 border-himalayan-ivory/15 text-himalayan-ivory'
                         }`}
                       />
@@ -250,9 +250,9 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   </div>
 
                   {/* Phone & Party Count */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className={`text-[11px] font-mono-tech tracking-wider block uppercase ${
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <label className={`text-[10px] sm:text-[11px] font-mono-tech tracking-wider block uppercase ${
                         isLight ? 'text-stone-700' : 'text-himalayan-fog'
                       }`}>
                         CONTACT TELEPHONE
@@ -262,14 +262,14 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+1 (555) 019-2834"
-                        className={`w-full border rounded-lg px-4 py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
+                        className={`w-full border rounded-lg px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
                           isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-himalayan-void/80 border-himalayan-ivory/15 text-himalayan-ivory'
                         }`}
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <label className={`text-[11px] font-mono-tech tracking-wider block uppercase ${
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <label className={`text-[10px] sm:text-[11px] font-mono-tech tracking-wider block uppercase ${
                         isLight ? 'text-stone-700' : 'text-himalayan-fog'
                       }`}>
                         PARTY SIZE / GUESTS
@@ -277,7 +277,7 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                       <select
                         value={formData.guests}
                         onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                        className={`w-full border rounded-lg px-4 py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
+                        className={`w-full border rounded-lg px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors ${
                           isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-himalayan-void/80 border-himalayan-ivory/15 text-himalayan-ivory'
                         }`}
                       >
@@ -290,8 +290,8 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   </div>
 
                   {/* Message Field */}
-                  <div className="space-y-2">
-                    <label className={`text-[11px] font-mono-tech tracking-wider block uppercase ${
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <label className={`text-[10px] sm:text-[11px] font-mono-tech tracking-wider block uppercase ${
                       isLight ? 'text-stone-700' : 'text-himalayan-fog'
                     }`}>
                       DIETARY PREFERENCES & EXPEDITION NOTES
@@ -301,7 +301,7 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please note any allergies, special anniversary celebrations, or helicopter transfer requests..."
-                      className={`w-full border rounded-lg p-4 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors resize-none ${
+                      className={`w-full border rounded-lg p-3.5 sm:p-4 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber transition-colors resize-none ${
                         isLight ? 'bg-stone-50 border-stone-300 text-stone-900' : 'bg-himalayan-void/80 border-himalayan-ivory/15 text-himalayan-ivory'
                       }`}
                     />
@@ -310,10 +310,10 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-[0.25em] uppercase transition-all duration-300 shadow-xl shadow-himalayan-amber/25 flex items-center justify-center gap-3 group"
+                    className="w-full py-3.5 sm:py-4 rounded-xl bg-himalayan-amber hover:bg-himalayan-ember text-white text-[11px] sm:text-xs font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-all duration-300 shadow-xl shadow-himalayan-amber/25 flex items-center justify-center gap-2.5 sm:gap-3 group"
                     data-cursor="TRANSMIT"
                   >
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                     <span>TRANSMIT EXPEDITION INQUIRY</span>
                   </button>
                 </form>

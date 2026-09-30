@@ -68,24 +68,24 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-[100] flex flex-col justify-between p-6 md:p-12 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed inset-0 z-[100] flex flex-col justify-between p-4 sm:p-6 md:p-12 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isRevealed ? 'opacity-0 pointer-events-none scale-105' : 'opacity-100'
       } ${
         isLight ? 'bg-[#f7f5f0] text-stone-900' : 'bg-himalayan-void text-himalayan-ivory'
       }`}
     >
       {/* Top Bar: Technical Metadata */}
-      <div className={`flex items-center justify-between text-xs tracking-[0.25em] font-mono-tech border-b pb-4 ${
+      <div className={`flex items-center justify-between text-[10px] sm:text-xs tracking-[0.15em] sm:tracking-[0.25em] font-mono-tech border-b pb-3 sm:pb-4 ${
         isLight ? 'text-stone-500 border-stone-300' : 'text-himalayan-fog border-himalayan-ivory/10'
       }`}>
-        <div className="flex items-center gap-3">
-          <Compass className="w-3.5 h-3.5 text-himalayan-amber animate-spin" style={{ animationDuration: '12s' }} />
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-himalayan-amber animate-spin" style={{ animationDuration: '12s' }} />
           <span>27°59′17″N 86°55′31″E</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <button
             onClick={toggleSound}
-            className={`flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] transition-colors ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full border text-[9px] sm:text-[10px] transition-colors ${
               soundEnabled
                 ? 'border-himalayan-amber bg-himalayan-amber/15 text-himalayan-amber font-semibold'
                 : isLight
@@ -93,8 +93,8 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
                 : 'border-himalayan-ivory/15 text-himalayan-ivory/70 hover:border-himalayan-amber hover:text-himalayan-amber'
             }`}
           >
-            <Wind className="w-3 h-3 text-himalayan-amber" />
-            <span>{soundEnabled ? 'ALPINE SOUND ON' : 'ENABLE SOUND'}</span>
+            <Wind className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-himalayan-amber" />
+            <span>{soundEnabled ? 'SOUND ON' : 'ENABLE SOUND'}</span>
           </button>
           <span className="hidden sm:inline-block text-himalayan-amber font-semibold">EXPEDITION 01</span>
         </div>
@@ -103,7 +103,7 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
       {/* Centerpiece: Mountain Ridge Line Drawing & Typography */}
       <div className="relative my-auto flex flex-col items-center justify-center text-center">
         {/* SVG Procedural Mountain Contour with Stroke Dash Animation */}
-        <div className="w-full max-w-2xl h-36 md:h-44 relative mb-6">
+        <div className="w-full max-w-2xl h-28 sm:h-36 md:h-44 relative mb-4 sm:mb-6">
           <svg
             viewBox="0 0 1000 300"
             className="w-full h-full overflow-visible"
@@ -159,17 +159,17 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
         </div>
 
         {/* Live Elevation Counter */}
-        <div className="font-mono-tech flex flex-col items-center mb-6">
-          <div className="text-[11px] tracking-[0.3em] text-himalayan-amber uppercase mb-1 font-semibold">
+        <div className="font-mono-tech flex flex-col items-center mb-4 sm:mb-6">
+          <div className="text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] text-himalayan-amber uppercase mb-1 font-semibold">
             ALTITUDE ASCENT
           </div>
-          <div className={`text-4xl md:text-6xl font-light tracking-tight flex items-baseline ${
+          <div className={`text-3xl sm:text-4xl md:text-6xl font-light tracking-tight flex items-baseline ${
             isLight ? 'text-stone-900' : 'text-himalayan-ivory'
           }`}>
             <span>{altitude.toLocaleString()}</span>
-            <span className={`text-xl md:text-2xl ml-1 ${isLight ? 'text-stone-500' : 'text-himalayan-fog'}`}>M</span>
+            <span className={`text-lg sm:text-xl md:text-2xl ml-1 ${isLight ? 'text-stone-500' : 'text-himalayan-fog'}`}>M</span>
           </div>
-          <div className={`text-xs tracking-[0.2em] uppercase mt-1 ${isLight ? 'text-stone-600' : 'text-himalayan-fog/80'}`}>
+          <div className={`text-[10px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase mt-1 ${isLight ? 'text-stone-600' : 'text-himalayan-fog/80'}`}>
             {currentMilestone}
           </div>
         </div>
@@ -177,7 +177,7 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
         {/* Wordmark Reveal */}
         <div className="overflow-hidden">
           <h1
-            className={`font-display text-2xl md:text-5xl tracking-[0.35em] uppercase transition-all duration-700 font-bold ${
+            className={`font-display text-xl sm:text-3xl md:text-5xl tracking-[0.2em] sm:tracking-[0.35em] uppercase transition-all duration-700 font-bold ${
               isLight ? 'text-stone-900' : 'text-himalayan-ivory'
             }`}
             style={{
@@ -190,7 +190,7 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
         </div>
 
         <p
-          className={`text-xs md:text-sm tracking-[0.25em] uppercase mt-3 transition-opacity duration-700 max-w-md ${
+          className={`text-[10px] sm:text-xs md:text-sm tracking-[0.15em] sm:tracking-[0.25em] uppercase mt-2 sm:mt-3 transition-opacity duration-700 max-w-md ${
             isLight ? 'text-stone-600' : 'text-himalayan-fog'
           }`}
           style={{ opacity: altitude > 7000 ? 1 : 0 }}
@@ -202,7 +202,7 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
         {altitude >= 8848 && (
           <button
             onClick={handleEnter}
-            className="mt-8 group relative px-8 py-3.5 overflow-hidden rounded-full border border-himalayan-amber/50 bg-himalayan-amber/15 hover:bg-himalayan-amber text-himalayan-amber hover:text-white transition-all duration-500 flex items-center gap-3 text-xs tracking-[0.25em] uppercase font-semibold shadow-lg"
+            className="mt-6 sm:mt-8 group relative px-6 sm:px-8 py-3 sm:py-3.5 overflow-hidden rounded-full border border-himalayan-amber/50 bg-himalayan-amber/15 hover:bg-himalayan-amber text-himalayan-amber hover:text-white transition-all duration-500 flex items-center gap-2.5 sm:gap-3 text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold shadow-lg"
           >
             <Sparkles className="w-3.5 h-3.5 group-hover:text-white transition-colors" />
             <span>ENTER SANCTUARY</span>
@@ -211,7 +211,7 @@ export function CinematicLoader({ onComplete, theme = 'light' }: CinematicLoader
       </div>
 
       {/* Bottom Status Grid */}
-      <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] tracking-[0.2em] font-mono-tech border-t pt-4 ${
+      <div className={`grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] font-mono-tech border-t pt-3 sm:pt-4 ${
         isLight ? 'text-stone-600 border-stone-300' : 'text-himalayan-fog/70 border-himalayan-ivory/10'
       }`}>
         <div>

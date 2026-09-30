@@ -21,7 +21,7 @@ export function DishModal({ dish, onClose, onReserve, theme = 'dark' }: DishModa
       />
 
       {/* Modal Dialog */}
-      <div className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl z-10 p-6 md:p-10 border ${
+      <div className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl shadow-2xl z-10 p-5 sm:p-8 md:p-10 border ${
         isLight
           ? 'bg-stone-100 border-stone-300 text-stone-900'
           : 'bg-himalayan-black border-himalayan-ivory/20 text-himalayan-ivory'
@@ -29,36 +29,37 @@ export function DishModal({ dish, onClose, onReserve, theme = 'dark' }: DishModa
         {/* Close Button */}
         <button
           onClick={onClose}
-          className={`absolute top-6 right-6 p-2 rounded-full border transition-colors ${
+          className={`absolute top-4 right-4 sm:top-6 sm:right-6 p-1.5 sm:p-2 rounded-full border transition-colors z-20 ${
             isLight
-              ? 'border-stone-400 text-stone-600 hover:text-stone-900 hover:border-himalayan-amber'
-              : 'border-himalayan-ivory/20 text-himalayan-fog hover:text-white hover:border-himalayan-amber'
+              ? 'border-stone-400 text-stone-600 hover:text-stone-900 hover:border-himalayan-amber bg-stone-200/50'
+              : 'border-himalayan-ivory/20 text-himalayan-fog hover:text-white hover:border-himalayan-amber bg-black/50'
           }`}
           data-cursor="CLOSE"
+          aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
           {/* Dish Image Frame */}
-          <div className="md:col-span-6 relative rounded-2xl overflow-hidden border border-black/20 bg-black">
+          <div className="md:col-span-6 relative rounded-xl sm:rounded-2xl overflow-hidden border border-black/20 bg-black">
             <img
               src={dish.image}
               alt={dish.name}
-              className="w-full h-80 md:h-[420px] object-cover"
+              className="w-full h-56 sm:h-80 md:h-[420px] object-cover"
             />
-            <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase">
+            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase">
               {dish.elevation}
             </div>
           </div>
 
           {/* Dossier Information */}
-          <div className="md:col-span-6 space-y-6">
+          <div className="md:col-span-6 space-y-4 sm:space-y-6">
             <div>
-              <span className="text-xs font-mono-tech text-himalayan-amber tracking-[0.25em] uppercase block mb-1 font-semibold">
+              <span className="text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] sm:tracking-[0.25em] uppercase block mb-1 font-semibold">
                 {dish.indigenousName} • {dish.category.toUpperCase()} DIALECT
               </span>
-              <h3 className={`font-display text-2xl sm:text-3xl uppercase tracking-wide ${
+              <h3 className={`font-display text-xl sm:text-3xl uppercase tracking-wide font-bold ${
                 isLight ? 'text-stone-900' : 'text-himalayan-ivory'
               }`}>
                 {dish.name}

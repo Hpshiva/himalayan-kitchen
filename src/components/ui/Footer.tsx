@@ -10,28 +10,28 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
   const isLight = theme === 'light';
 
   return (
-    <footer className={`relative w-full border-t pt-20 pb-12 px-6 md:px-12 pointer-events-auto z-10 transition-colors ${
+    <footer className={`relative w-full border-t pt-12 sm:pt-20 pb-8 sm:pb-12 px-4 sm:px-6 md:px-12 pointer-events-auto z-10 transition-colors ${
       isLight ? 'bg-stone-200/60 border-stone-300 text-stone-600' : 'bg-himalayan-void border-himalayan-ivory/10 text-himalayan-fog'
     }`}>
       <div className="max-w-7xl mx-auto w-full">
         {/* Top Tier: Monogram & Press Quote */}
-        <div className={`flex flex-col lg:flex-row justify-between items-start pb-16 border-b gap-10 ${
+        <div className={`flex flex-col lg:flex-row justify-between items-start pb-8 sm:pb-16 border-b gap-6 sm:gap-10 ${
           isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'
         }`}>
           <div className="max-w-md">
-            <div className="flex items-center gap-3 mb-4">
-              <div className={`w-8 h-8 rounded-full border border-himalayan-amber/50 flex items-center justify-center ${
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-himalayan-amber/50 flex items-center justify-center shrink-0 ${
                 isLight ? 'bg-stone-100' : 'bg-himalayan-charcoal'
               }`}>
                 <Compass className="w-4 h-4 text-himalayan-amber" />
               </div>
-              <span className={`font-display text-lg tracking-[0.25em] uppercase font-bold ${
+              <span className={`font-display text-base sm:text-lg tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold ${
                 isLight ? 'text-stone-900' : 'text-himalayan-ivory'
               }`}>
                 Himalayan Kitchen
               </span>
             </div>
-            <p className={`font-editorial text-xl italic leading-relaxed ${
+            <p className={`font-editorial text-lg sm:text-xl italic leading-relaxed ${
               isLight ? 'text-stone-800' : 'text-himalayan-bone'
             }`}>
               “An unprecedented collision of high-altitude Himalayan botanicals and the scorched iron woks of Tangra.”
@@ -42,23 +42,23 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
           </div>
 
           {/* Quick Newsletter / Highland Dispatch */}
-          <div className="w-full lg:w-auto min-w-[320px]">
-            <span className={`text-xs font-mono-tech tracking-[0.25em] uppercase block mb-3 font-semibold ${
+          <div className="w-full lg:w-96 min-w-0">
+            <span className={`text-xs font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] uppercase block mb-2 sm:mb-3 font-semibold ${
               isLight ? 'text-stone-900' : 'text-himalayan-ivory'
             }`}>
               THE HIGHLAND DISPATCH
             </span>
-            <p className={`text-xs font-sans-clean mb-4 leading-relaxed ${
+            <p className={`text-xs font-sans-clean mb-3 sm:mb-4 leading-relaxed ${
               isLight ? 'text-stone-600' : 'text-himalayan-fog'
             }`}>
               Receive private notifications when seasonal foraging menus and private hearth seatings open.
             </p>
-            <form onSubmit={(e) => { e.preventDefault(); alert("You are subscribed to The Highland Dispatch."); }} className="flex gap-2">
+            <form onSubmit={(e) => { e.preventDefault(); alert("You are subscribed to The Highland Dispatch."); }} className="flex gap-2 w-full">
               <input
                 type="email"
                 required
                 placeholder="YOUR EMAIL ADDRESS"
-                className={`w-full border rounded-lg px-4 py-2.5 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber ${
+                className={`w-full min-w-0 border rounded-lg px-3.5 py-2.5 text-xs font-mono-tech focus:outline-none focus:border-himalayan-amber ${
                   isLight
                     ? 'bg-stone-100 border-stone-300 text-stone-900'
                     : 'bg-himalayan-charcoal/60 border-himalayan-ivory/15 text-himalayan-ivory'
@@ -66,7 +66,7 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-widest rounded-lg transition-colors uppercase shrink-0"
+                className="px-4 sm:px-5 py-2.5 bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-widest rounded-lg transition-colors uppercase shrink-0 font-semibold"
                 data-cursor="JOIN"
               >
                 JOIN
@@ -76,12 +76,12 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
         </div>
 
         {/* Center Grid: Contact & Practical Details */}
-        <div className={`grid grid-cols-1 md:grid-cols-4 gap-10 py-12 border-b text-xs font-mono-tech ${
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 py-8 sm:py-12 border-b text-xs font-mono-tech ${
           isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'
         }`}>
           {/* Col 1: Location */}
-          <div className="space-y-2">
-            <span className="text-himalayan-amber tracking-widest uppercase block mb-3 font-semibold">
+          <div className="space-y-1.5 sm:space-y-2">
+            <span className="text-himalayan-amber tracking-widest uppercase block mb-2 sm:mb-3 font-semibold">
               SANCTUARY LOCATION
             </span>
             <div className="flex items-start gap-2">
@@ -95,8 +95,8 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
           </div>
 
           {/* Col 2: Service Hours */}
-          <div className="space-y-2">
-            <span className="text-himalayan-amber tracking-widest uppercase block mb-3 font-semibold">
+          <div className="space-y-1.5 sm:space-y-2">
+            <span className="text-himalayan-amber tracking-widest uppercase block mb-2 sm:mb-3 font-semibold">
               TASTING SEATINGS
             </span>
             <p className={isLight ? 'text-stone-900' : 'text-himalayan-bone'}>Thursday – Sunday</p>
@@ -106,58 +106,58 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
           </div>
 
           {/* Col 3: Direct Inquiries */}
-          <div className="space-y-2">
-            <span className="text-himalayan-amber tracking-widest uppercase block mb-3 font-semibold">
+          <div className="space-y-1.5 sm:space-y-2">
+            <span className="text-himalayan-amber tracking-widest uppercase block mb-2 sm:mb-3 font-semibold">
               EXPEDITION DESK
             </span>
             <div className="flex items-center gap-2">
-              <Mail className="w-3.5 h-3.5 text-himalayan-amber" />
-              <a href="mailto:sanctuary@himalayankitchen.luxury" className="hover:text-himalayan-amber transition-colors">
+              <Mail className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
+              <a href="mailto:sanctuary@himalayankitchen.luxury" className="hover:text-himalayan-amber transition-colors truncate">
                 sanctuary@himalayankitchen.luxury
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <Phone className="w-3.5 h-3.5 text-himalayan-amber" />
+              <Phone className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
               <a href="tel:+97714200000" className="hover:text-himalayan-amber transition-colors">
                 +977 1 420 8848
               </a>
             </div>
             <button
               onClick={onContact}
-              className="text-himalayan-amber underline hover:text-stone-900 dark:hover:text-white transition-colors block pt-2"
+              className="text-himalayan-amber underline hover:text-stone-900 dark:hover:text-white transition-colors block pt-1 sm:pt-2"
             >
               Send Direct Inquiry Form →
             </button>
           </div>
 
           {/* Col 4: Digital Channels */}
-          <div className="space-y-2">
-            <span className="text-himalayan-amber tracking-widest uppercase block mb-3 font-semibold">
+          <div className="space-y-1.5 sm:space-y-2">
+            <span className="text-himalayan-amber tracking-widest uppercase block mb-2 sm:mb-3 font-semibold">
               DIGITAL ARCHIVE
             </span>
             <div className="flex items-center gap-2">
-              <Globe className="w-3.5 h-3.5 text-himalayan-amber" />
+              <Globe className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
               <a href="#instagram" className="hover:text-himalayan-amber transition-colors">
                 @himalayankitchen
               </a>
             </div>
             <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>
-              Press Inquiries: press@himalayankitchen.luxury
+              Press: press@himalayankitchen.luxury
             </p>
           </div>
         </div>
 
         {/* Bottom Tier: Copyright & Back To Top */}
-        <div className={`pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono-tech gap-4 ${
+        <div className={`pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono-tech gap-3 sm:gap-4 ${
           isLight ? 'text-stone-500' : 'text-himalayan-fog/60'
         }`}>
-          <div>
-            <span>© 2026 HIMALAYAN KITCHEN. ALL RIGHTS RESERVED. ARCHITECTURAL GASTRONOMY.</span>
+          <div className="text-center sm:text-left">
+            <span>© 2026 HIMALAYAN KITCHEN. ALL RIGHTS RESERVED.</span>
           </div>
 
           <button
             onClick={onScrollToTop}
-            className={`flex items-center gap-2 hover:text-himalayan-amber transition-colors group ${
+            className={`flex items-center gap-2 hover:text-himalayan-amber transition-colors group shrink-0 ${
               isLight ? 'text-stone-800' : 'text-himalayan-ivory'
             }`}
             data-cursor="SUMMIT"
