@@ -214,6 +214,8 @@ export function EmergingCulinaryArtifact({
   const groupRef = useRef<THREE.Group>(null);
   const plateRef = useRef<THREE.Mesh>(null);
   const flameRef = useRef<THREE.Points>(null);
+  const coreRef = useRef<THREE.Points>(null);
+  const auraRef = useRef<THREE.Points>(null);
   const embersRef = useRef<THREE.Points>(null);
   const fireLightRef = useRef<THREE.PointLight>(null);
 
@@ -227,71 +229,179 @@ export function EmergingCulinaryArtifact({
   const prawnGeometry = useMemo(() => createAuthenticPrawnGeometry(), []);
   const iceGeometry = useMemo(() => createCarvedIceGeometry(0.82), []);
 
-  // 1. Procedural Blazing Flame Tongue Particles (Concentrated behind food, dancing upward)
-  const [flamePositions, flameVelocities] = useMemo(() => {
-    const count = 120;
+  // 1. Procedural Licking Flame Tongue Particles (Tapered, buoyant, dancing upward)
+  const [flamePositions, flameVelocities, flameInitialAngles] = useMemo(() => {
+    const count = 95;
     const pos = new Float32Array(count * 3);
     const vel = new Float32Array(count * 3);
+    const meta = new Float32Array(count * 2); // [radius, angle]
 
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const r = Math.pow(Math.random(), 1.4) * 0.85;
-      pos[i * 3] = Math.cos(angle) * r;
-      pos[i * 3 + 1] = 0.2 + Math.random() * 2.2;
-      pos[i * 3 + 2] = Math.sin(angle) * r - 0.3; // Sits naturally behind the food
+      const r = Math.pow(Math.random(), 1.2) * 0.68;
+      meta[i * 2] = r;
+      meta[i * 2 + 1] = angle;
 
-      vel[i * 3] = (Math.random() - 0.5) * 0.007;
-      vel[i * 3 + 1] = 0.026 + Math.random() * 0.035;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.007;
+      pos[i * 3] = Math.cos(angle) * r;
+      pos[i * 3 + 1] = 0.18 + Math.random() * 2.2;
+      pos[i * 3 + 2] = Math.sin(angle) * r * 0.7 - 0.28; // Nestles gracefully behind the food
+
+      vel[i * 3] = (Math.random() - 0.5) * 0.005;
+      vel[i * 3 + 1] = 0.022 + Math.random() * 0.026;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.005;
+    }
+    return [pos, vel, meta];
+  }, []);
+
+  // 2. Incandescent White-Gold Flame Core (Hot, concentrated at hearth base)
+  const [corePositions, coreVelocities] = useMemo(() => {
+    const count = 28;
+    const pos = new Float32Array(count * 3);
+    const vel = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const r = Math.random() * 0.36;
+      pos[i * 3] = Math.cos(angle) * r;
+      pos[i * 3 + 1] = 0.15 + Math.random() * 0.85;
+      pos[i * 3 + 2] = Math.sin(angle) * r * 0.6 - 0.24;
+
+      vel[i * 3] = (Math.random() - 0.5) * 0.004;
+      vel[i * 3 + 1] = 0.016 + Math.random() * 0.022;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.004;
     }
     return [pos, vel];
   }, []);
 
-  // 2. High-Altitude Golden Embers & Sparks
+  // 3. Ethereal Ambient Heat Aura (Soft, airy, semi-transparent warm glow)
+  const [auraPositions, auraVelocities] = useMemo(() => {
+    const count = 16;
+    const pos = new Float32Array(count * 3);
+    const vel = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const r = Math.random() * 0.6;
+      pos[i * 3] = Math.cos(angle) * r;
+      pos[i * 3 + 1] = 0.3 + Math.random() * 1.8;
+      pos[i * 3 + 2] = Math.sin(angle) * r * 0.6 - 0.28;
+
+      vel[i * 3] = (Math.random() - 0.5) * 0.003;
+      vel[i * 3 + 1] = 0.012 + Math.random() * 0.015;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
+    }
+    return [pos, vel];
+  }, []);
+
+  // 4. Weightless High-Altitude Golden Embers & Sparks
   const [emberPositions, emberVelocities] = useMemo(() => {
-    const count = 75;
+    const count = 65;
     const pos = new Float32Array(count * 3);
     const vel = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const r = Math.random() * 1.1;
+      const r = Math.random() * 0.95;
       pos[i * 3] = Math.cos(angle) * r;
-      pos[i * 3 + 1] = Math.random() * 3.6;
-      pos[i * 3 + 2] = Math.sin(angle) * r - 0.2;
+      pos[i * 3 + 1] = 0.2 + Math.random() * 3.4;
+      pos[i * 3 + 2] = Math.sin(angle) * r * 0.8 - 0.22;
 
-      vel[i * 3] = (Math.random() - 0.5) * 0.01;
-      vel[i * 3 + 1] = 0.02 + Math.random() * 0.04;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
+      vel[i * 3] = (Math.random() - 0.5) * 0.008;
+      vel[i * 3 + 1] = 0.018 + Math.random() * 0.032;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.008;
     }
     return [pos, vel];
   }, []);
 
-  // Flame Tongue Texture
-  const flameTexture = useMemo(() => {
+  // Authentic Teardrop Licking Flame Tongue Texture
+  const flameTongueTexture = useMemo(() => {
     const size = 128;
     const canvas = document.createElement('canvas');
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      const center = size / 2;
-      const gradient = ctx.createRadialGradient(
-        center,
-        center * 1.15,
-        2,
-        center,
-        center * 0.9,
-        size * 0.48
-      );
-      gradient.addColorStop(0, 'rgba(255, 255, 220, 1.0)');
-      gradient.addColorStop(0.2, 'rgba(255, 210, 60, 0.95)');
-      gradient.addColorStop(0.48, 'rgba(255, 110, 15, 0.82)');
-      gradient.addColorStop(0.78, 'rgba(225, 40, 10, 0.45)');
-      gradient.addColorStop(1, 'rgba(180, 20, 5, 0)');
+      const cx = size / 2;
+      const cy = size / 2;
 
-      ctx.fillStyle = gradient;
+      // 1. Outer delicate flame body with bezier teardrop contours
+      const flameGrad = ctx.createRadialGradient(cx, cy * 1.25, 4, cx, cy * 0.95, size * 0.5);
+      flameGrad.addColorStop(0.0, 'rgba(255, 255, 235, 1.0)'); // Incandescent core
+      flameGrad.addColorStop(0.18, 'rgba(255, 220, 80, 0.94)'); // Radiant gold
+      flameGrad.addColorStop(0.42, 'rgba(255, 145, 30, 0.78)'); // Warm amber
+      flameGrad.addColorStop(0.72, 'rgba(245, 75, 18, 0.36)');  // Translucent apricot wisp
+      flameGrad.addColorStop(1.0, 'rgba(210, 40, 10, 0.0)');   // Feathered dissipation
+
+      ctx.fillStyle = flameGrad;
       ctx.beginPath();
-      ctx.ellipse(center, center * 1.05, size * 0.42, size * 0.48, 0, 0, Math.PI * 2);
+      ctx.moveTo(cx, size * 0.88);
+      // Left curved belly
+      ctx.bezierCurveTo(size * 0.22, size * 0.88, size * 0.22, size * 0.56, size * 0.38, size * 0.38);
+      // Left taper into dancing crest tip
+      ctx.bezierCurveTo(size * 0.44, size * 0.26, size * 0.46, size * 0.14, cx + 1, size * 0.08);
+      // Right taper from crest tip
+      ctx.bezierCurveTo(size * 0.52, size * 0.16, size * 0.56, size * 0.28, size * 0.62, size * 0.38);
+      // Right curved belly
+      ctx.bezierCurveTo(size * 0.78, size * 0.56, size * 0.78, size * 0.88, cx, size * 0.88);
+      ctx.closePath();
+      ctx.fill();
+
+      // 2. Inner luminous white-gold heart
+      const coreGrad = ctx.createRadialGradient(cx, size * 0.68, 2, cx, size * 0.62, size * 0.26);
+      coreGrad.addColorStop(0.0, 'rgba(255, 255, 255, 0.98)');
+      coreGrad.addColorStop(0.35, 'rgba(255, 245, 165, 0.82)');
+      coreGrad.addColorStop(0.75, 'rgba(255, 185, 45, 0.30)');
+      coreGrad.addColorStop(1.0, 'rgba(255, 130, 20, 0.0)');
+
+      ctx.fillStyle = coreGrad;
+      ctx.beginPath();
+      ctx.moveTo(cx, size * 0.82);
+      ctx.bezierCurveTo(size * 0.35, size * 0.82, size * 0.36, size * 0.58, cx, size * 0.30);
+      ctx.bezierCurveTo(size * 0.64, size * 0.58, size * 0.65, size * 0.82, cx, size * 0.82);
+      ctx.closePath();
+      ctx.fill();
+    }
+    return new THREE.CanvasTexture(canvas);
+  }, []);
+
+  // Incandescent White-Gold Core Texture
+  const flameCoreTexture = useMemo(() => {
+    const size = 64;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      const cx = size / 2;
+      const cy = size / 2;
+      const grad = ctx.createRadialGradient(cx, cy, 1, cx, cy, size * 0.46);
+      grad.addColorStop(0.0, 'rgba(255, 255, 255, 1.0)');
+      grad.addColorStop(0.25, 'rgba(255, 248, 180, 0.92)');
+      grad.addColorStop(0.60, 'rgba(255, 195, 60, 0.45)');
+      grad.addColorStop(1.0, 'rgba(255, 130, 20, 0.0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, size * 0.46, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return new THREE.CanvasTexture(canvas);
+  }, []);
+
+  // Ultra-Soft Ethereal Heat Aura Texture
+  const flameAuraTexture = useMemo(() => {
+    const size = 128;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      const cx = size / 2;
+      const cy = size / 2;
+      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, size * 0.48);
+      grad.addColorStop(0.0, 'rgba(255, 190, 80, 0.55)');
+      grad.addColorStop(0.38, 'rgba(255, 130, 30, 0.28)');
+      grad.addColorStop(0.72, 'rgba(235, 65, 15, 0.10)');
+      grad.addColorStop(1.0, 'rgba(180, 30, 10, 0.0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, size * 0.48, 0, Math.PI * 2);
       ctx.fill();
     }
     return new THREE.CanvasTexture(canvas);
@@ -306,14 +416,14 @@ export function EmergingCulinaryArtifact({
     const ctx = canvas.getContext('2d');
     if (ctx) {
       const center = size / 2;
-      const gradient = ctx.createRadialGradient(center, center, 0, center, center, center);
+      const gradient = ctx.createRadialGradient(center, center, 0, center, center, center * 0.44);
       gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
-      gradient.addColorStop(0.25, 'rgba(255, 220, 100, 0.9)');
-      gradient.addColorStop(0.65, 'rgba(255, 120, 20, 0.5)');
-      gradient.addColorStop(1, 'rgba(220, 40, 10, 0)');
+      gradient.addColorStop(0.25, 'rgba(255, 235, 130, 0.9)');
+      gradient.addColorStop(0.65, 'rgba(255, 150, 30, 0.45)');
+      gradient.addColorStop(1, 'rgba(220, 50, 10, 0)');
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(center, center, center, 0, Math.PI * 2);
+      ctx.arc(center, center, center * 0.44, 0, Math.PI * 2);
       ctx.fill();
     }
     return new THREE.CanvasTexture(canvas);
@@ -366,51 +476,93 @@ export function EmergingCulinaryArtifact({
     groupRef.current.rotation.y = t * 0.30 + pointer.x * 0.65;
     groupRef.current.rotation.x = Math.sin(t * 0.6) * 0.06 - pointer.y * 0.22;
 
-    // Dynamic Hearth Fire Flicker
+    // Dynamic Hearth Fire Respiration & Flicker
     if (fireLightRef.current) {
       const flicker =
-        Math.sin(t * 18) * 0.45 +
-        Math.sin(t * 31) * 0.3 +
-        (Math.random() - 0.5) * 0.25;
-      fireLightRef.current.intensity = (isLight ? 3.4 : 3.0) + flicker;
+        Math.sin(t * 14) * 0.35 +
+        Math.sin(t * 26) * 0.22 +
+        (Math.random() - 0.5) * 0.18;
+      fireLightRef.current.intensity = (isLight ? 2.9 : 2.7) + flicker;
     }
 
-    // Flame Tongues Physics
+    // 1. Realistic Flame Tongues Physics (Buoyancy + Flue Inward Pinch + Laminar Sway)
     if (flameRef.current && scale > 0.2) {
       const posAttr = flameRef.current.geometry.attributes.position as THREE.BufferAttribute;
       const posArr = posAttr.array as Float32Array;
-      for (let i = 0; i < 120; i++) {
-        posArr[i * 3 + 1] += flameVelocities[i * 3 + 1];
-        const wave = Math.sin(t * 9 + i * 1.8);
-        posArr[i * 3] += flameVelocities[i * 3] + wave * 0.006;
-        posArr[i * 3 + 2] += flameVelocities[i * 3 + 2] + Math.cos(t * 8 + i * 1.4) * 0.005;
+      for (let i = 0; i < 95; i++) {
+        const curY = posArr[i * 3 + 1];
+        // Buoyant upward acceleration: moves faster as it heats up
+        const speedY = flameVelocities[i * 3 + 1] * (1.0 + Math.max(0, curY - 0.2) * 0.38);
+        posArr[i * 3 + 1] += speedY;
 
-        if (posArr[i * 3 + 1] > 2.8) {
-          const angle = Math.random() * Math.PI * 2;
-          const r = Math.pow(Math.random(), 1.4) * 0.75;
-          posArr[i * 3] = Math.cos(angle) * r;
-          posArr[i * 3 + 1] = 0.15 + Math.random() * 0.15;
-          posArr[i * 3 + 2] = Math.sin(angle) * r - 0.3;
+        // Inward pinch toward center axis as flames rise (authentic conical campfire silhouette)
+        const baseR = flameInitialAngles[i * 2];
+        const baseAngle = flameInitialAngles[i * 2 + 1];
+        const pinch = Math.max(0.18, 1.0 - (curY / 2.7) * 0.68);
+
+        // Fluid organic licking wave
+        const waveX = Math.sin(t * 7.5 + curY * 3.8 + i * 0.65) * 0.007 + Math.sin(t * 15.0 + i * 2.1) * 0.0025;
+        const waveZ = Math.cos(t * 6.5 + curY * 3.4 + i * 0.5) * 0.005;
+
+        posArr[i * 3] = Math.cos(baseAngle) * baseR * pinch + waveX;
+        posArr[i * 3 + 2] = Math.sin(baseAngle) * baseR * pinch * 0.7 - 0.28 + waveZ;
+
+        if (posArr[i * 3 + 1] > 2.5 + (i % 6) * 0.12) {
+          flameInitialAngles[i * 2 + 1] = Math.random() * Math.PI * 2;
+          flameInitialAngles[i * 2] = Math.pow(Math.random(), 1.2) * 0.68;
+          posArr[i * 3 + 1] = 0.15 + Math.random() * 0.18;
         }
       }
       posAttr.needsUpdate = true;
     }
 
-    // Embers Physics
+    // 2. Incandescent White-Gold Core Physics (Intense, low-lying, fast flicker)
+    if (coreRef.current && scale > 0.2) {
+      const posAttr = coreRef.current.geometry.attributes.position as THREE.BufferAttribute;
+      const posArr = posAttr.array as Float32Array;
+      for (let i = 0; i < 28; i++) {
+        posArr[i * 3 + 1] += coreVelocities[i * 3 + 1];
+        posArr[i * 3] += Math.sin(t * 12 + i * 1.5) * 0.003;
+        posArr[i * 3 + 2] += Math.cos(t * 11 + i * 1.2) * 0.003;
+
+        if (posArr[i * 3 + 1] > 0.95 + (i % 4) * 0.1) {
+          posArr[i * 3 + 1] = 0.15 + Math.random() * 0.12;
+        }
+      }
+      posAttr.needsUpdate = true;
+    }
+
+    // 3. Ethereal Ambient Heat Aura Physics (Slow, weightless expansion)
+    if (auraRef.current && scale > 0.2) {
+      const posAttr = auraRef.current.geometry.attributes.position as THREE.BufferAttribute;
+      const posArr = posAttr.array as Float32Array;
+      for (let i = 0; i < 16; i++) {
+        posArr[i * 3 + 1] += auraVelocities[i * 3 + 1];
+        posArr[i * 3] += Math.sin(t * 3.5 + i) * 0.004;
+        posArr[i * 3 + 2] += Math.cos(t * 3.0 + i) * 0.004;
+
+        if (posArr[i * 3 + 1] > 2.2) {
+          posArr[i * 3 + 1] = 0.25 + Math.random() * 0.2;
+        }
+      }
+      posAttr.needsUpdate = true;
+    }
+
+    // 4. Weightless Embers Physics
     if (embersRef.current && scale > 0.2) {
       const posAttr = embersRef.current.geometry.attributes.position as THREE.BufferAttribute;
       const posArr = posAttr.array as Float32Array;
-      for (let i = 0; i < 75; i++) {
+      for (let i = 0; i < 65; i++) {
         posArr[i * 3 + 1] += emberVelocities[i * 3 + 1];
-        posArr[i * 3] += emberVelocities[i * 3] + Math.sin(t * 4 + i) * 0.007;
-        posArr[i * 3 + 2] += emberVelocities[i * 3 + 2] + Math.cos(t * 3.5 + i) * 0.007;
+        posArr[i * 3] += emberVelocities[i * 3] + Math.sin(t * 3.8 + i) * 0.006;
+        posArr[i * 3 + 2] += emberVelocities[i * 3 + 2] + Math.cos(t * 3.2 + i) * 0.006;
 
-        if (posArr[i * 3 + 1] > 4.0) {
+        if (posArr[i * 3 + 1] > 3.8) {
           const angle = Math.random() * Math.PI * 2;
-          const r = Math.random() * 0.85;
+          const r = Math.random() * 0.8;
           posArr[i * 3] = Math.cos(angle) * r;
-          posArr[i * 3 + 1] = 0.2 + Math.random() * 0.2;
-          posArr[i * 3 + 2] = Math.sin(angle) * r - 0.2;
+          posArr[i * 3 + 1] = 0.2 + Math.random() * 0.18;
+          posArr[i * 3 + 2] = Math.sin(angle) * r * 0.8 - 0.22;
         }
       }
       posAttr.needsUpdate = true;
@@ -682,7 +834,28 @@ export function EmergingCulinaryArtifact({
         )}
       </group>
 
-      {/* 3. BLAZING HIMALAYAN HEARTH FIRE (Licking upward behind food) */}
+      {/* 3. BLAZING HIMALAYAN HEARTH FIRE (Realistic, lighter, multi-layered) */}
+      
+      {/* Layer A: Ultra-soft Ethereal Ambient Heat Aura */}
+      <points ref={auraRef} position={[0, 0.08, 0]}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            args={[auraPositions, 3]}
+          />
+        </bufferGeometry>
+        <pointsMaterial
+          size={0.78}
+          map={flameAuraTexture}
+          color={isLight ? '#ff9233' : '#ff7e1d'}
+          transparent
+          opacity={isLight ? 0.16 : 0.18}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </points>
+
+      {/* Layer B: Realistic Teardrop Licking Flame Tongues */}
       <points ref={flameRef} position={[0, 0.05, 0]}>
         <bufferGeometry>
           <bufferAttribute
@@ -691,17 +864,36 @@ export function EmergingCulinaryArtifact({
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.48}
-          map={flameTexture}
-          color={isLight ? '#ff4f10' : '#ff6a18'}
+          size={0.36}
+          map={flameTongueTexture}
+          color={isLight ? '#ffa526' : '#ff8e1a'}
           transparent
-          opacity={isLight ? 0.9 : 0.85}
+          opacity={isLight ? 0.78 : 0.80}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
       </points>
 
-      {/* 4. Golden Alpine Embers & Sparks */}
+      {/* Layer C: Incandescent White-Gold Thermal Core (Base Hearth Heart) */}
+      <points ref={coreRef} position={[0, 0.06, 0]}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            args={[corePositions, 3]}
+          />
+        </bufferGeometry>
+        <pointsMaterial
+          size={0.20}
+          map={flameCoreTexture}
+          color="#fff4ab"
+          transparent
+          opacity={0.88}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </points>
+
+      {/* Layer D: Delicate High-Altitude Golden Embers & Sparks */}
       <points ref={embersRef} position={[0, 0.1, 0]}>
         <bufferGeometry>
           <bufferAttribute
@@ -710,23 +902,23 @@ export function EmergingCulinaryArtifact({
           />
         </bufferGeometry>
         <pointsMaterial
-          size={0.095}
+          size={0.065}
           map={sparkTexture}
-          color={isLight ? '#ff9100' : '#ffab40'}
+          color={isLight ? '#ffb938' : '#ffd54f'}
           transparent
-          opacity={0.88}
+          opacity={0.82}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
       </points>
 
-      {/* 5. Dynamic Flickering Sacred Firelight */}
+      {/* Layer E: Dynamic Flickering Sacred Firelight */}
       <pointLight
         ref={fireLightRef}
-        position={[0, 0.5, 0.8]}
-        color="#ff5511"
-        intensity={3.4}
-        distance={10}
+        position={[0, 0.5, 0.75]}
+        color="#ff7822"
+        intensity={2.8}
+        distance={9}
         decay={2}
       />
     </group>
