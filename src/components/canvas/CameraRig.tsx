@@ -38,27 +38,27 @@ export function CameraRig({ scrollProgress, heroProgress = 0 }: CameraRigProps) 
         const smoothT = THREE.MathUtils.smoothstep(t, 0, 1);
         targetPos.set(
           0,
-          THREE.MathUtils.lerp(20, 4.4, smoothT),
+          THREE.MathUtils.lerp(20, 3.8, smoothT),
           THREE.MathUtils.lerp(44, 19.2, smoothT)
         );
         targetLookAt.set(
           0,
-          THREE.MathUtils.lerp(3.5, 0.70, smoothT),
+          THREE.MathUtils.lerp(3.5, 0.05, smoothT),
           THREE.MathUtils.lerp(0, 9.2, smoothT)
         );
       } else if (heroProgress < 0.72) {
-        // Centerpiece focus: Perfectly centered on both horizontal and vertical axes
+        // Centerpiece focus: Perfectly centered between Altar card and lower action bar
         targetPos.set(
           0,
-          4.4 + Math.sin(state.clock.elapsedTime * 1.0) * 0.08,
+          3.8 + Math.sin(state.clock.elapsedTime * 1.0) * 0.08,
           19.2
         );
-        targetLookAt.set(0, 0.70, 9.2);
+        targetLookAt.set(0, 0.05, 9.2);
       } else {
         // Descent towards lodge hearth as mountains close
         const t = (heroProgress - 0.72) / 0.28;
-        targetPos.set(0, THREE.MathUtils.lerp(4.4, 5.8, t), THREE.MathUtils.lerp(19.2, 20.0, t));
-        targetLookAt.set(0, THREE.MathUtils.lerp(1.2, 2.0, t), THREE.MathUtils.lerp(9.2, 6.0, t));
+        targetPos.set(0, THREE.MathUtils.lerp(3.8, 5.8, t), THREE.MathUtils.lerp(19.2, 20.0, t));
+        targetLookAt.set(0, THREE.MathUtils.lerp(0.05, 2.0, t), THREE.MathUtils.lerp(9.2, 6.0, t));
       }
     } else {
       // Lower page scroll stages (Journey -> Cuisine -> Atmosphere)

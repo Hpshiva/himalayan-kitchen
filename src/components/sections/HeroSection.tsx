@@ -219,7 +219,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-36 sm:top-44 md:top-48 bottom-20 sm:bottom-24 md:bottom-28 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute top-36 sm:top-42 md:top-46 bottom-16 sm:bottom-20 md:bottom-24 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
@@ -398,7 +398,7 @@ export function HeroSection({
         {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-36 sm:top-44 md:top-48 bottom-20 sm:bottom-24 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
+          className="absolute top-36 sm:top-42 md:top-46 bottom-16 sm:bottom-20 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',

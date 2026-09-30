@@ -88,18 +88,18 @@ export function EmergingCulinaryArtifact({
     } else if (heroProgress < 0.45) {
       const p = (heroProgress - 0.15) / 0.30;
       const smoothP = THREE.MathUtils.smoothstep(p, 0, 1);
-      posY = THREE.MathUtils.lerp(-12, 0.70, smoothP);
+      posY = THREE.MathUtils.lerp(-12, 0.05, smoothP);
       posZ = THREE.MathUtils.lerp(3, 9.2, smoothP);
       scale = THREE.MathUtils.lerp(0.05, 0.58, smoothP);
     } else if (heroProgress < 0.72) {
       // Primary Hero stage: Perfectly centered between top header and lower actions
-      posY = 0.70 + Math.sin(t * 1.4) * 0.08;
+      posY = 0.05 + Math.sin(t * 1.4) * 0.08;
       posZ = 9.2;
       scale = 0.58;
     } else if (heroProgress < 0.90) {
       // Lowering into table
       const p = (heroProgress - 0.72) / 0.18;
-      posY = THREE.MathUtils.lerp(0.70, -4.5, p);
+      posY = THREE.MathUtils.lerp(0.05, -4.5, p);
       posZ = THREE.MathUtils.lerp(9.2, 4.0, p);
       scale = THREE.MathUtils.lerp(0.58, 0.0, p);
     } else {
