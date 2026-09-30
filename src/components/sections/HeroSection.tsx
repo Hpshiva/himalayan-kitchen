@@ -1,8 +1,38 @@
 import { useState, useEffect } from 'react';
-import { ArrowDown, Compass, Mountain, Sparkles, Volume2, VolumeX, Eye, Wind, Flame, Layers } from 'lucide-react';
+import { ArrowDown, Compass, Mountain, Sparkles, Volume2, VolumeX, Eye, Wind, Flame, Layers, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { soundEngine } from '../../utils/audio';
 import type { Dish } from '../../types';
 import { DISHES } from '../../data/himalayanData';
+
+const ODYSSEY_CHAPTERS = [
+  {
+    num: '01',
+    chapter: 'CHAPTER 01',
+    title: 'High Altitude & Foraged Earth',
+    subtitle: 'Wild Morel & Truffle Momo in clarified timur bone consommé',
+    elevation: '3,800M KHUMBU',
+    image: '/images/morel_momo.jpg',
+    dishIndex: 0,
+  },
+  {
+    num: '02',
+    chapter: 'CHAPTER 02',
+    title: 'Silk Route & Roaring Wok',
+    subtitle: 'Tiger Prawns scorched at 800°C wok hei with Kashmiri chili',
+    elevation: '800°C WOK HEI',
+    image: '/images/wok_dish.jpg',
+    dishIndex: 1,
+  },
+  {
+    num: '03',
+    chapter: 'CHAPTER 03',
+    title: 'Nomadic Hearth & Spirits',
+    subtitle: 'Smoked lapsang souchong elixir over hand-chiseled glacial ice',
+    elevation: '5,364M BASECAMP',
+    image: '/images/botanical_cocktail.jpg',
+    dishIndex: 2,
+  },
+];
 
 interface HeroSectionProps {
   onExplore: () => void;
@@ -79,13 +109,12 @@ export function HeroSection({
   return (
     <section id="hero" className="relative h-[360vh] w-full">
       {/* Sticky Pinned Viewport Container (100dvh for mobile address bar safety) */}
-      <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between pt-[54px] sm:pt-[70px] md:pt-[78px] pb-3 sm:pb-5 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
-        
+      <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-between pt-[58px] sm:pt-[72px] md:pt-[80px] pb-4 sm:pb-6 px-4 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none touch-pan-y">
+
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
-          className={`shrink-0 flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-1.5 sm:py-2 gap-2 sm:gap-4 z-20 transition-colors ${
-            isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
-          }`}
+          className={`shrink-0 flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-1.5 sm:py-2 gap-2 sm:gap-4 z-20 transition-colors ${isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
+            }`}
         >
           <div className="inline-flex items-center gap-2 sm:gap-2.5 h-6 sm:h-7 leading-none">
             <Mountain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-himalayan-amber shrink-0 -translate-y-[0.5px]" />
@@ -101,8 +130,8 @@ export function HeroSection({
               {isSummitStage
                 ? 'STAGE 01 // SUMMIT'
                 : isAltarStage
-                ? 'STAGE 02 // ALTAR'
-                : 'STAGE 03 // SANCTUARY'}
+                  ? 'STAGE 02 // ALTAR'
+                  : 'STAGE 03 // SANCTUARY'}
             </span>
             <span className={`hidden sm:inline leading-none ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
               {isSummitStage ? '8,848M ELEVATION' : isAltarStage ? '3,800M CLEFT' : 'DIFC HEARTH'}
@@ -115,342 +144,480 @@ export function HeroSection({
         {/* ------------------------------------------------------------------ */}
         <div className="relative flex-1 w-full min-h-0 flex flex-col justify-center my-auto">
 
-        {/* ------------------------------------------------------------------ */}
-        {/* STAGE 1: MONUMENTAL TECTONIC GATES (Parting on scroll) */}
-        {/* ------------------------------------------------------------------ */}
-        <div
-          className="my-auto py-1 sm:py-2 text-center flex flex-col items-center justify-center transition-transform duration-300 pointer-events-auto"
-          style={{
-            opacity: summitOpacity,
-            pointerEvents: heroProgress > 0.22 ? 'none' : 'auto',
-          }}
-        >
-          {/* Subtle Category Lead */}
+          {/* ------------------------------------------------------------------ */}
+          {/* STAGE 1: MONUMENTAL TECTONIC GATES (Parting on scroll) */}
+          {/* ------------------------------------------------------------------ */}
           <div
-            className={`inline-flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border backdrop-blur-md transition-colors ${
-              isLight
-                ? 'border-stone-300 bg-stone-200/60 text-stone-800'
-                : 'border-himalayan-ivory/10 bg-himalayan-charcoal/40 text-himalayan-ivory/90'
-            }`}
-          >
-            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-himalayan-amber shrink-0" />
-            <span className="text-[9px] sm:text-[10px] md:text-xs font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] uppercase font-medium">
-              HIGH HIMALAYAS • ARRIVING AT DIFC, DUBAI
-            </span>
-          </div>
-
-          {/* Wordmark Part 1: HIMALAYAN (Parts to the left) */}
-          <div
-            className="overflow-hidden w-full transition-transform duration-200 ease-out"
+            className="my-auto py-1 sm:py-2 text-center flex flex-col items-center justify-center transition-transform duration-300 pointer-events-auto"
             style={{
-              transform: `translateX(-${leftShift}px)`,
+              opacity: summitOpacity,
+              pointerEvents: heroProgress > 0.22 ? 'none' : 'auto',
             }}
           >
-            <h1
-              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.1em] sm:tracking-[0.14em] uppercase leading-none drop-shadow-2xl transition-colors ${
-                isLight ? 'text-stone-900' : 'text-himalayan-ivory'
-              }`}
+            {/* Subtle Category Lead */}
+            <div
+              className={`inline-flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border backdrop-blur-md transition-colors ${isLight
+                  ? 'border-stone-300 bg-stone-200/60 text-stone-800'
+                  : 'border-himalayan-ivory/10 bg-himalayan-charcoal/40 text-himalayan-ivory/90'
+                }`}
             >
-              HIMALAYAN
-            </h1>
-          </div>
-
-          {/* Editorial Subline */}
-          <div className="max-w-2xl my-1 sm:my-2 md:my-3 px-3">
-            <p
-              className={`font-editorial text-base sm:text-2xl md:text-4xl italic tracking-wide leading-tight ${
-                isLight ? 'text-stone-800' : 'text-himalayan-bone'
-              }`}
-            >
-              “Where glacial ridges part, the sacred hearth awakens.”
-            </p>
-          </div>
-
-          {/* Wordmark Part 2: KITCHEN (Parts to the right) */}
-          <div
-            className="overflow-hidden w-full transition-transform duration-200 ease-out"
-            style={{
-              transform: `translateX(${rightShift}px)`,
-            }}
-          >
-            <h2
-              className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.12em] sm:tracking-[0.18em] uppercase leading-none ${
-                isLight
-                  ? 'text-transparent [-webkit-text-stroke:1px_rgba(25,28,32,0.45)] sm:[-webkit-text-stroke:1.5px_rgba(25,28,32,0.45)] hover:[-webkit-text-stroke:1.5px_#d9642a] hover:text-stone-900 transition-all duration-500'
-                  : 'text-stroke-himalayan'
-              }`}
-            >
-              KITCHEN
-            </h2>
-          </div>
-
-          {/* Alpine Sound Activation Trigger */}
-          <div className="mt-3 sm:mt-4">
-            <button
-              onClick={handleHeroSoundClick}
-              className={`group inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border text-[10px] sm:text-xs font-mono-tech tracking-wider transition-all ${
-                isPlayingSound
-                  ? 'border-himalayan-amber bg-himalayan-amber/15 text-himalayan-amber'
-                  : isLight
-                  ? 'border-stone-400 bg-stone-200/50 text-stone-700 hover:border-himalayan-amber'
-                  : 'border-himalayan-ivory/20 bg-himalayan-charcoal/50 text-himalayan-ivory hover:border-himalayan-amber'
-              }`}
-              data-cursor="SOUND"
-            >
-              {isPlayingSound ? (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-himalayan-amber animate-pulse shrink-0" />
-                  <span>SOUNDSCAPE ACTIVE (432HZ)</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-ping" />
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
-                  <span>TAP TO ACTIVATE ALPINE SOUND</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Scroll Cue */}
-          <div className="mt-3 sm:mt-5 flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.15em] sm:tracking-[0.2em] uppercase animate-pulse">
-            <ArrowDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
-            <span className="hidden sm:inline">SCROLL TO PART THE MOUNTAINS & REVEAL THE CULINARY ALTAR</span>
-            <span className="sm:hidden">SCROLL TO REVEAL CULINARY ALTAR</span>
-          </div>
-        </div>
-
-        {/* ------------------------------------------------------------------ */}
-        {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR (Open Luxury Editorial) */}
-        {/* ------------------------------------------------------------------ */}
-        <div
-          className="absolute inset-0 pt-2 sm:pt-4 md:pt-6 pb-2 sm:pb-3 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
-          style={{
-            opacity: altarOpacity,
-            pointerEvents: isAltarStage ? 'auto' : 'none',
-          }}
-        >
-          {/* Altar Header & Dialect Tuner (Open Luxury Typography - Zero Boxiness) */}
-          <div className="text-center max-w-4xl mx-auto flex flex-col items-center w-full px-2 sm:px-4 shrink-0 pointer-events-auto">
-            {/* Minimalist overline */}
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-pulse" />
-              <span className="text-[9px] sm:text-[11px] font-mono-tech tracking-[0.22em] sm:tracking-[0.28em] text-himalayan-amber uppercase font-semibold">
-                3 GASTRONOMIC DIALECTS • SACRED ALTAR
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-himalayan-amber shrink-0" />
+              <span className="text-[9px] sm:text-[10px] md:text-xs font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] uppercase font-medium">
+                HIGH HIMALAYAS • ARRIVING AT DIFC, DUBAI
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-pulse" />
             </div>
 
-            {/* Monumental Dish Title */}
-            <h3
-              className={`font-display text-xl sm:text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.05em] font-bold transition-all leading-tight drop-shadow-sm ${
-                isLight ? 'text-stone-950' : 'text-himalayan-ivory'
-              }`}
-            >
-              {currentDish.name}
-            </h3>
-
-            {/* Elevation & Valley Provenance */}
-            <p
-              className={`font-editorial text-xs sm:text-base md:text-lg italic mt-0.5 sm:mt-1 tracking-wide ${
-                isLight ? 'text-stone-700' : 'text-himalayan-bone'
-              }`}
-            >
-              {currentDish.elevation}
-            </p>
-
-            {/* Streamlined Dialect Pill Selector - Pure Minimalist Line */}
+            {/* Wordmark Part 1: HIMALAYAN (Parts to the left) */}
             <div
-              className={`mt-2 sm:mt-3 inline-flex items-center justify-center gap-1 sm:gap-2 p-1 rounded-full border backdrop-blur-md max-w-full overflow-x-auto shadow-sm transition-colors ${
-                isLight
-                  ? 'border-stone-300/80 bg-stone-100/85'
-                  : 'border-white/15 bg-black/55'
-              }`}
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              className="overflow-hidden w-full transition-transform duration-200 ease-out"
+              style={{
+                transform: `translateX(-${leftShift}px)`,
+              }}
             >
-              {[
-                { id: 'nepali', label: '01 // NEPALI MOMO', shortLabel: '01 NEPALI' },
-                { id: 'indochinese', label: '02 // TANGRA WOK', shortLabel: '02 TANGRA' },
-                { id: 'botanical', label: '03 // BOTANICAL ELIXIR', shortLabel: '03 BOTANICAL' },
-              ].map((dialect) => (
-                <button
-                  key={dialect.id}
-                  onClick={() => handleDialectChange(dialect.id as any)}
-                  className={`px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] md:text-[11px] font-mono-tech tracking-wider uppercase transition-all duration-300 shrink-0 whitespace-nowrap ${
-                    activeCategory === dialect.id
-                      ? 'bg-himalayan-amber text-white shadow-md shadow-himalayan-amber/30 font-semibold'
-                      : isLight
-                      ? 'text-stone-700 hover:text-stone-950 hover:bg-stone-200/60'
-                      : 'text-himalayan-fog hover:text-himalayan-ivory hover:bg-white/10'
+              <h1
+                className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.1em] sm:tracking-[0.14em] uppercase leading-none drop-shadow-2xl transition-colors ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'
                   }`}
-                  data-cursor="SWITCH"
-                >
-                  <span className="hidden sm:inline">{dialect.label}</span>
-                  <span className="sm:hidden">{dialect.shortLabel}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Lower Telemetry & Action Bar (Architectural Hairlines - No Heavy Cards) */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 items-end gap-3 sm:gap-6 max-w-6xl mx-auto w-full shrink-0 pointer-events-auto pb-1 sm:pb-0">
-            {/* Left Telemetry: Architectural Accent */}
-            <div
-              className={`hidden lg:block p-3.5 border-l-2 border-himalayan-amber backdrop-blur-md text-xs font-mono-tech transition-all ${
-                isLight
-                  ? 'border-stone-300 bg-stone-100/60 text-stone-800'
-                  : 'border-himalayan-ivory/15 bg-black/50 text-himalayan-bone'
-              }`}
-            >
-              <div className="flex items-center gap-1.5 text-himalayan-amber text-[10px] font-semibold mb-2">
-                <Wind className="w-3.5 h-3.5" />
-                <span>FORAGED BOTANICALS & ALTITUDE</span>
-              </div>
-              <div className="space-y-1.5 text-[11px]">
-                <div className="flex justify-between border-b pb-1 border-stone-200 dark:border-white/10">
-                  <span className="opacity-70">HARVEST PASS:</span>
-                  <span className="font-semibold text-himalayan-amber">LANGTANG 3,800M</span>
-                </div>
-                <div className="flex justify-between border-b pb-1 border-stone-200 dark:border-white/10">
-                  <span className="opacity-70">PRIMARY HERB:</span>
-                  <span className="font-medium">WILD TIMUR & JIMBU</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="opacity-70">VESSEL:</span>
-                  <span className="font-medium">VOLCANIC SLATE PEDESTAL</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Center Action: Inspect Dossier & 3D Orbit Tip (Mobile-Optimized & Perfectly Positioned) */}
-            <div className="flex flex-col items-center justify-center text-center">
-              {/* Mobile Compact Origin Line (No Heavy Box Pill) */}
-              <div className="lg:hidden flex items-center justify-center gap-1.5 mb-1.5 text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
-                <Wind className="w-3 h-3 shrink-0" />
-                <span>LANGTANG 3,800M // TIMUR & JIMBU</span>
-              </div>
-
-              <button
-                onClick={() => onSelectDish(currentDish)}
-                className="px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-ember text-white text-[10px] sm:text-xs font-mono-tech tracking-[0.16em] sm:tracking-[0.2em] uppercase transition-all shadow-xl shadow-himalayan-amber/30 flex items-center gap-2 group hover:scale-105 active:scale-95"
-                data-cursor="INSPECT"
               >
-                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span>INSPECT CULINARY DOSSIER</span>
-              </button>
-
-              <div className={`flex items-center gap-1.5 text-[8px] sm:text-[9px] font-mono-tech tracking-widest uppercase mt-1.5 ${
-                isLight ? 'text-stone-600' : 'text-himalayan-fog'
-              }`}>
-                <Layers className="w-3 h-3 text-himalayan-amber shrink-0" />
-                <span>INTERACTIVE 3D ALTAR • MOVE TO TILT</span>
-              </div>
+                HIMALAYAN
+              </h1>
             </div>
 
-            {/* Right Telemetry: Architectural Accent */}
+            {/* Editorial Subline */}
+            <div className="max-w-2xl my-1 sm:my-2 md:my-3 px-3">
+              <p
+                className={`font-editorial text-base sm:text-2xl md:text-4xl italic tracking-wide leading-tight ${isLight ? 'text-stone-800' : 'text-himalayan-bone'
+                  }`}
+              >
+                “Where glacial ridges part, the sacred hearth awakens.”
+              </p>
+            </div>
+
+            {/* Wordmark Part 2: KITCHEN (Parts to the right) */}
             <div
-              className={`hidden lg:block p-3.5 border-r-2 border-himalayan-amber backdrop-blur-md text-xs font-mono-tech transition-all ${
-                isLight
-                  ? 'border-stone-300 bg-stone-100/60 text-stone-800'
-                  : 'border-himalayan-ivory/15 bg-black/50 text-himalayan-bone'
-              }`}
+              className="overflow-hidden w-full transition-transform duration-200 ease-out"
+              style={{
+                transform: `translateX(${rightShift}px)`,
+              }}
             >
-              <div className="flex items-center justify-between text-himalayan-amber text-[10px] font-semibold mb-2">
+              <h2
+                className={`font-display text-4xl sm:text-7xl md:text-8xl lg:text-[11.2vw] font-bold tracking-[0.12em] sm:tracking-[0.18em] uppercase leading-none ${isLight
+                    ? 'text-transparent [-webkit-text-stroke:1px_rgba(25,28,32,0.45)] sm:[-webkit-text-stroke:1.5px_rgba(25,28,32,0.45)] hover:[-webkit-text-stroke:1.5px_#d9642a] hover:text-stone-900 transition-all duration-500'
+                    : 'text-stroke-himalayan'
+                  }`}
+              >
+                KITCHEN
+              </h2>
+            </div>
+
+            {/* Alpine Sound Activation Trigger */}
+            <div className="mt-3 sm:mt-4">
+              <button
+                onClick={handleHeroSoundClick}
+                className={`group inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border text-[10px] sm:text-xs font-mono-tech tracking-wider transition-all ${isPlayingSound
+                    ? 'border-himalayan-amber bg-himalayan-amber/15 text-himalayan-amber'
+                    : isLight
+                      ? 'border-stone-400 bg-stone-200/50 text-stone-700 hover:border-himalayan-amber'
+                      : 'border-himalayan-ivory/20 bg-himalayan-charcoal/50 text-himalayan-ivory hover:border-himalayan-amber'
+                  }`}
+                data-cursor="SOUND"
+              >
+                {isPlayingSound ? (
+                  <>
+                    <Volume2 className="w-3.5 h-3.5 text-himalayan-amber animate-pulse shrink-0" />
+                    <span>SOUNDSCAPE ACTIVE (432HZ)</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-ping" />
+                  </>
+                ) : (
+                  <>
+                    <VolumeX className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
+                    <span>TAP TO ACTIVATE ALPINE SOUND</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Scroll Cue */}
+            <div className="mt-3 sm:mt-5 flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.15em] sm:tracking-[0.2em] uppercase animate-pulse">
+              <ArrowDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+              <span className="hidden sm:inline">SCROLL TO PART THE MOUNTAINS & REVEAL THE CULINARY ALTAR</span>
+              <span className="sm:hidden">SCROLL TO REVEAL CULINARY ALTAR</span>
+            </div>
+          </div>
+
+          {/* ------------------------------------------------------------------ */}
+          {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR (Open Luxury Editorial) */}
+          {/* ------------------------------------------------------------------ */}
+          <div
+            className="absolute inset-0 pt-2 sm:pt-4 md:pt-6 pb-2 sm:pb-3 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500 touch-pan-y"
+            style={{
+              opacity: altarOpacity,
+            }}
+          >
+            {/* Altar Header & Dialect Tuner (Open Luxury Typography - Zero Boxiness) */}
+            <div className="text-center max-w-4xl mx-auto flex flex-col items-center w-full px-2 sm:px-4 shrink-0 pointer-events-auto">
+              {/* Minimalist overline */}
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-pulse" />
+                <span className="text-[9px] sm:text-[11px] font-mono-tech tracking-[0.22em] sm:tracking-[0.28em] text-himalayan-amber uppercase font-semibold">
+                  3 GASTRONOMIC DIALECTS • SACRED ALTAR
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-himalayan-amber animate-pulse" />
+              </div>
+
+              {/* Monumental Dish Title */}
+              <h3
+                className={`font-display text-xl sm:text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.05em] font-bold transition-all leading-tight drop-shadow-sm ${isLight ? 'text-stone-950' : 'text-himalayan-ivory'
+                  }`}
+              >
+                {currentDish.name}
+              </h3>
+
+              {/* Elevation & Valley Provenance */}
+              <p
+                className={`font-editorial text-xs sm:text-base md:text-lg italic mt-0.5 sm:mt-1 tracking-wide ${isLight ? 'text-stone-700' : 'text-himalayan-bone'
+                  }`}
+              >
+                {currentDish.elevation}
+              </p>
+
+              {/* Streamlined Dialect Pill Selector - Pure Minimalist Line */}
+              <div
+                className={`mt-2 sm:mt-3 inline-flex items-center justify-center gap-1 sm:gap-2 p-1 rounded-full border backdrop-blur-md max-w-full overflow-x-auto shadow-sm transition-colors ${isLight
+                    ? 'border-stone-300/80 bg-stone-100/85'
+                    : 'border-white/15 bg-black/55'
+                  }`}
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {[
+                  { id: 'nepali', label: '01 // NEPALI MOMO', shortLabel: '01 NEPALI' },
+                  { id: 'indochinese', label: '02 // TANGRA WOK', shortLabel: '02 TANGRA' },
+                  { id: 'botanical', label: '03 // BOTANICAL ELIXIR', shortLabel: '03 BOTANICAL' },
+                ].map((dialect) => (
+                  <button
+                    key={dialect.id}
+                    onClick={() => handleDialectChange(dialect.id as any)}
+                    className={`px-3 sm:px-4 md:px-5 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] md:text-[11px] font-mono-tech tracking-wider uppercase transition-all duration-300 shrink-0 whitespace-nowrap ${activeCategory === dialect.id
+                        ? 'bg-himalayan-amber text-white shadow-md shadow-himalayan-amber/30 font-semibold'
+                        : isLight
+                          ? 'text-stone-700 hover:text-stone-950 hover:bg-stone-200/60'
+                          : 'text-himalayan-fog hover:text-himalayan-ivory hover:bg-white/10'
+                      }`}
+                    data-cursor="SWITCH"
+                  >
+                    <span className="hidden sm:inline">{dialect.label}</span>
+                    <span className="sm:hidden">{dialect.shortLabel}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Lower Telemetry & Action Bar (Architectural Hairlines - No Heavy Cards) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 items-end gap-3 sm:gap-6 max-w-6xl mx-auto w-full shrink-0 pointer-events-auto pb-1 sm:pb-0">
+              {/* Left Telemetry: Architectural Accent */}
+              <div
+                className={`hidden lg:block p-3.5 border-l-2 border-himalayan-amber backdrop-blur-md text-xs font-mono-tech transition-all ${isLight
+                    ? 'border-stone-300 bg-stone-100/60 text-stone-800'
+                    : 'border-himalayan-ivory/15 bg-black/50 text-himalayan-bone'
+                  }`}
+              >
+                <div className="flex items-center gap-1.5 text-himalayan-amber text-[10px] font-semibold mb-2">
+                  <Wind className="w-3.5 h-3.5" />
+                  <span>FORAGED BOTANICALS & ALTITUDE</span>
+                </div>
+                <div className="space-y-1.5 text-[11px]">
+                  <div className="flex justify-between border-b pb-1 border-stone-200 dark:border-white/10">
+                    <span className="opacity-70">HARVEST PASS:</span>
+                    <span className="font-semibold text-himalayan-amber">LANGTANG 3,800M</span>
+                  </div>
+                  <div className="flex justify-between border-b pb-1 border-stone-200 dark:border-white/10">
+                    <span className="opacity-70">PRIMARY HERB:</span>
+                    <span className="font-medium">WILD TIMUR & JIMBU</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="opacity-70">VESSEL:</span>
+                    <span className="font-medium">VOLCANIC SLATE PEDESTAL</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Center Action: Inspect Dossier & 3D Orbit Tip (Mobile-Optimized & Perfectly Positioned) */}
+              <div className="flex flex-col items-center justify-center text-center">
+                {/* Mobile Compact Origin Line (No Heavy Box Pill) */}
+                <div className="lg:hidden flex items-center justify-center gap-1.5 mb-1.5 text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
+                  <Wind className="w-3 h-3 shrink-0" />
+                  <span>LANGTANG 3,800M // TIMUR & JIMBU</span>
+                </div>
+
+                <button
+                  onClick={() => onSelectDish(currentDish)}
+                  className="px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-ember text-white text-[10px] sm:text-xs font-mono-tech tracking-[0.16em] sm:tracking-[0.2em] uppercase transition-all shadow-xl shadow-himalayan-amber/30 flex items-center gap-2 group hover:scale-105 active:scale-95"
+                  data-cursor="INSPECT"
+                >
+                  <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span>INSPECT CULINARY DOSSIER</span>
+                </button>
+
+                {/* Mobile Scroll Indicator / Tap to Descend */}
+                <button
+                  onClick={onStory}
+                  className="lg:hidden mt-2 flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-himalayan-amber/40 bg-himalayan-amber/15 text-himalayan-amber text-[9px] font-mono-tech tracking-widest uppercase animate-bounce cursor-pointer active:scale-95 transition-transform pointer-events-auto"
+                >
+                  <ArrowDown className="w-3 h-3" />
+                  <span>SWIPE OR TAP TO DESCEND</span>
+                </button>
+
+                <div className={`hidden lg:flex items-center gap-1.5 text-[8px] sm:text-[9px] font-mono-tech tracking-widest uppercase mt-1.5 ${isLight ? 'text-stone-600' : 'text-himalayan-fog'
+                  }`}>
+                  <Layers className="w-3 h-3 text-himalayan-amber shrink-0" />
+                  <span>INTERACTIVE 3D ALTAR • MOVE TO TILT</span>
+                </div>
+              </div>
+
+              {/* Right Telemetry: Architectural Accent */}
+              <div
+                className={`hidden lg:block p-3.5 border-r-2 border-himalayan-amber backdrop-blur-md text-xs font-mono-tech transition-all ${isLight
+                    ? 'border-stone-300 bg-stone-100/60 text-stone-800'
+                    : 'border-himalayan-ivory/15 bg-black/50 text-himalayan-bone'
+                  }`}
+              >
+                <div className="flex items-center justify-between text-himalayan-amber text-[10px] font-semibold mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Flame className="w-3.5 h-3.5" />
+                    <span>SENSORY MATRIX</span>
+                  </div>
+                  <span className="text-[9px] opacity-70">TASTING LAB</span>
+                </div>
+                <div className="space-y-2 text-[10px]">
+                  {/* Meter 1: Timur Numbness */}
+                  <div>
+                    <div className="flex justify-between mb-0.5">
+                      <span>TIMUR ELECTRIC NUMBNESS</span>
+                      <span className="font-semibold text-himalayan-amber">88%</span>
+                    </div>
+                    <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
+                      <div className="h-full bg-himalayan-amber w-[88%]" />
+                    </div>
+                  </div>
+
+                  {/* Meter 2: Alpine Umami */}
+                  <div>
+                    <div className="flex justify-between mb-0.5">
+                      <span>MOREL ALPINE UMAMI</span>
+                      <span className="font-semibold text-himalayan-amber">94%</span>
+                    </div>
+                    <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
+                      <div className="h-full bg-himalayan-amber w-[94%]" />
+                    </div>
+                  </div>
+
+                  {/* Meter 3: Cedarwood Smoke */}
+                  <div>
+                    <div className="flex justify-between mb-0.5">
+                      <span>CEDAR HEARTH SMOKE</span>
+                      <span className="font-semibold text-himalayan-amber">72%</span>
+                    </div>
+                    <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
+                      <div className="h-full bg-himalayan-amber w-[72%]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ------------------------------------------------------------------ */}
+          {/* STAGE 3: DESCENT INTO THE SANCTUARY (Grand Apple Frosted Glass Portal) */}
+          {/* ------------------------------------------------------------------ */}
+          <div
+            className="absolute inset-0 flex flex-col items-center justify-center p-2 sm:p-4 md:p-6 transition-all duration-500 pointer-events-none z-20"
+            style={{
+              opacity: descentOpacity,
+              pointerEvents: isDescentStage ? 'auto' : 'none',
+            }}
+          >
+            {/* Frosted Glass Sanctuary Gateway Card */}
+            <div
+              className={`relative w-full max-w-4xl mx-auto rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 backdrop-blur-2xl border shadow-2xl transition-all overflow-hidden flex flex-col justify-between max-h-[82vh] overflow-y-auto [&::-webkit-scrollbar]:hidden ${isLight
+                  ? 'bg-white/70 border-white/80 shadow-[0_30px_90px_-20px_rgba(20,30,50,0.18)] text-stone-900'
+                  : 'bg-[#0c1017]/75 border-white/15 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] text-white'
+                }`}
+            >
+              {/* Top Specular Edge Highlight (Apple Glass Polish) */}
+              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/30 to-transparent pointer-events-none" />
+
+              {/* Top Telemetry & Sanctuary Gateway Header */}
+              <div className="flex items-center justify-between border-b pb-2.5 sm:pb-3 border-black/10 dark:border-white/10 shrink-0 gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-himalayan-amber animate-ping shrink-0" />
+                  <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.22em] text-himalayan-amber uppercase font-semibold">
+                    DESCENT COMPLETE • 1,400M HEARTH
+                  </span>
+                </div>
+
+                <span
+                  className={`hidden md:inline-block text-[9px] font-mono-tech tracking-[0.2em] uppercase ${isLight ? 'text-stone-500' : 'text-stone-400'
+                    }`}
+                >
+                  DIFC GATE PRECINCT • DUBAI 25°12′N
+                </span>
+
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-himalayan-amber/40 bg-himalayan-amber/10 text-himalayan-amber text-[9px] font-mono-tech font-semibold uppercase tracking-wider shrink-0">
+                  <Sparkles className="w-3 h-3" />
+                  <span>SANCTUARY GATEWAY</span>
+                </div>
+              </div>
+
+              {/* Monumental Editorial Headline */}
+              <div className="text-center my-3 sm:my-4 shrink-0">
+                <h3
+                  className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase tracking-[0.03em] font-bold leading-tight ${isLight ? 'text-stone-950' : 'text-himalayan-ivory'
+                    }`}
+                >
+                  Enter The Himalayan Odyssey
+                </h3>
+                <p
+                  className={`font-editorial text-xs sm:text-base md:text-lg italic mt-1.5 max-w-2xl mx-auto ${isLight ? 'text-stone-700' : 'text-himalayan-bone'
+                    }`}
+                >
+                  “From high glacial ridges into the warm fragrance of cedarwood, rare timur pepper, and live wok fire.”
+                </p>
+              </div>
+
+              {/* 3 Interactive Expedition Pillars (Chapter Preview Tiles) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4 my-2 sm:my-3">
+                {ODYSSEY_CHAPTERS.map((chap) => (
+                  <div
+                    key={chap.num}
+                    onClick={() => {
+                      soundEngine.playSoftTick();
+                      onStory();
+                    }}
+                    className={`group relative rounded-xl sm:rounded-2xl p-3 sm:p-4 border transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden ${isLight
+                        ? 'bg-white/60 hover:bg-white/90 border-stone-200/80 hover:border-himalayan-amber/60 shadow-sm hover:shadow-md'
+                        : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-himalayan-amber/50 hover:shadow-lg hover:shadow-himalayan-amber/10'
+                      }`}
+                  >
+                    {/* Card top badge */}
+                    <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono-tech tracking-wider mb-2">
+                      <span className="text-himalayan-amber font-bold">{chap.chapter}</span>
+                      <span className="px-1.5 py-0.5 rounded bg-himalayan-amber/10 text-himalayan-amber text-[8px] sm:text-[9px] uppercase font-semibold">
+                        {chap.elevation}
+                      </span>
+                    </div>
+
+                    {/* Image & Title snippet */}
+                    <div className="flex items-center gap-3 my-1">
+                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden border border-white/20 shrink-0 shadow-md group-hover:scale-105 transition-transform duration-500">
+                        <img
+                          src={chap.image}
+                          alt={chap.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                      </div>
+                      <div className="min-w-0">
+                        <h4
+                          className={`font-display text-xs sm:text-sm uppercase font-bold tracking-wide group-hover:text-himalayan-amber transition-colors truncate ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'
+                            }`}
+                        >
+                          {chap.title}
+                        </h4>
+                        <p className="text-[10px] sm:text-[11px] font-sans-clean opacity-75 line-clamp-2 leading-snug mt-0.5">
+                          {chap.subtitle}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Action Link Row */}
+                    <div className="mt-2 pt-2 border-t border-black/5 dark:border-white/10 flex items-center justify-between text-[9px] font-mono-tech">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          soundEngine.playSoftTick();
+                          onSelectDish(DISHES[chap.dishIndex]);
+                        }}
+                        className="text-himalayan-amber hover:underline uppercase tracking-wider font-semibold cursor-pointer"
+                      >
+                        TASTING NOTES ↗
+                      </button>
+                      <div className="flex items-center gap-1 text-stone-500 dark:text-stone-400 group-hover:text-himalayan-amber transition-colors">
+                        <span className="uppercase tracking-widest text-[8px] sm:text-[9px]">EXPLORE</span>
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* High-Impact Action Controls */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mt-3 sm:mt-4 shrink-0">
+                {/* Primary Button: Begin Expedition */}
+                <button
+                  onClick={() => {
+                    soundEngine.playSingingBowl(528, 2.5);
+                    onStory();
+                  }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-amber/90 text-white font-mono-tech text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase shadow-lg shadow-himalayan-amber/30 hover:shadow-himalayan-amber/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
+                  data-cursor="EXPEDITION"
+                >
+                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:rotate-45 transition-transform duration-500" />
+                  <span>BEGIN CULINARY EXPEDITION</span>
+                  <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+                </button>
+
+                {/* Secondary Button: Reserve Table */}
+                <button
+                  onClick={() => {
+                    soundEngine.playSoftTick();
+                    onReserve();
+                  }}
+                  className={`w-full sm:w-auto px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full border font-mono-tech text-[10px] sm:text-xs tracking-[0.18em] uppercase font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${isLight
+                      ? 'border-stone-400/80 bg-white/60 hover:bg-stone-100 text-stone-800 hover:border-himalayan-amber'
+                      : 'border-white/20 bg-white/5 hover:bg-white/10 text-white hover:border-himalayan-amber'
+                    }`}
+                  data-cursor="RESERVE"
+                >
+                  <Flame className="w-3.5 h-3.5 text-himalayan-amber" />
+                  <span>RESERVE SANCTUARY TABLE</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </button>
+              </div>
+
+              {/* Bottom Live Sensory Telemetry Strip */}
+              <div
+                className={`mt-3 pt-2.5 border-t flex flex-wrap items-center justify-between text-[8px] sm:text-[10px] font-mono-tech tracking-wider gap-2 shrink-0 ${isLight ? 'border-stone-200 text-stone-600' : 'border-white/10 text-stone-400'
+                  }`}
+              >
                 <div className="flex items-center gap-1.5">
-                  <Flame className="w-3.5 h-3.5" />
-                  <span>SENSORY MATRIX</span>
+                  <Flame className="w-3 h-3 text-himalayan-amber animate-pulse" />
+                  <span>
+                    HEARTH: <strong className="text-himalayan-amber font-semibold">320°C LIVE EMBERS</strong>
+                  </span>
                 </div>
-                <span className="text-[9px] opacity-70">TASTING LAB</span>
-              </div>
-              <div className="space-y-2 text-[10px]">
-                {/* Meter 1: Timur Numbness */}
-                <div>
-                  <div className="flex justify-between mb-0.5">
-                    <span>TIMUR ELECTRIC NUMBNESS</span>
-                    <span className="font-semibold text-himalayan-amber">88%</span>
-                  </div>
-                  <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
-                    <div className="h-full bg-himalayan-amber w-[88%]" />
-                  </div>
+                <div className="hidden sm:flex items-center gap-1.5">
+                  <Wind className="w-3 h-3 text-himalayan-amber" />
+                  <span>AROMA: CEDAR RESIN & WILD TIMUR</span>
                 </div>
-
-                {/* Meter 2: Alpine Umami */}
-                <div>
-                  <div className="flex justify-between mb-0.5">
-                    <span>MOREL ALPINE UMAMI</span>
-                    <span className="font-semibold text-himalayan-amber">94%</span>
-                  </div>
-                  <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
-                    <div className="h-full bg-himalayan-amber w-[94%]" />
-                  </div>
-                </div>
-
-                {/* Meter 3: Cedarwood Smoke */}
-                <div>
-                  <div className="flex justify-between mb-0.5">
-                    <span>CEDAR HEARTH SMOKE</span>
-                    <span className="font-semibold text-himalayan-amber">72%</span>
-                  </div>
-                  <div className="w-full h-1 rounded-full bg-stone-300 dark:bg-white/10 overflow-hidden">
-                    <div className="h-full bg-himalayan-amber w-[72%]" />
-                  </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span>
+                    SEATINGS: <strong className={isLight ? 'text-stone-900' : 'text-white'}>DINNER SERVICE OPEN</strong>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* ------------------------------------------------------------------ */}
-        {/* STAGE 3: DESCENT INTO THE SANCTUARY (Open Editorial Presentation) */}
-        {/* ------------------------------------------------------------------ */}
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
-          style={{
-            opacity: descentOpacity,
-            pointerEvents: isDescentStage ? 'auto' : 'none',
-          }}
-        >
-          <div className="max-w-xl mx-auto text-center px-4">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-himalayan-amber/50 bg-himalayan-amber/10 flex items-center justify-center mx-auto mb-3 sm:mb-4 text-himalayan-amber">
-              <Compass className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" style={{ animationDuration: '24s' }} />
-            </div>
-
-            <span className="text-[9px] sm:text-[11px] font-mono-tech tracking-[0.25em] sm:tracking-[0.3em] text-himalayan-amber uppercase font-semibold block mb-1 sm:mb-2">
-              DESCENT COMPLETE // 1,400M HEARTH
-            </span>
-
-            <h3 className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase tracking-wide mb-2 sm:mb-3 font-bold ${
-              isLight ? 'text-stone-950' : 'text-himalayan-ivory'
-            }`}>
-              Enter The Himalayan Odyssey
-            </h3>
-
-            <p
-              className={`font-editorial text-sm sm:text-lg italic mb-4 sm:mb-6 ${
-                isLight ? 'text-stone-700' : 'text-himalayan-bone'
-              }`}
-            >
-              “From high glacial ridges into the warm fragrance of cedarwood, timur, and live wok fire.”
-            </p>
-
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-widest uppercase animate-bounce">
-              <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span>CONTINUE SCROLLING TO BEGIN CHAPTER 01</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
         {/* ------------------------------------------------------------------ */}
         {/* Bottom Hero HUD: Atmospheric Specs & Seating Inquiries */}
-        {/* Hidden on mobile during Stage 2 so the Altar Action CTA has full breathing room */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className={`shrink-0 ${
-            isAltarStage ? 'hidden md:grid' : 'grid'
-          } grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.18em] sm:tracking-[0.2em] border-t pt-2.5 sm:pt-4 z-20 transition-colors ${
-            isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
-          }`}
+          className={`shrink-0 ${isAltarStage ? 'flex justify-center md:grid' : 'grid'
+            } grid-cols-1 md:grid-cols-3 items-end gap-3 sm:gap-6 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.18em] sm:tracking-[0.2em] border-t pt-2 sm:pt-4 z-20 transition-colors pointer-events-auto ${isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
+            }`}
         >
           {/* Left: Atmospheric Specs */}
           <div className="hidden md:block space-y-1">
@@ -467,19 +634,20 @@ export function HeroSection({
           {/* Center: Scroll Cue */}
           <div
             onClick={onStory}
-            className="flex flex-col items-center justify-center cursor-pointer group text-center"
+            className="flex flex-col items-center justify-center cursor-pointer group text-center pointer-events-auto"
             data-cursor="SCROLL"
           >
             <span
-              className={`group-hover:text-himalayan-amber transition-colors mb-1 sm:mb-2 text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.3em] font-semibold ${
-                isLight ? 'text-stone-800' : 'text-himalayan-ivory'
-              } ${isAltarStage ? 'hidden' : 'block'}`}
+              className={`group-hover:text-himalayan-amber transition-colors mb-1 sm:mb-2 text-[8px] sm:text-[9px] tracking-[0.18em] sm:tracking-[0.3em] font-semibold ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'
+                }`}
             >
               {isSummitStage
                 ? 'SCROLL TO EXPLORE 3D EXPEDITION'
-                : 'DESCENDING INTO CHAPTER 01'}
+                : isAltarStage
+                  ? 'SWIPE TO DESCEND INTO SANCTUARY'
+                  : 'DESCENDING INTO CHAPTER 01'}
             </span>
-            <div className={`w-[1px] h-6 sm:h-8 relative overflow-hidden ${isLight ? 'bg-stone-400' : 'bg-himalayan-ivory/20'}`}>
+            <div className={`w-[1px] h-5 sm:h-8 relative overflow-hidden ${isLight ? 'bg-stone-400' : 'bg-himalayan-ivory/20'}`}>
               <div className="w-full h-1/2 bg-himalayan-amber animate-bounce" />
             </div>
           </div>
@@ -493,9 +661,8 @@ export function HeroSection({
             </div>
             <button
               onClick={onReserve}
-              className={`underline hover:text-himalayan-amber transition-colors ${
-                isLight ? 'text-stone-800' : 'text-himalayan-ivory'
-              }`}
+              className={`underline hover:text-himalayan-amber transition-colors ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'
+                }`}
             >
               INQUIRE FOR UPCOMING SEATINGS →
             </button>

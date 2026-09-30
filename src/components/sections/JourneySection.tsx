@@ -183,6 +183,7 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
                 alt="Himalayan Mountain Landscape"
                 className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000 ease-out"
                 loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-transparent" />
 

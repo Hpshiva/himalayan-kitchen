@@ -17,7 +17,7 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Editorial Section Masthead */}
-        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-4 sm:pb-8 mb-10 sm:mb-20 gap-4 sm:gap-8 ${
+        <div className={`flex flex-col md:flex-row md:items-end justify-between border-b pb-4 sm:pb-8 mb-6 sm:mb-14 gap-4 sm:gap-8 ${
           isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'
         }`}>
           <div>
@@ -42,16 +42,14 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
         </div>
 
         {/* Cinematic Staggered Dish Editorial Cards */}
-        <div className="flex flex-col gap-12 sm:gap-20 md:gap-28">
+        <div className="flex flex-col gap-8 sm:gap-16 md:gap-24">
           {DISHES.map((dish, idx) => {
             const isReversed = idx % 2 === 1;
 
             return (
               <div
                 key={dish.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center ${
-                  isReversed ? 'lg:flex-row-reverse' : ''
-                }`}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center"
               >
                 {/* Visual Editorial Image Frame */}
                 <div
@@ -70,6 +68,7 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
                         alt={dish.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                         loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 

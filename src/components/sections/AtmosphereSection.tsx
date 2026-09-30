@@ -41,7 +41,7 @@ export function AtmosphereSection({ onReserve, theme = 'dark' }: AtmosphereSecti
         </div>
 
         {/* Master Architectural Feature Frame */}
-        <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden border shadow-2xl mb-8 sm:mb-16 ${
+        <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden border shadow-2xl mb-6 sm:mb-12 ${
           isLight ? 'border-stone-300 bg-stone-900' : 'border-himalayan-ivory/20 bg-himalayan-black'
         }`}>
           <div className="relative h-[360px] sm:h-[480px] md:h-[640px] w-full overflow-hidden">
@@ -50,6 +50,7 @@ export function AtmosphereSection({ onReserve, theme = 'dark' }: AtmosphereSecti
               alt="Himalayan Kitchen Restaurant Interior Hearth"
               className="w-full h-full object-cover"
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 

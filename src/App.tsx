@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
 import { HimalayanCanvas } from './components/canvas/HimalayanCanvas';
 import { CinematicLoader } from './components/ui/CinematicLoader';
@@ -12,11 +12,20 @@ import { LifestyleSection } from './components/sections/LifestyleSection';
 import { AtmosphereSection } from './components/sections/AtmosphereSection';
 import { FinalCtaSection } from './components/sections/FinalCtaSection';
 import { Footer } from './components/ui/Footer';
-import { ContactPage } from './components/pages/ContactPage';
-import { DishModal } from './components/ui/DishModal';
-import { ReservationModal } from './components/ui/ReservationModal';
 import { soundEngine } from './utils/audio';
 import type { Dish } from './types';
+
+// Code splitting & on-demand lazy loading for heavy sub-pages and interactive modals
+const ContactPage = lazy(() =>
+  import('./components/pages/ContactPage').then((m) => ({ default: m.ContactPage }))
+);
+const DishModal = lazy(() =>
+  import('./components/ui/DishModal').then((m) => ({ default: m.DishModal }))
+);
+const ReservationModal = lazy(() =>
+  import('./components/ui/ReservationModal').then((m) => ({ default: m.ReservationModal }))
+);
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
@@ -27,6 +36,7 @@ export default function App() {
   const [activePage, setActivePage] = useState<'home' | 'contact'>('home');
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
   const [reservationOpen, setReservationOpen] = useState(false);
+
   const lenisRef = useRef<Lenis | null>(null);
 
   // Sync theme with document element classes
@@ -68,50 +78,51 @@ export default function App() {
     };
   }, []);
 
-  // Initialize Ultra-Smooth Lenis Momentum Scroll (Desktop & Mobile)
+  // Shared scroll event processor
+  const handleScrollUpdate = (scrollY: number, progress: number) => {
+    setScrollProgress(progress);
+
+    // Hero section scroll track calculation (h-[360vh] has ~2.6 * innerHeight scroll range)
+    const heroTrack = window.innerHeight * 2.6;
+    const currentHeroProgress = Math.min(1, Math.max(0, scrollY / heroTrack));
+    setHeroProgress(currentHeroProgress);
+
+    // Modulate audio continuous layers: altar cooking in Hero, constant wind + stream water + falling snow post-Hero
+    soundEngine.updateScrollModulation(progress, currentHeroProgress);
+
+    // Determine active chapter based on scroll position
+    if (progress < 0.18) {
+      setCurrentChapter('01 SUMMIT');
+    } else if (progress < 0.38) {
+      setCurrentChapter('02 GENESIS');
+    } else if (progress < 0.58) {
+      setCurrentChapter('03 DUAL CUISINE');
+    } else if (progress < 0.74) {
+      setCurrentChapter('04 HARVEST');
+    } else if (progress < 0.88) {
+      setCurrentChapter('05 ARCHIVE');
+    } else {
+      setCurrentChapter('06 HEARTH');
+    }
+  };
+
+  // Initialize Pure Lenis Smooth Scroll Engine (Normal Speed, Native Mobile Touch)
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.8,
+      duration: 1.0, // Normal, snappy smooth scroll duration
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.72,
-      touchMultiplier: 0.85,
-      syncTouch: true,
-      syncTouchLerp: 0.055,
-      touchInertiaExponent: 1.7,
+      wheelMultiplier: 1.0, // Normal 1:1 scroll responsiveness
+      touchMultiplier: 1.0,
+      syncTouch: false, // Pure native hardware-accelerated touch momentum on mobile
       autoResize: true,
     });
     lenisRef.current = lenis;
 
     const unsubscribe = lenis.on('scroll', (e) => {
-      const scrollY = e.scroll;
-      const progress = e.progress;
-      setScrollProgress(progress);
-
-      // Hero section scroll track calculation (h-[360vh] has ~2.6 * innerHeight scroll range)
-      const heroTrack = window.innerHeight * 2.6;
-      const currentHeroProgress = Math.min(1, Math.max(0, scrollY / heroTrack));
-      setHeroProgress(currentHeroProgress);
-
-      // Modulate audio continuous layers: altar cooking in Hero, constant wind + stream water + falling slow post-Hero
-      soundEngine.updateScrollModulation(progress, currentHeroProgress);
-
-      // Determine active chapter based on scroll position
-      if (progress < 0.18) {
-        setCurrentChapter('01 SUMMIT');
-      } else if (progress < 0.38) {
-        setCurrentChapter('02 GENESIS');
-      } else if (progress < 0.58) {
-        setCurrentChapter('03 DUAL CUISINE');
-      } else if (progress < 0.74) {
-        setCurrentChapter('04 HARVEST');
-      } else if (progress < 0.88) {
-        setCurrentChapter('05 ARCHIVE');
-      } else {
-        setCurrentChapter('06 HEARTH');
-      }
+      handleScrollUpdate(e.scroll, e.progress);
     });
 
     let rafId: number;
@@ -120,8 +131,6 @@ export default function App() {
       rafId = requestAnimationFrame(raf);
     }
     rafId = requestAnimationFrame(raf);
-
-    // Initial sync
     lenis.resize();
 
     return () => {
@@ -137,17 +146,19 @@ export default function App() {
     setTimeout(() => {
       const targetId = sectionId === 'mountain-emergence' ? 'journey' : sectionId;
       const el = document.getElementById(targetId);
-      if (el && lenisRef.current) {
-        lenisRef.current.scrollTo(el, { offset: -60, duration: 1.4 });
-      } else if (el) {
-        el.scrollIntoView();
+      if (el) {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(el, { offset: -60, duration: 1.0 });
+        } else {
+          el.scrollIntoView();
+        }
       }
     }, 50);
   };
 
   const scrollToTop = () => {
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { duration: 1.6 });
+      lenisRef.current.scrollTo(0, { duration: 1.0 });
     } else {
       window.scrollTo(0, 0);
     }
@@ -242,23 +253,29 @@ export default function App() {
           />
         </main>
       ) : (
-        <ContactPage onBack={() => setActivePage('home')} theme={theme} />
+        <Suspense fallback={<div className="min-h-screen bg-stone-900" />}>
+          <ContactPage onBack={() => setActivePage('home')} theme={theme} />
+        </Suspense>
       )}
 
-      {/* Dish Dossier Modal */}
-      <DishModal
-        dish={selectedDish}
-        onClose={() => setSelectedDish(null)}
-        onReserve={() => setReservationOpen(true)}
-        theme={theme}
-      />
-
-      {/* Table Reservation Sanctuary Modal */}
-      <ReservationModal
-        isOpen={reservationOpen}
-        onClose={() => setReservationOpen(false)}
-        theme={theme}
-      />
+      {/* Code-split Interactive Modals (Loaded on-demand) */}
+      <Suspense fallback={null}>
+        {selectedDish && (
+          <DishModal
+            dish={selectedDish}
+            onClose={() => setSelectedDish(null)}
+            onReserve={() => setReservationOpen(true)}
+            theme={theme}
+          />
+        )}
+        {reservationOpen && (
+          <ReservationModal
+            isOpen={reservationOpen}
+            onClose={() => setReservationOpen(false)}
+            theme={theme}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }

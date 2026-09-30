@@ -47,6 +47,8 @@ export function DishModal({ dish, onClose, onReserve, theme = 'dark' }: DishModa
               src={dish.image}
               alt={dish.name}
               className="w-full h-56 sm:h-80 md:h-[420px] object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute top-3 left-3 sm:top-4 sm:left-4 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase">
               {dish.elevation}

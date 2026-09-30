@@ -73,7 +73,7 @@ export function Navbar({
             : 'py-2.5 sm:py-3 md:py-3.5 bg-transparent text-himalayan-ivory'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
           {/* Brand Logo & Altitude Coordinate */}
           <div
             onClick={() => handleNavClick('hero')}

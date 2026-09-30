@@ -53,7 +53,7 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
             }`}>
               Receive private notifications when seasonal foraging menus and private hearth seatings open.
             </p>
-            <form onSubmit={(e) => { e.preventDefault(); alert("You are subscribed to The Highland Dispatch."); }} className="flex gap-2 w-full">
+            <form onSubmit={(e) => { e.preventDefault(); alert("You are subscribed to The Highland Dispatch."); }} className="flex flex-col xs:flex-row gap-2 w-full">
               <input
                 type="email"
                 required
@@ -66,7 +66,7 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
               />
               <button
                 type="submit"
-                className="px-4 sm:px-5 py-2.5 bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-widest rounded-lg transition-colors uppercase shrink-0 font-semibold"
+                className="w-full xs:w-auto px-4 sm:px-5 py-2.5 bg-himalayan-amber hover:bg-himalayan-ember text-white text-xs font-mono-tech tracking-widest rounded-lg transition-colors uppercase shrink-0 font-semibold"
                 data-cursor="JOIN"
               >
                 JOIN
