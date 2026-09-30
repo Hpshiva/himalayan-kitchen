@@ -15,15 +15,6 @@ export function JourneySection({ theme = 'dark' }: JourneySectionProps) {
       id="journey"
       className="relative min-h-screen w-full py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-12 flex flex-col justify-center pointer-events-auto overflow-hidden"
     >
-      {/* Seamless Atmosphere Wash: gives 100% text contrast without needing any boxes or cards */}
-      <div
-        className={`absolute inset-0 pointer-events-none transition-colors duration-700 ${
-          isLight
-            ? 'bg-[#f2eee6]/90 backdrop-blur-md'
-            : 'bg-[#050607]/85 backdrop-blur-md'
-        }`}
-      />
-
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header: Pure Editorial Layout (No box) */}
         <div
