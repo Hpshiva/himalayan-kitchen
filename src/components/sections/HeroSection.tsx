@@ -83,28 +83,28 @@ export function HeroSection({
         
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
-          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b pb-2.5 sm:pb-4 gap-2 sm:gap-4 z-20 transition-colors ${
+          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-2 sm:py-2.5 gap-2 sm:gap-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Mountain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-himalayan-amber shrink-0" />
-            <span className={isLight ? 'text-stone-900 font-semibold' : 'text-himalayan-ivory'}>
+          <div className="inline-flex items-center gap-2 sm:gap-2.5 h-6 sm:h-7 leading-none">
+            <Mountain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-himalayan-amber shrink-0 -translate-y-[0.5px]" />
+            <span className={`leading-none font-semibold ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'}`}>
               SAGARMATHA
             </span>
-            <span className="hidden sm:inline opacity-40">•</span>
-            <span className="hidden md:inline">27°59′17″N 86°55′31″E</span>
+            <span className="hidden sm:inline opacity-40 leading-none">•</span>
+            <span className="hidden md:inline leading-none">27°59′17″N 86°55′31″E</span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-4">
-            <span className="px-2 sm:px-2.5 py-0.5 rounded border border-himalayan-amber/50 bg-himalayan-amber/10 text-himalayan-amber text-[9px] sm:text-[10px] font-semibold whitespace-nowrap">
+          <div className="inline-flex items-center gap-2 sm:gap-3 h-6 sm:h-7 leading-none">
+            <span className="inline-flex items-center justify-center h-6 sm:h-6.5 px-2.5 sm:px-3 rounded border border-himalayan-amber/50 bg-himalayan-amber/10 text-himalayan-amber text-[9px] sm:text-[10px] font-semibold whitespace-nowrap leading-none tracking-wider">
               {isSummitStage
                 ? 'STAGE 01 // SUMMIT'
                 : isAltarStage
                 ? 'STAGE 02 // ALTAR'
                 : 'STAGE 03 // SANCTUARY'}
             </span>
-            <span className={`hidden sm:inline ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
+            <span className={`hidden sm:inline leading-none ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
               {isSummitStage ? '8,848M ELEVATION' : isAltarStage ? '3,800M CLEFT' : '1,400M HEARTH'}
             </span>
           </div>
