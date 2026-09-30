@@ -87,13 +87,11 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
                   </div>
                 </div>
 
-                {/* Editorial Typography & Provenance Column */}
+                {/* Editorial Typography & Provenance Column (Open Luxury Editorial) */}
                 <div
-                  className={`lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-6 p-5 sm:p-8 rounded-2xl sm:rounded-3xl border backdrop-blur-md transition-all shadow-xl ${
-                    isLight
-                      ? 'bg-stone-100/90 border-stone-300/80 text-stone-900'
-                      : 'bg-black/75 border-white/10 text-white'
-                  } ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}
+                  className={`lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-6 py-4 sm:py-6 lg:px-4 transition-all ${
+                    isReversed ? 'lg:order-1' : 'lg:order-2'
+                  }`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-mono-tech text-xs tracking-[0.3em] text-himalayan-amber font-semibold">
@@ -128,7 +126,7 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
                       {dish.notes.map((note) => (
                         <span
                           key={note}
-                          className={`px-2.5 sm:px-3 py-1 rounded-md text-[10px] sm:text-[11px] font-mono-tech tracking-wider border ${
+                          className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-mono-tech tracking-wider border ${
                             isLight
                               ? 'border-stone-300 bg-stone-200/60 text-stone-800'
                               : 'border-himalayan-ivory/10 bg-himalayan-charcoal/40 text-himalayan-bone'
@@ -140,11 +138,9 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
                     </div>
                   </div>
 
-                  {/* Pairing Recommendation */}
-                  <div className={`p-3.5 sm:p-4 rounded-xl border flex items-start gap-3 ${
-                    isLight
-                      ? 'border-stone-300 bg-stone-200/50'
-                      : 'border-himalayan-ivory/10 bg-himalayan-charcoal/20'
+                  {/* Pairing Recommendation (Hairline divider, unboxed) */}
+                  <div className={`pt-3 sm:pt-4 border-t flex items-start gap-3 ${
+                    isLight ? 'border-stone-300' : 'border-white/10'
                   }`}>
                     <Wine className="w-4 h-4 text-himalayan-amber mt-0.5 shrink-0" />
                     <div>
