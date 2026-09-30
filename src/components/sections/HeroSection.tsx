@@ -256,7 +256,7 @@ export function HeroSection({
                   isLight ? 'text-stone-700' : 'text-himalayan-bone'
                 }`}
               >
-                {currentDish.indigenousName} • Elevation 3,800m
+                {currentDish.elevation}
               </p>
 
               {/* Integrated Dialect Tabs */}

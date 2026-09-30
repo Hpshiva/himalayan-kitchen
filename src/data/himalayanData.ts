@@ -4,7 +4,7 @@ export const DISHES: Dish[] = [
   {
     id: 'wild-morel-momo',
     name: 'Wild Morel & Truffle Momo',
-    indigenousName: 'गुच्छी च्याउ मोमो',
+    indigenousName: 'Khumbu Valley Morel Dumpling',
     category: 'nepali',
     elevation: '3,800m • Khumbu Valley',
     description: 'Translucent handmade dumplings cradling hand-foraged Himalayan morels and wild chanterelles, bathed in a shimmering clarified timur pepper and bone marrow broth with alpine blooms.',
@@ -17,9 +17,9 @@ export const DISHES: Dish[] = [
   {
     id: 'wok-seared-tiger-prawns',
     name: 'Wok-Scorched Tiger Prawns',
-    indigenousName: 'कोलकाता टंगरा झींगा',
+    indigenousName: 'Tangra Cast Iron Wok Prawn',
     category: 'indochinese',
-    elevation: 'Sea Level to High Ridge',
+    elevation: '800°C Roaring Wok Hei',
     description: 'Jumbo prawns blasted over 800°C roaring wok hei with scorched Kashmiri chilies, crispy scallion curls, dark Himalayan timur reduction, and toasted sesame crunch on volcanic stone.',
     provenance: 'A tribute to the century-old Chinese Hakka community of Tangra, reinterpreted with high-altitude Himalayan aromatics.',
     notes: ['Wok Hei Smoke', 'Scorched Kashmiri Chili', 'Wild Timur Crust', 'Burnt Garlic Oil'],
@@ -30,7 +30,7 @@ export const DISHES: Dish[] = [
   {
     id: 'himalayan-botanical-cocktail',
     name: 'Sagarmatha Smoked Elixir',
-    indigenousName: 'सगरमाथा अमृत',
+    indigenousName: 'High Summit Botanical Spirit',
     category: 'botanical',
     elevation: '5,364m • Basecamp Spirits',
     description: 'Himalayan highland grain spirit rested with toasted timur peppercorns and lapsang tea, served over hand-chiseled glacial mountain ice with smoldering cinnamon and pine aroma.',

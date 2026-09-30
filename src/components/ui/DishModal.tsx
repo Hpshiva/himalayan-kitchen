@@ -57,7 +57,7 @@ export function DishModal({ dish, onClose, onReserve, theme = 'dark' }: DishModa
           <div className="md:col-span-6 space-y-4 sm:space-y-6">
             <div>
               <span className="text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] sm:tracking-[0.25em] uppercase block mb-1 font-semibold">
-                {dish.indigenousName} • {dish.category.toUpperCase()} DIALECT
+                {dish.elevation} • {dish.category.toUpperCase()} DIALECT
               </span>
               <h3 className={`font-display text-xl sm:text-3xl uppercase tracking-wide font-bold ${
                 isLight ? 'text-stone-900' : 'text-himalayan-ivory'

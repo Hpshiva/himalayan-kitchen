@@ -103,7 +103,7 @@ export function FoodStorySection({ onSelectDish, theme = 'dark' }: FoodStorySect
                     <span className={`font-mono-tech text-[10px] tracking-widest uppercase ${
                       isLight ? 'text-stone-600 font-semibold' : 'text-himalayan-fog'
                     }`}>
-                      {dish.indigenousName}
+                      {dish.elevation}
                     </span>
                   </div>
 

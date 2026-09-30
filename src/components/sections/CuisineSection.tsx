@@ -65,7 +65,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
               }`}
               data-cursor="HAKKA"
             >
-              INDIAN CHINESE
+              TANGRA WOK
             </button>
           </div>
         </div>
@@ -222,7 +222,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                 {/* Overlaid Badges */}
                 <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex justify-between items-center">
                   <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech text-himalayan-amber tracking-widest uppercase">
-                    {activeTab === 'nepali' ? 'SIGNATURE NEPALI' : 'SIGNATURE HAKKA'}
+                    {activeTab === 'nepali' ? 'SIGNATURE NEPALI' : 'TANGRA WOK HEI'}
                   </span>
                   <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-mono-tech text-white tracking-widest">
                     {activeTab === 'nepali' ? '3,800M ELEVATION' : 'HIGH WOK INTENSITY'}
@@ -232,7 +232,7 @@ export function CuisineSection({ onSelectDish, theme = 'dark' }: CuisineSectionP
                 {/* Bottom Overlaid Title */}
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
                   <span className="text-[10px] sm:text-xs font-mono-tech text-himalayan-amber tracking-[0.2em] block mb-1">
-                    {activeTab === 'nepali' ? nepaliDish.indigenousName : indochineseDish.indigenousName}
+                    {activeTab === 'nepali' ? nepaliDish.elevation : indochineseDish.elevation}
                   </span>
                   <h4 className="font-display text-xl sm:text-2xl md:text-3xl uppercase tracking-wide">
                     {activeTab === 'nepali' ? nepaliDish.name : indochineseDish.name}
