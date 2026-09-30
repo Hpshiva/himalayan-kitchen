@@ -79,11 +79,11 @@ export function HeroSection({
   return (
     <section id="hero" className="relative h-[290vh] w-full">
       {/* Sticky Pinned Viewport Container */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-6 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-[58px] sm:pt-[70px] md:pt-[78px] pb-3 sm:pb-5 px-3 sm:px-6 md:px-12 overflow-hidden pointer-events-auto select-none">
         
         {/* Top Meta Line: Geolocation & Elevation Badges */}
         <div
-          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-2 sm:py-2.5 gap-2 sm:gap-4 z-20 transition-colors ${
+          className={`flex items-center justify-between text-[9px] sm:text-[11px] font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] border-b py-1.5 sm:py-2 gap-2 sm:gap-4 z-20 transition-colors ${
             isLight ? 'border-stone-300 text-stone-600' : 'border-himalayan-ivory/10 text-himalayan-fog'
           }`}
         >
@@ -219,7 +219,7 @@ export function HeroSection({
         {/* STAGE 2: THE SACRED GASTRONOMIC ALTAR */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-36 sm:top-42 md:top-46 bottom-16 sm:bottom-20 md:bottom-24 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
+          className="absolute top-[96px] sm:top-[116px] md:top-[128px] bottom-14 sm:bottom-18 md:bottom-22 inset-x-0 px-3 sm:px-6 md:px-12 flex flex-col justify-between pointer-events-none z-20 transition-all duration-500"
           style={{
             opacity: altarOpacity,
             pointerEvents: isAltarStage ? 'auto' : 'none',
@@ -398,7 +398,7 @@ export function HeroSection({
         {/* STAGE 3: DESCENT INTO THE SANCTUARY */}
         {/* ------------------------------------------------------------------ */}
         <div
-          className="absolute top-36 sm:top-42 md:top-46 bottom-16 sm:bottom-20 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
+          className="absolute top-[96px] sm:top-[116px] md:top-[128px] bottom-14 sm:bottom-18 inset-x-0 flex flex-col items-center justify-center text-center p-4 sm:p-6 transition-all duration-500 pointer-events-none z-20"
           style={{
             opacity: descentOpacity,
             pointerEvents: isDescentStage ? 'auto' : 'none',

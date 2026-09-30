@@ -66,18 +66,18 @@ export function Navbar({
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
           isScrolled
             ? isLight
-              ? 'py-3.5 bg-stone-100/90 backdrop-blur-md border-b border-stone-300 shadow-md text-stone-900'
-              : 'py-3.5 bg-himalayan-void/85 backdrop-blur-md border-b border-himalayan-ivory/10 shadow-2xl text-himalayan-ivory'
+              ? 'py-1.5 sm:py-2 md:py-2.5 bg-stone-100/90 backdrop-blur-md border-b border-stone-300 shadow-md text-stone-900'
+              : 'py-1.5 sm:py-2 md:py-2.5 bg-himalayan-void/85 backdrop-blur-md border-b border-himalayan-ivory/10 shadow-2xl text-himalayan-ivory'
             : isLight
-            ? 'py-6 bg-transparent text-stone-900'
-            : 'py-6 bg-transparent text-himalayan-ivory'
+            ? 'py-2.5 sm:py-3 md:py-3.5 bg-transparent text-stone-900'
+            : 'py-2.5 sm:py-3 md:py-3.5 bg-transparent text-himalayan-ivory'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-12 flex items-center justify-between">
           {/* Brand Logo & Altitude Coordinate */}
           <div
             onClick={() => handleNavClick('hero')}
-            className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer"
+            className="flex items-center gap-2 sm:gap-3 group cursor-pointer shrink-0"
             data-cursor="SUMMIT"
           >
             {/* Minimal Mountain Monogram */}
@@ -93,10 +93,10 @@ export function Navbar({
             </div>
 
             <div className="flex flex-col">
-              <span className="font-display text-xs sm:text-sm md:text-base tracking-[0.18em] sm:tracking-[0.25em] uppercase font-bold group-hover:text-himalayan-amber transition-colors">
+              <span className="font-display text-xs sm:text-sm md:text-base tracking-[0.16em] sm:tracking-[0.22em] uppercase font-bold group-hover:text-himalayan-amber transition-colors">
                 Himalayan Kitchen
               </span>
-              <span className={`font-mono-tech text-[8px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] hidden xs:block ${isLight ? 'text-stone-500' : 'text-himalayan-fog'}`}>
+              <span className={`font-mono-tech text-[8px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] hidden sm:block ${isLight ? 'text-stone-500' : 'text-himalayan-fog'}`}>
                 8,848M ELEVATION
               </span>
             </div>
@@ -116,7 +116,7 @@ export function Navbar({
           </div>
 
           {/* Right Action Icons & Controls */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3 shrink-0">
             {/* Theme Toggle: Sun / Moon */}
             <button
               onClick={onToggleTheme}
@@ -135,7 +135,7 @@ export function Navbar({
             {/* Audio Toggle with Audio Wave Bars */}
             <button
               onClick={toggleAudio}
-              className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-full border transition-all ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border transition-all ${
                 isAudioActive
                   ? 'border-himalayan-amber bg-himalayan-amber/15 text-himalayan-amber'
                   : isLight
@@ -167,7 +167,7 @@ export function Navbar({
             {/* Contact / Inquiry Button */}
             <button
               onClick={() => setActivePage(activePage === 'contact' ? 'home' : 'contact')}
-              className={`hidden sm:flex items-center gap-1.5 text-xs font-mono-tech tracking-[0.18em] uppercase px-4 py-2 rounded-full border transition-all ${
+              className={`hidden sm:flex items-center gap-1.5 text-xs font-mono-tech tracking-[0.18em] uppercase px-3.5 py-1.5 md:py-2 rounded-full border transition-all ${
                 activePage === 'contact'
                   ? 'border-himalayan-amber bg-himalayan-amber text-white'
                   : isLight
@@ -182,7 +182,7 @@ export function Navbar({
             {/* Reserve Table Magnetic Button */}
             <button
               onClick={onOpenReservation}
-              className="group relative px-2.5 sm:px-5 py-1.5 sm:py-2 overflow-hidden rounded-full border border-himalayan-amber bg-himalayan-amber/15 hover:bg-himalayan-amber text-himalayan-amber hover:text-white text-[10px] sm:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all duration-300 flex items-center gap-1.5 sm:gap-2"
+              className="group relative px-2.5 sm:px-4 md:px-5 py-1 sm:py-1.5 md:py-2 overflow-hidden rounded-full border border-himalayan-amber bg-himalayan-amber/15 hover:bg-himalayan-amber text-himalayan-amber hover:text-white text-[9px] sm:text-[11px] md:text-xs font-mono-tech tracking-[0.15em] sm:tracking-[0.2em] uppercase transition-all duration-300 flex items-center gap-1.5 sm:gap-2"
               data-cursor="BOOK"
             >
               <Sparkles className="w-3 h-3 group-hover:text-white transition-colors" />

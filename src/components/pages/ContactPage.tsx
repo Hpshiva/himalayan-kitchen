@@ -28,7 +28,7 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
   };
 
   return (
-    <div className={`min-h-screen w-full pt-20 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 relative z-30 transition-colors ${
+    <div className={`min-h-screen w-full pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 relative z-30 transition-colors ${
       isLight ? 'bg-stone-50 text-stone-900' : 'bg-himalayan-void text-himalayan-ivory'
     }`}>
       <div className="max-w-6xl mx-auto w-full">
