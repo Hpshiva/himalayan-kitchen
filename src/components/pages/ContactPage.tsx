@@ -84,10 +84,11 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   <MapPin className="w-4 h-4 text-himalayan-amber mt-0.5 shrink-0" />
                   <div>
                     <span className={`block font-semibold ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'}`}>
-                      COORDINATES & ADDRESS
+                      SANCTUARY LOCATION & ADDRESS
                     </span>
-                    <p className={isLight ? 'text-stone-700' : 'text-himalayan-bone'}>High Ridge Pass Road, Above Lukla</p>
-                    <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>27°59′17″N 86°55′31″E • Elevation 8,848m</p>
+                    <p className={isLight ? 'text-stone-700' : 'text-himalayan-bone'}>Podium Level, Gate Village 08, DIFC</p>
+                    <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>Dubai International Financial Centre, Dubai, UAE</p>
+                    <p className="text-himalayan-amber text-[10px] mt-0.5">25°12′18″N 55°16′38″E • Provenance: Solukhumbu 8,848m</p>
                   </div>
                 </div>
 
@@ -95,10 +96,11 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   <Clock className="w-4 h-4 text-himalayan-amber mt-0.5 shrink-0" />
                   <div>
                     <span className={`block font-semibold ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'}`}>
-                      SERVICE SEATINGS
+                      SERVICE SEATINGS (GST)
                     </span>
-                    <p className={isLight ? 'text-stone-700' : 'text-himalayan-bone'}>Thursday – Sunday</p>
-                    <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>First Seating: 18:00 | Second Seating: 20:30</p>
+                    <p className={isLight ? 'text-stone-700' : 'text-himalayan-bone'}>Tuesday – Sunday</p>
+                    <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>Lunch: 12:00 – 15:30 | Dinner: 18:30 & 21:15</p>
+                    <p className="text-himalayan-amber text-[10px] mt-0.5">Late Hearth Lounge: Until 02:00 AM</p>
                   </div>
                 </div>
 
@@ -108,9 +110,10 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                     <span className={`block font-semibold ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'}`}>
                       DIRECT DISPATCH
                     </span>
-                    <a href="mailto:sanctuary@himalayankitchen.luxury" className="text-himalayan-amber hover:underline">
-                      sanctuary@himalayankitchen.luxury
+                    <a href="mailto:concierge@himalayankitchen.ae" className="text-himalayan-amber hover:underline">
+                      concierge@himalayankitchen.ae
                     </a>
+                    <span className="block opacity-60 text-[10px]">Reservations: reservations@himalayankitchen.ae</span>
                   </div>
                 </div>
 
@@ -118,10 +121,13 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
                   <Phone className="w-4 h-4 text-himalayan-amber mt-0.5 shrink-0" />
                   <div>
                     <span className={`block font-semibold ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'}`}>
-                      HIGH-FREQUENCY TELEPHONE
+                      CONCIERGE & WHATSAPP
                     </span>
-                    <a href="tel:+97714208848" className={`hover:text-himalayan-amber ${isLight ? 'text-stone-700' : 'text-himalayan-bone'}`}>
-                      +977 1 420 8848
+                    <a href="tel:+97143988848" className={`hover:text-himalayan-amber block ${isLight ? 'text-stone-700' : 'text-himalayan-bone'}`}>
+                      +971 4 398 8848 (Landline)
+                    </a>
+                    <a href="tel:+971508488848" className={`hover:text-himalayan-amber text-[11px] block ${isLight ? 'text-stone-500' : 'text-himalayan-fog'}`}>
+                      +971 50 848 8848 (VIP Concierge)
                     </a>
                   </div>
                 </div>
@@ -134,19 +140,19 @@ export function ContactPage({ onBack, theme = 'dark' }: ContactPageProps) {
             }`}>
               <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono-tech text-himalayan-amber uppercase tracking-wider sm:tracking-widest font-semibold">
                 <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span>EXPEDITION PROTOCOL</span>
+                <span>EXPEDITION ARRIVAL PROTOCOL</span>
               </div>
               <p className={`text-[11px] sm:text-xs font-sans-clean leading-relaxed ${
                 isLight ? 'text-stone-700' : 'text-himalayan-fog'
               }`}>
-                Helicopter transfer from Kathmandu Tribhuvan Airport directly to our private mountain pad is available for all evening seatings. Private chauffeured 4x4 vehicles depart Lukla hourly.
+                Complimentary VIP Valet Parking is provided at the DIFC Gate Village 08 main drop-off on Al Sukook Street. Private dining suites, bespoke tasting menus, and helipad transfer coordination are available upon advance inquiry with our Dubai Concierge.
               </p>
               <div className={`pt-1 sm:pt-2 flex items-center gap-2 text-[10px] sm:text-[11px] font-mono-tech ${
                 isLight ? 'text-stone-800' : 'text-himalayan-bone'
               }`}>
                 <Globe className="w-3.5 h-3.5 text-himalayan-amber" />
                 <a href="#instagram" className="hover:text-himalayan-amber transition-colors">
-                  @himalayankitchen (Instagram Journal)
+                  @himalayankitchen.ae (Journal of Highland Gastronomy)
                 </a>
               </div>
             </div>

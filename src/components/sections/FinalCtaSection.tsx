@@ -80,7 +80,7 @@ export function FinalCtaSection({ onReserve, onContact, theme = 'dark' }: FinalC
           isLight ? 'text-stone-600' : 'text-himalayan-fog'
         }`}>
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
-          <span>CURRENT TASTING SEATINGS OPEN FOR THURSDAY – SUNDAY</span>
+          <span>BESPOKE TASTING SEATINGS OPEN • GATE VILLAGE, DIFC DUBAI</span>
         </div>
       </div>
     </section>

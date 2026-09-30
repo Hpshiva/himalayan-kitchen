@@ -218,7 +218,7 @@ export function Navbar({
             <Compass className="w-4 h-4 text-himalayan-amber" />
             <span>NAVIGATION ARCHIVE</span>
           </div>
-          <span className="hidden sm:inline">KATHMANDU / HIGH PEAKS (8,848M)</span>
+          <span className="hidden sm:inline">DIFC DUBAI / HIMALAYAN PROVENANCE</span>
         </div>
 
         {/* Major Editorial Links */}
@@ -282,11 +282,11 @@ export function Navbar({
                 <span className={`block tracking-widest font-semibold mb-1 ${
                   isLight ? 'text-stone-900' : 'text-himalayan-ivory'
                 }`}>
-                  SEATINGS
+                  SEATINGS (GST)
                 </span>
-                <p>First Hearth: 18:00</p>
-                <p>Second Hearth: 20:30</p>
-                <p>Thursday – Sunday</p>
+                <p>Lunch: 12:00 – 15:30</p>
+                <p>Dinner: 18:30 & 21:15</p>
+                <p>Tuesday – Sunday</p>
               </div>
               <div>
                 <span className={`block tracking-widest font-semibold mb-1 ${
@@ -294,9 +294,9 @@ export function Navbar({
                 }`}>
                   LOCATION
                 </span>
-                <p>High Ridge Pass</p>
-                <p>27°59′N • 86°55′E</p>
-                <p>Helipad & Valet</p>
+                <p>Gate Village 08, DIFC</p>
+                <p>Dubai, UAE</p>
+                <p>VIP Valet Parking</p>
               </div>
             </div>
 

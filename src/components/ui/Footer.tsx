@@ -87,9 +87,9 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
             <div className="flex items-start gap-2">
               <MapPin className="w-3.5 h-3.5 text-himalayan-amber mt-0.5 shrink-0" />
               <div>
-                <p className={isLight ? 'text-stone-900' : 'text-himalayan-bone'}>High Ridge Pass Road, Above Lukla</p>
-                <p className={isLight ? 'text-stone-700' : 'text-himalayan-fog'}>Solukhumbu District, Nepal</p>
-                <p className="text-himalayan-amber mt-1">27°59′17″N 86°55′31″E • 8,848M</p>
+                <p className={isLight ? 'text-stone-900' : 'text-himalayan-bone'}>Gate Village 08, Podium Level</p>
+                <p className={isLight ? 'text-stone-700' : 'text-himalayan-fog'}>DIFC, Dubai, United Arab Emirates</p>
+                <p className="text-himalayan-amber mt-1">25°12′18″N 55°16′38″E • 8,848M PROVENANCE</p>
               </div>
             </div>
           </div>
@@ -99,10 +99,10 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
             <span className="text-himalayan-amber tracking-widest uppercase block mb-2 sm:mb-3 font-semibold">
               TASTING SEATINGS
             </span>
-            <p className={isLight ? 'text-stone-900' : 'text-himalayan-bone'}>Thursday – Sunday</p>
-            <p>First Seating: 18:00 (Sunset Over Peaks)</p>
-            <p>Second Seating: 20:30 (Midnight Embers)</p>
-            <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>Private bookings: Upon request</p>
+            <p className={isLight ? 'text-stone-900' : 'text-himalayan-bone'}>Tuesday – Sunday</p>
+            <p>Lunch: 12:00 – 15:30 (Alpine Light)</p>
+            <p>Dinner: 18:30 – 23:00 (Midnight Embers)</p>
+            <p className="text-himalayan-amber text-[10px]">Late Hearth Lounge: Until 02:00 AM</p>
           </div>
 
           {/* Col 3: Direct Inquiries */}
@@ -112,14 +112,14 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
             </span>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
-              <a href="mailto:sanctuary@himalayankitchen.luxury" className="hover:text-himalayan-amber transition-colors truncate">
-                sanctuary@himalayankitchen.luxury
+              <a href="mailto:concierge@himalayankitchen.ae" className="hover:text-himalayan-amber transition-colors truncate">
+                concierge@himalayankitchen.ae
               </a>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
-              <a href="tel:+97714200000" className="hover:text-himalayan-amber transition-colors">
-                +977 1 420 8848
+              <a href="tel:+97143988848" className="hover:text-himalayan-amber transition-colors">
+                +971 4 398 8848
               </a>
             </div>
             <button
@@ -138,11 +138,11 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
             <div className="flex items-center gap-2">
               <Globe className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
               <a href="#instagram" className="hover:text-himalayan-amber transition-colors">
-                @himalayankitchen
+                @himalayankitchen.ae
               </a>
             </div>
             <p className={isLight ? 'text-stone-500' : 'text-himalayan-fog'}>
-              Press: press@himalayankitchen.luxury
+              Press: press@himalayankitchen.ae
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export function Footer({ onScrollToTop, onContact, theme = 'dark' }: FooterProps
           isLight ? 'text-stone-500' : 'text-himalayan-fog/60'
         }`}>
           <div className="text-center sm:text-left">
-            <span>© 2026 HIMALAYAN KITCHEN. ALL RIGHTS RESERVED.</span>
+            <span>© 2026 HIMALAYAN KITCHEN DUBAI. ALL RIGHTS RESERVED.</span>
           </div>
 
           <button

@@ -102,7 +102,7 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
             <p className={`font-editorial text-sm md:text-base italic max-w-sm ${
               isLight ? 'text-stone-700' : 'text-himalayan-bone'
             }`}>
-              “A digital courier dispatch has been sent to {formData.email}. We await your ascent to the high hearth.”
+              “A digital courier dispatch has been sent to {formData.email}. We await your ascent to our Dubai hearth at Gate Village, DIFC.”
             </p>
 
             <button
@@ -117,7 +117,7 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
             <div className={`border-b pb-4 ${isLight ? 'border-stone-300' : 'border-himalayan-ivory/10'}`}>
               <div className="flex items-center gap-2 text-himalayan-amber text-xs font-mono-tech tracking-[0.25em] uppercase mb-1 font-semibold">
                 <Compass className="w-3.5 h-3.5" />
-                <span>SANCTUARY RESERVATION</span>
+                <span>SANCTUARY RESERVATION • DIFC DUBAI</span>
               </div>
               <h3 className={`font-display text-2xl sm:text-3xl uppercase tracking-wide ${
                 isLight ? 'text-stone-900' : 'text-himalayan-ivory'
@@ -138,12 +138,12 @@ export function ReservationModal({ isOpen, onClose, theme = 'dark' }: Reservatio
                   {
                     id: 'sagarmatha-8',
                     title: 'SAGARMATHA TASTING',
-                    sub: '8 Courses • $195/person',
+                    sub: '8 Courses • AED 750 / guest',
                   },
                   {
                     id: 'hearth-10',
                     title: 'HEARTH & EMBER TASTING',
-                    sub: '10 Courses + Pairings • $295/person',
+                    sub: '10 Courses + Pairings • AED 1,150 / guest',
                   },
                 ].map((exp) => (
                   <div

@@ -93,7 +93,7 @@ export function HeroSection({
               SAGARMATHA
             </span>
             <span className="hidden sm:inline opacity-40 leading-none">•</span>
-            <span className="hidden md:inline leading-none">27°59′17″N 86°55′31″E</span>
+            <span className="hidden md:inline leading-none">ORIGIN 8,848M → DUBAI 25°12′N</span>
           </div>
 
           <div className="inline-flex items-center gap-2 sm:gap-3 h-6 sm:h-7 leading-none">
@@ -105,7 +105,7 @@ export function HeroSection({
                 : 'STAGE 03 // SANCTUARY'}
             </span>
             <span className={`hidden sm:inline leading-none ${isLight ? 'text-stone-800' : 'text-himalayan-ivory'}`}>
-              {isSummitStage ? '8,848M ELEVATION' : isAltarStage ? '3,800M CLEFT' : '1,400M HEARTH'}
+              {isSummitStage ? '8,848M ELEVATION' : isAltarStage ? '3,800M CLEFT' : 'DIFC HEARTH'}
             </span>
           </div>
         </div>
@@ -130,7 +130,7 @@ export function HeroSection({
           >
             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-himalayan-amber shrink-0" />
             <span className="text-[9px] sm:text-[10px] md:text-xs font-mono-tech tracking-[0.18em] sm:tracking-[0.25em] uppercase font-medium">
-              Modified Nepali Botanicals • Tangra Wok Fire
+              HIGH HIMALAYAS • ARRIVING AT DIFC, DUBAI
             </span>
           </div>
 
