@@ -204,14 +204,14 @@ export function Navbar({
 
       {/* Fullscreen Luxury Editorial Menu Drawer */}
       <div
-        className={`fixed inset-0 z-40 backdrop-blur-2xl transition-all duration-700 flex flex-col justify-between p-5 sm:p-8 md:p-16 overflow-y-auto max-h-screen ${
+        className={`fixed inset-0 z-40 backdrop-blur-2xl transition-all duration-700 flex flex-col justify-between px-4 sm:px-8 md:px-16 pt-[88px] sm:pt-[96px] md:pt-[108px] pb-6 sm:pb-8 md:pb-12 overflow-y-auto max-h-screen ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         } ${
           isLight ? 'bg-stone-100/98 text-stone-900' : 'bg-himalayan-void/98 text-himalayan-ivory'
         }`}
       >
         {/* Top Header inside drawer */}
-        <div className={`flex justify-between items-center text-[10px] sm:text-xs font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] border-b pb-4 sm:pb-6 ${
+        <div className={`flex justify-between items-center text-[10px] sm:text-xs font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] border-b pb-3.5 sm:pb-5 mb-4 sm:mb-6 ${
           isLight ? 'text-stone-500 border-stone-300' : 'text-himalayan-fog border-himalayan-ivory/10'
         }`}>
           <div className="flex items-center gap-2">
