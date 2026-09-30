@@ -342,7 +342,7 @@ export function HeroSection({
 
               <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] font-mono-tech text-himalayan-amber tracking-widest uppercase mt-2">
                 <Layers className="w-3 h-3 shrink-0" />
-                <span>DRAG TO ROTATE 3D ARTIFACT (360°)</span>
+                <span>INTERACTIVE 3D ALTAR • MOVE TO TILT</span>
               </div>
             </div>
 
