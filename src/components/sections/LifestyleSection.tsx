@@ -295,9 +295,51 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                     </div>
 
                     {/* Card Body & Tactile Details - Fully fitted, zero vertical scroll */}
-                    <div className="p-3.5 sm:p-5 md:p-6 flex-1 flex flex-col justify-between overflow-hidden">
-                      <div className="space-y-1.5 sm:space-y-2.5">
-                        <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
+                    <div className="p-3 sm:p-5 md:p-6 flex-1 flex flex-col justify-between overflow-hidden">
+                      {/* Mobile / Tablet View (lg:hidden): Rich Media Card with Photo & Story */}
+                      <div className="block lg:hidden my-auto">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          {/* Dish Cinematic Photo with Glass Finish */}
+                          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl overflow-hidden shrink-0 border border-white/25 shadow-lg shadow-black/20 group">
+                            <img
+                              src={mat.image || '/images/morel_momo.jpg'}
+                              alt={mat.name}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute bottom-1.5 left-1.5 right-1.5 flex items-center justify-between text-[8px] font-mono-tech text-white">
+                              <span className="text-himalayan-amber font-bold">0{idx + 1}</span>
+                              <span className="text-[8px] uppercase tracking-wider text-white/90 truncate max-w-[65px]">
+                                {DISH_SHORT_NAMES[idx]}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Provenance & Description */}
+                          <div className="flex-1 min-w-0 space-y-1">
+                            <div className="flex items-center justify-between text-[8px] sm:text-[9px] font-mono-tech tracking-wider text-himalayan-amber uppercase font-semibold">
+                              <span>PROVENANCE</span>
+                              <span className="text-stone-400 dark:text-stone-500 font-normal truncate max-w-[120px]">
+                                {CULINARY_CRAFT_TAGS[idx]}
+                              </span>
+                            </div>
+
+                            <p
+                              className={`font-sans-clean text-[11px] sm:text-xs leading-relaxed line-clamp-3 sm:line-clamp-4 ${
+                                isLight ? 'text-stone-800' : 'text-himalayan-bone'
+                              }`}
+                            >
+                              {mat.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Desktop View (hidden lg:block): Pure Editorial Layout (Large 500px image frame on left column) */}
+                      <div className="hidden lg:block space-y-2.5 my-auto">
+                        <div className="flex items-center justify-between text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
                           <span>PROVENANCE & HARVEST ALTITUDE</span>
                           <span className="text-stone-400 dark:text-stone-500 font-normal">
                             {CULINARY_CRAFT_TAGS[idx]}
@@ -305,7 +347,7 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                         </div>
 
                         <p
-                          className={`font-sans-clean text-xs sm:text-sm md:text-base leading-relaxed line-clamp-3 sm:line-clamp-4 ${
+                          className={`font-sans-clean text-sm md:text-base leading-relaxed ${
                             isLight ? 'text-stone-800' : 'text-himalayan-bone'
                           }`}
                         >
@@ -313,20 +355,21 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                         </p>
                       </div>
 
-                      <div className="pt-2.5 sm:pt-3.5 border-t border-white/20 dark:border-white/10 space-y-1.5 sm:space-y-2">
+                      {/* Shared Bottom Sensory Telemetry (Both Mobile & Desktop) */}
+                      <div className="pt-2 sm:pt-3.5 border-t border-white/20 dark:border-white/10 space-y-1 sm:space-y-2 shrink-0">
                         {/* Taste Profile */}
-                        <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono-tech">
+                        <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono-tech">
                           <Flame className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
-                          <span className="font-semibold text-himalayan-amber shrink-0">TASTE PROFILE:</span>
+                          <span className="font-semibold text-himalayan-amber shrink-0">TASTE:</span>
                           <span className={`truncate ${isLight ? 'text-stone-800' : 'text-stone-200'}`}>
                             {mat.tactileTrait}
                           </span>
                         </div>
 
                         {/* Culinary Preparation & Pairing */}
-                        <div className="flex items-center gap-2 text-[9px] sm:text-[11px] font-mono-tech opacity-80">
+                        <div className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[11px] font-mono-tech opacity-80">
                           <ArrowUpRight className="w-3 h-3 text-himalayan-amber shrink-0" />
-                          <span className="font-medium shrink-0">PREPARATION:</span>
+                          <span className="font-medium shrink-0">PAIRING:</span>
                           <span className="truncate">
                             {CULINARY_PAIRINGS[idx]}
                           </span>
