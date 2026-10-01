@@ -1,38 +1,9 @@
 import { useState, useEffect } from 'react';
-import { ArrowDown, Compass, Mountain, Sparkles, Volume2, VolumeX, Eye, Wind, Flame, Layers, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowDown, Compass, Mountain, Sparkles, Volume2, VolumeX, Eye, Wind, Flame, Layers, ArrowUpRight } from 'lucide-react';
 import { soundEngine } from '../../utils/audio';
 import type { Dish } from '../../types';
 import { DISHES } from '../../data/himalayanData';
 
-const ODYSSEY_CHAPTERS = [
-  {
-    num: '01',
-    chapter: 'CHAPTER 01',
-    title: 'High Altitude & Foraged Earth',
-    subtitle: 'Wild Morel & Truffle Momo in clarified timur bone consommé',
-    elevation: '3,800M KHUMBU',
-    image: '/images/morel_momo.jpg',
-    dishIndex: 0,
-  },
-  {
-    num: '02',
-    chapter: 'CHAPTER 02',
-    title: 'Silk Route & Roaring Wok',
-    subtitle: 'Tiger Prawns scorched at 800°C wok hei with Kashmiri chili',
-    elevation: '800°C WOK HEI',
-    image: '/images/wok_dish.jpg',
-    dishIndex: 1,
-  },
-  {
-    num: '03',
-    chapter: 'CHAPTER 03',
-    title: 'Nomadic Hearth & Spirits',
-    subtitle: 'Smoked lapsang souchong elixir over hand-chiseled glacial ice',
-    elevation: '5,364M BASECAMP',
-    image: '/images/botanical_cocktail.jpg',
-    dishIndex: 2,
-  },
-];
 
 interface HeroSectionProps {
   onExplore: () => void;
@@ -282,11 +253,10 @@ export function HeroSection({
 
               {/* Streamlined Dialect Pill Selector - Pure Minimalist Line */}
               <div
-                className={`mt-2 sm:mt-3 inline-flex items-center justify-center gap-1 sm:gap-2 p-1 rounded-full border backdrop-blur-md max-w-full overflow-x-auto shadow-sm transition-colors ${isLight
+                className={`mt-2 sm:mt-3 inline-flex flex-wrap items-center justify-center gap-1 sm:gap-2 p-1 rounded-full border backdrop-blur-md max-w-full shadow-sm transition-colors ${isLight
                     ? 'border-stone-300/80 bg-stone-100/85'
                     : 'border-white/15 bg-black/55'
                   }`}
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {[
                   { id: 'nepali', label: '01 // NEPALI MOMO', shortLabel: '01 NEPALI' },
@@ -437,16 +407,16 @@ export function HeroSection({
           >
             {/* Frosted Glass Sanctuary Gateway Card */}
             <div
-              className={`relative w-full max-w-4xl mx-auto rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 backdrop-blur-2xl border shadow-2xl transition-all overflow-hidden flex flex-col justify-between max-h-[82vh] overflow-y-auto [&::-webkit-scrollbar]:hidden ${isLight
-                  ? 'bg-white/70 border-white/80 shadow-[0_30px_90px_-20px_rgba(20,30,50,0.18)] text-stone-900'
-                  : 'bg-[#0c1017]/75 border-white/15 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] text-white'
+              className={`relative w-full max-w-2xl lg:max-w-3xl mx-auto rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 backdrop-blur-2xl border shadow-2xl transition-all overflow-hidden flex flex-col justify-between ${isLight
+                  ? 'bg-white/75 border-white/80 shadow-[0_30px_90px_-20px_rgba(20,30,50,0.18)] text-stone-900'
+                  : 'bg-[#0c1017]/80 border-white/15 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] text-white'
                 }`}
             >
               {/* Top Specular Edge Highlight (Apple Glass Polish) */}
               <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-white/30 to-transparent pointer-events-none" />
 
               {/* Top Telemetry & Sanctuary Gateway Header */}
-              <div className="flex items-center justify-between border-b pb-2.5 sm:pb-3 border-black/10 dark:border-white/10 shrink-0 gap-2">
+              <div className="flex items-center justify-between border-b pb-3 sm:pb-4 border-black/10 dark:border-white/10 shrink-0 gap-2">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-himalayan-amber animate-ping shrink-0" />
                   <span className="text-[9px] sm:text-[10px] font-mono-tech tracking-[0.22em] text-himalayan-amber uppercase font-semibold">
@@ -468,98 +438,30 @@ export function HeroSection({
               </div>
 
               {/* Monumental Editorial Headline */}
-              <div className="text-center my-3 sm:my-4 shrink-0">
+              <div className="text-center my-6 sm:my-8 shrink-0">
                 <h3
-                  className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase tracking-[0.03em] font-bold leading-tight ${isLight ? 'text-stone-950' : 'text-himalayan-ivory'
+                  className={`font-display text-2xl sm:text-4xl md:text-5xl uppercase tracking-[0.04em] font-bold leading-tight ${isLight ? 'text-stone-950' : 'text-himalayan-ivory'
                     }`}
                 >
                   Enter The Himalayan Odyssey
                 </h3>
                 <p
-                  className={`font-editorial text-xs sm:text-base md:text-lg italic mt-1.5 max-w-2xl mx-auto ${isLight ? 'text-stone-700' : 'text-himalayan-bone'
+                  className={`font-editorial text-sm sm:text-base md:text-lg italic mt-3 max-w-xl mx-auto leading-relaxed ${isLight ? 'text-stone-700' : 'text-himalayan-bone'
                     }`}
                 >
                   “From high glacial ridges into the warm fragrance of cedarwood, rare timur pepper, and live wok fire.”
                 </p>
               </div>
 
-              {/* 3 Interactive Expedition Pillars (Chapter Preview Tiles) */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4 my-2 sm:my-3">
-                {ODYSSEY_CHAPTERS.map((chap) => (
-                  <div
-                    key={chap.num}
-                    onClick={() => {
-                      soundEngine.playSoftTick();
-                      onStory();
-                    }}
-                    className={`group relative rounded-xl sm:rounded-2xl p-3 sm:p-4 border transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden ${isLight
-                        ? 'bg-white/60 hover:bg-white/90 border-stone-200/80 hover:border-himalayan-amber/60 shadow-sm hover:shadow-md'
-                        : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-himalayan-amber/50 hover:shadow-lg hover:shadow-himalayan-amber/10'
-                      }`}
-                  >
-                    {/* Card top badge */}
-                    <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono-tech tracking-wider mb-2">
-                      <span className="text-himalayan-amber font-bold">{chap.chapter}</span>
-                      <span className="px-1.5 py-0.5 rounded bg-himalayan-amber/10 text-himalayan-amber text-[8px] sm:text-[9px] uppercase font-semibold">
-                        {chap.elevation}
-                      </span>
-                    </div>
-
-                    {/* Image & Title snippet */}
-                    <div className="flex items-center gap-3 my-1">
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden border border-white/20 shrink-0 shadow-md group-hover:scale-105 transition-transform duration-500">
-                        <img
-                          src={chap.image}
-                          alt={chap.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
-                      </div>
-                      <div className="min-w-0">
-                        <h4
-                          className={`font-display text-xs sm:text-sm uppercase font-bold tracking-wide group-hover:text-himalayan-amber transition-colors truncate ${isLight ? 'text-stone-900' : 'text-himalayan-ivory'
-                            }`}
-                        >
-                          {chap.title}
-                        </h4>
-                        <p className="text-[10px] sm:text-[11px] font-sans-clean opacity-75 line-clamp-2 leading-snug mt-0.5">
-                          {chap.subtitle}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Action Link Row */}
-                    <div className="mt-2 pt-2 border-t border-black/5 dark:border-white/10 flex items-center justify-between text-[9px] font-mono-tech">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          soundEngine.playSoftTick();
-                          onSelectDish(DISHES[chap.dishIndex]);
-                        }}
-                        className="text-himalayan-amber hover:underline uppercase tracking-wider font-semibold cursor-pointer"
-                      >
-                        TASTING NOTES ↗
-                      </button>
-                      <div className="flex items-center gap-1 text-stone-500 dark:text-stone-400 group-hover:text-himalayan-amber transition-colors">
-                        <span className="uppercase tracking-widest text-[8px] sm:text-[9px]">EXPLORE</span>
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
               {/* High-Impact Action Controls */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 mt-3 sm:mt-4 shrink-0">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 my-2 sm:my-3 shrink-0">
                 {/* Primary Button: Begin Expedition */}
                 <button
                   onClick={() => {
                     soundEngine.playSingingBowl(528, 2.5);
                     onStory();
                   }}
-                  className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-amber/90 text-white font-mono-tech text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase shadow-lg shadow-himalayan-amber/30 hover:shadow-himalayan-amber/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
+                  className="w-full sm:w-auto px-7 sm:px-9 py-3 sm:py-3.5 rounded-full bg-himalayan-amber hover:bg-himalayan-amber/90 text-white font-mono-tech text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase shadow-lg shadow-himalayan-amber/30 hover:shadow-himalayan-amber/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
                   data-cursor="EXPEDITION"
                 >
                   <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:rotate-45 transition-transform duration-500" />
@@ -573,7 +475,7 @@ export function HeroSection({
                     soundEngine.playSoftTick();
                     onReserve();
                   }}
-                  className={`w-full sm:w-auto px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full border font-mono-tech text-[10px] sm:text-xs tracking-[0.18em] uppercase font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${isLight
+                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border font-mono-tech text-[10px] sm:text-xs tracking-[0.18em] uppercase font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${isLight
                       ? 'border-stone-400/80 bg-white/60 hover:bg-stone-100 text-stone-800 hover:border-himalayan-amber'
                       : 'border-white/20 bg-white/5 hover:bg-white/10 text-white hover:border-himalayan-amber'
                     }`}
@@ -587,7 +489,7 @@ export function HeroSection({
 
               {/* Bottom Live Sensory Telemetry Strip */}
               <div
-                className={`mt-3 pt-2.5 border-t flex flex-wrap items-center justify-between text-[8px] sm:text-[10px] font-mono-tech tracking-wider gap-2 shrink-0 ${isLight ? 'border-stone-200 text-stone-600' : 'border-white/10 text-stone-400'
+                className={`mt-6 pt-3 sm:pt-4 border-t flex flex-wrap items-center justify-between text-[8px] sm:text-[10px] font-mono-tech tracking-wider gap-2 shrink-0 ${isLight ? 'border-stone-200 text-stone-600' : 'border-white/10 text-stone-400'
                   }`}
               >
                 <div className="flex items-center gap-1.5">

@@ -105,7 +105,7 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
             </div>
 
             {/* Apple Card Stack Step Indicators (Clickable) */}
-            <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto py-1 [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 py-1">
               {MATERIAL_TEXTURES.map((mat, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -184,7 +184,7 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
           </div>
 
           {/* Right Column: Apple Frosted Glass Stacking Cards Deck */}
-          <div className="col-span-1 lg:col-span-7 flex flex-col justify-center h-full max-h-[520px]">
+          <div className="col-span-1 lg:col-span-7 flex flex-col justify-center h-full max-h-[540px]">
             
             {/* Header / Subhead over the stack */}
             <div className="flex items-center justify-between mb-2 sm:mb-3 shrink-0">
@@ -202,7 +202,7 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
 
             {/* Apple Stacking Cards Deck Viewport */}
             {/* Background 3D canvas (canyon river, mountains, white circle snow) softly glimmers through the frosted glass */}
-            <div className="relative w-full h-[340px] sm:h-[400px] md:h-[450px]">
+            <div className="relative w-full h-[400px] sm:h-[440px] md:h-[480px] lg:h-[500px]">
               {MATERIAL_TEXTURES.map((mat, idx) => {
                 // Stacking physics calculations:
                 // Card 0 is always at the base.
@@ -230,9 +230,8 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                   }
                 }
 
-                // Header tab offset: desktop ~44px, mobile ~36px
-                // Leaves the top portion of earlier cards visible like Apple indexed folder tabs
-                const desktopTopOffset = idx * 42;
+                // Compact 24px tab peek (leaves tabs exposed while preserving max body height)
+                const desktopTopOffset = idx * 24;
                 const isCurrentTop = activeIndex === idx;
 
                 return (
@@ -246,7 +245,7 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                       opacity: opacity,
                       zIndex: 10 + idx,
                     }}
-                    className={`absolute inset-x-0 rounded-2xl sm:rounded-3xl transition-transform duration-100 ease-out cursor-pointer flex flex-col justify-between overflow-hidden backdrop-blur-2xl shadow-2xl ${
+                    className={`absolute inset-x-0 rounded-2xl sm:rounded-3xl transition-transform duration-100 ease-out cursor-pointer flex flex-col justify-between overflow-hidden backdrop-blur-2xl shadow-2xl select-none ${
                       isLight
                         ? 'bg-white/45 border border-white/60 shadow-[0_20px_60px_-15px_rgba(20,30,50,0.12)] text-stone-900'
                         : 'bg-[#0c1017]/50 border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.65)] text-white'
@@ -261,40 +260,26 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
 
                     {/* Card Header Tab (Always stays exposed when cards stack over it!) */}
                     <div className="p-3 sm:p-4 md:p-5 border-b border-white/20 dark:border-white/10 flex items-center justify-between shrink-0">
-                      <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-                        {/* Food Dish Photo Thumbnail */}
-                        <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden border border-white/30 dark:border-white/20 shadow-md shrink-0">
-                          <img
-                            src={mat.image || '/images/morel_momo.jpg'}
-                            alt={mat.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div className="absolute inset-0 bg-black/10" />
-                        </div>
-
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-1.5 sm:gap-2">
-                            <span className="text-[10px] font-mono-tech font-bold text-himalayan-amber shrink-0">
-                              0{idx + 1}
-                            </span>
-                            <h3
-                              className={`font-display text-sm sm:text-lg md:text-xl uppercase tracking-wide font-bold leading-tight truncate ${
-                                isLight ? 'text-stone-950' : 'text-himalayan-ivory'
-                              }`}
-                            >
-                              {mat.name}
-                            </h3>
-                          </div>
-                          <span
-                            className={`text-[9px] sm:text-[11px] font-mono-tech tracking-wider uppercase block truncate mt-0.5 ${
-                              isLight ? 'text-stone-600' : 'text-himalayan-fog'
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 sm:gap-2.5">
+                          <span className="text-xs sm:text-sm font-mono-tech font-bold text-himalayan-amber shrink-0">
+                            0{idx + 1}
+                          </span>
+                          <h3
+                            className={`font-display text-base sm:text-xl md:text-2xl uppercase tracking-wide font-bold leading-tight truncate ${
+                              isLight ? 'text-stone-950' : 'text-himalayan-ivory'
                             }`}
                           >
-                            {mat.origin}
-                          </span>
+                            {mat.name}
+                          </h3>
                         </div>
+                        <span
+                          className={`text-[9px] sm:text-[11px] font-mono-tech tracking-wider uppercase block truncate mt-0.5 sm:mt-1 ${
+                            isLight ? 'text-stone-600' : 'text-himalayan-fog'
+                          }`}
+                        >
+                          {mat.origin}
+                        </span>
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0 ml-2">
@@ -309,34 +294,18 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                       </div>
                     </div>
 
-                    {/* Card Body & Tactile Details (Visible when this card is in focus) */}
-                    <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between overflow-y-auto [&::-webkit-scrollbar]:hidden">
-                      <div className="space-y-2 sm:space-y-3">
-                        {/* Mobile Food Photo Preview */}
-                        <div className="block lg:hidden relative h-24 sm:h-28 w-full rounded-xl overflow-hidden border border-white/20 mb-2 shrink-0 shadow-md">
-                          <img
-                            src={mat.image || '/images/morel_momo.jpg'}
-                            alt={mat.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                          <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[10px] font-mono-tech text-white">
-                            <span className="text-himalayan-amber uppercase tracking-wider font-semibold">
-                              {mat.origin}
-                            </span>
-                            <span className="text-white/80">{CULINARY_CRAFT_TAGS[idx]}</span>
-                          </div>
-                        </div>
-
+                    {/* Card Body & Tactile Details - Fully fitted, zero vertical scroll */}
+                    <div className="p-3.5 sm:p-5 md:p-6 flex-1 flex flex-col justify-between overflow-hidden">
+                      <div className="space-y-1.5 sm:space-y-2.5">
                         <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono-tech tracking-widest text-himalayan-amber uppercase font-semibold">
                           <span>PROVENANCE & HARVEST ALTITUDE</span>
-                          <span className="hidden sm:inline">DIFC GASTRONOMIC SUITE</span>
+                          <span className="text-stone-400 dark:text-stone-500 font-normal">
+                            {CULINARY_CRAFT_TAGS[idx]}
+                          </span>
                         </div>
 
                         <p
-                          className={`font-sans-clean text-xs sm:text-sm md:text-base leading-relaxed ${
+                          className={`font-sans-clean text-xs sm:text-sm md:text-base leading-relaxed line-clamp-3 sm:line-clamp-4 ${
                             isLight ? 'text-stone-800' : 'text-himalayan-bone'
                           }`}
                         >
@@ -344,20 +313,20 @@ export function LifestyleSection({ theme = 'dark' }: LifestyleSectionProps) {
                         </p>
                       </div>
 
-                      <div className="pt-3 sm:pt-4 border-t border-white/20 dark:border-white/10 space-y-2">
+                      <div className="pt-2.5 sm:pt-3.5 border-t border-white/20 dark:border-white/10 space-y-1.5 sm:space-y-2">
                         {/* Taste Profile */}
-                        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono-tech">
+                        <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono-tech">
                           <Flame className="w-3.5 h-3.5 text-himalayan-amber shrink-0" />
-                          <span className="font-semibold text-himalayan-amber">TASTE PROFILE:</span>
-                          <span className={isLight ? 'text-stone-800' : 'text-stone-200'}>
+                          <span className="font-semibold text-himalayan-amber shrink-0">TASTE PROFILE:</span>
+                          <span className={`truncate ${isLight ? 'text-stone-800' : 'text-stone-200'}`}>
                             {mat.tactileTrait}
                           </span>
                         </div>
 
                         {/* Culinary Preparation & Pairing */}
-                        <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono-tech opacity-80">
+                        <div className="flex items-center gap-2 text-[9px] sm:text-[11px] font-mono-tech opacity-80">
                           <ArrowUpRight className="w-3 h-3 text-himalayan-amber shrink-0" />
-                          <span className="font-medium">PREPARATION:</span>
+                          <span className="font-medium shrink-0">PREPARATION:</span>
                           <span className="truncate">
                             {CULINARY_PAIRINGS[idx]}
                           </span>
